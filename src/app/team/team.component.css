@@ -1,0 +1,17 @@
+figure img{
+    width:250px;
+    height:250px;
+}
+a{
+    color:#fff;
+}
+mat-tab-group{
+    z-index: 0;
+    width:100%;
+}
+@media (max-width: 640px){
+    figure img{
+        width:330px;
+        height:330px;
+    }
+}

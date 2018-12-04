@@ -1,0 +1,38 @@
+<mat-sidenav-container class="sidenav-container">
+  <!--mobile-->
+  <mat-sidenav
+      #drawer 
+      class="sidenav" 
+      [ngClass]="{hidden: !(isHandset$ | async)}"
+      fixedInViewport="false"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu
+      <mat-icon (click)="drawer.toggle()">close</mat-icon>
+    </mat-toolbar>
+    <mat-nav-list>
+      <app-side-nav [menuItems]="items"></app-side-nav>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!--not mobile-->
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">line_weight</mat-icon>
+      </button>
+      <span class="mobile-logo"><img src="../../assets/img/logo-gilboa.png"></span>
+      <span class="spacer"></span>
+      <mat-list *ngIf="!(isHandset$ | async)">
+        <app-top-nav [menu]='items'></app-top-nav>
+      </mat-list>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

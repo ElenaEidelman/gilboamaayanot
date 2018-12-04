@@ -1,0 +1,41 @@
+    <!-- Team Section Start -->
+    <div id="team" class="team-members-tow section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="section-title wow fadeInDown animated" data-wow-delay="0.3s">צוות המועדון</h2>
+            </div>
+          </div>
+          <div class="row">
+              <mat-tab-group mat-align-tabs="center">
+                  <mat-tab label="{{c+1}}" *ngFor="let count of team; let c = index">
+                      <mat-grid-list cols="4" rowHeight="2:2">
+                          <mat-grid-tile *ngFor="let item of count; let i = index">
+                            <!-- Team Item Starts -->
+                            <figure>
+                                <img src="assets/img/{{item.img_src}}" alt="">
+                                <div class="image-overlay">
+                                  <div class="overlay-text text-center">
+                                    <div class="info-text">
+                                      <strong>{{item.name}}</strong>
+                                      <span>{{item.position}}</span>
+                                    </div>
+                                    <hr class="small-divider">
+                                    <ul class="social-icons">
+                                      <li><a href="#"> {{item.location}} <i class="material-icons">location_on</i></a></li><br>
+                                      <li><a href="mailto:{{item.mail}}">{{item.mail}} <i class="material-icons">alternate_email</i></a></li><br>
+                                      <li><a href="tel:{{item.mobile_num}}">{{item.mobile_num}}<i class="material-icons">perm_phone_msg</i></a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                          </figure>
+                              <!-- Team Item Ends -->
+                          </mat-grid-tile>
+                        </mat-grid-list>
+                  </mat-tab>
+              </mat-tab-group>
+
+          </div>
+        </div>
+      </div>
+      <!-- Team Section End -->
