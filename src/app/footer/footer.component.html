@@ -1,4 +1,4 @@
-	  <!-- 
+
     <footer class="footer">
       <div class="container">
         <div class="row section">
@@ -50,17 +50,19 @@
 
           <div class="footer-widget col-lg-3 col-md-6 col-xs-12 wow fadeIn" data-wow-delay=".8s">
             <h3 class="small-title">
-              SUBSCRIBE US
+              Log In
             </h3>
             <div class="contact-us">
-              <form>
-                <div class="form-group">
-                  <input type="text" class="form-control" id="exampleInputName2" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter your email">
-                </div>
-                <button type="submit" class="btn btn-common">Submit</button>
+              <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+                  <mat-form-field>
+                      <input type="text" matInput placeholder="username" formControlName="userName">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="password" matInput placeholder="password" formControlName="password">
+                    </mat-form-field>
+                    <p>
+                        <button mat-flat-button type="submit" >כניסה</button>
+                    </p>
               </form>
             </div>
           </div>
@@ -97,5 +99,6 @@
       </div>
 
 
+      <angular-editor></angular-editor>
     </footer>
-  -->
+  

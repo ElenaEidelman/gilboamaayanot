@@ -1,7 +1,9 @@
 <div class="container">
   <div class="wrap-content">
       <div class="wrap-content-child">
-          <mat-vertical-stepper>
+          <mat-vertical-stepper 
+            #stepper 
+            (selectionChange)="selectionChanged($event)">
               <ng-template matStepperIcon="edit">
                   <mat-icon>check</mat-icon>
               </ng-template>
@@ -9,18 +11,29 @@
             <mat-step *ngFor="let post of pages">
                 <ng-template matStepLabel>
                   <div (click)="clickStep(post)">
-                    {{post.date}} 
-                    {{post.time}} 
-                    <span class="post-title">{{post.title}}</span>
+                    <span class="post-time">
+                      {{post.date}} 
+                      {{post.time}} 
+                    </span>
+                    <span class="post-title">
+                      <span *ngIf="!ifMobile" >{{post.title | slice:0:35}}</span>
+                      <span *ngIf="ifMobile">{{post.title | slice:0:20}}</span>
+                      <span *ngIf="!ifMobile && post.title.length > 35">...</span>
+                      <span *ngIf="ifMobile && post.title.length > 20">...</span>
+                    </span>
                   </div>
                 </ng-template>
               <div class="content">
-                  {{post.text | slice:0:200}} ...
+                  <p class="content-title">{{post.title}}</p>
+                  <p>
+                      <span [innerHTML]="post.text | slice:0:200 | safe:'html'"></span>
+                    ...  <a routerLink="/post/{{post.id}}"> קרא המשך </a>
+                  </p>
                 </div>
             </mat-step>
           </mat-vertical-stepper>
       </div>
-      <div class="wrap-content-child">
+      <div class="wrap-content-child imgChild">
         <img src="{{content_img}}">
       </div>
   </div>

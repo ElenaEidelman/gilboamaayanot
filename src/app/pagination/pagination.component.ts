@@ -15,6 +15,7 @@ export class PaginationComponent implements OnInit {
   ngOnInit() {
   }
 
+
   setCurrentPage(pageNumber: number){
     this.setPage.emit(pageNumber);
   }

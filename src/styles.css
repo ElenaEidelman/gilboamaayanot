@@ -1,3 +1,6 @@
+
+
+
 /*slicknav*/
 /*!
  * SlickNav Responsive Mobile Menu v1.0.3
@@ -158,7 +161,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 .mat-drawer-container {
-  /*background-color: #fff;*/
+  background-color: #fff;
+  color: #404040 !important;
+}
+.mat-step-header .mat-step-label.mat-step-label-active{
+  color: #404040 !important;
 }
 .mat-list, .mat-nav-list, .mat-selection-list{
   padding-top:0px !important;
@@ -166,9 +173,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 body .ui-menubar{
   background-color: transparent;
   border: none;
-}
-a.ui-menuitem-link > span.ui-menuitem-text{
-  color:#ffffff !important;
 }
 body .ui-menubar .ui-submenu-list li a  span.ui-menuitem-text{
   color:#000000 !important;
@@ -178,20 +182,23 @@ a.ng-tns-c13-2 > span.ui-menuitem-text{
 }
 .mat-vertical-content-container{
   margin-left: 0px !important;
-  margin-right: 36px !important;
+  margin-right: 12px !important;
+  text-align: right;
 }
 .mat-stepper-vertical-line::before{
-  right: 0px;
+  right: 0px !important;
+  left: initial !important;
+  width:0;
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: rgba(255,255,255,.12);
+  border-right-color: rgba(208, 33, 44, .70);
   border-left-width: 0px !important;
 }
 .mat-step-header{
   height: 72px !important;
 }
 .mat-vertical-stepper-header{
-  padding: 0 24px !important;
+  padding: 0 0 24px 0 !important;
 }
 .mat-step-header .mat-step-label.mat-step-label-active{
   height: 72px;
@@ -201,6 +208,9 @@ a.ng-tns-c13-2 > span.ui-menuitem-text{
 }
 .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
   background-color: #D0212C !important;
+}
+.mat-step-header .mat-step-icon{
+  background-color: rgba(208, 33, 44, 0.5);
 }
 .mat-vertical-stepper-header .mat-step-icon{
   margin-right: 0 !important;
@@ -217,8 +227,12 @@ a.ng-tns-c13-2 > span.ui-menuitem-text{
   width:15px !important;
   border-color: #D0212C !important;
 }
-
-
+.ui-submenu > ul > li > a > span.ui-submenu-icon{
+  color: #404040;
+}
+body .ui-menu .ui-menuitem-link .ui-menuitem-text, body .ui-menubar .ui-menuitem-link .ui-menuitem-text, body .ui-tieredmenu .ui-menuitem-link .ui-menuitem-text, body .ui-contextmenu .ui-menuitem-link .ui-menuitem-text, body .ui-megamenu .ui-menuitem-link .ui-menuitem-text, body .ui-slidemenu .ui-menuitem-link .ui-menuitem-text{
+  color: #fff;
+}
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -3210,7 +3224,6 @@ a.back-to-top:hover, a.back-to-top:focus {
 #loader-1:after {
   border: 2px solid #f2f2f2;
 }
-
 @keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -3382,4 +3395,186 @@ a:focus:not([href]):not([tabindex]), a:hover:not([href]):not([tabindex]) {
 /*my code*/
 html, body{
   height: 100%;
+}
+
+p-menubarsub > ul{
+  text-align:right;
+
+}
+p-menubarsub > ul > li > a > span.pi-caret-right:before {
+  content: "\e904" !important;
+}
+.ng-star-inserted{
+  text-align: center;
+  flex-direction: row-reverse !important;
+}
+.ng-star-inserted > a{
+  padding: 10px 15px !important;
+}
+.ng-star-inserted-arrow > a{
+  padding: 10px 9px !important;
+}
+.paginationUL > li{
+  padding: 10px 0px !important;
+}
+
+@media screen and (max-width: 1024px){
+  .paginationUL> li > a {
+    padding: 10px  9px !important;
+  }
+}
+.plain-container{
+  display: block !important;
+}
+div.plain-container img.ng-star-inserted{
+  width: 250px !important;
+  height: 150px !important;
+  margin: 10px !important;
+ }
+ .main-image-container #current-figure figcaption{
+   font-size: 2rem;
+ }
+ .main-image-container #current-figure > #current-image{
+   width: 100%;
+ }
+ img.ng-star-inserted:hover{
+  box-shadow: 0px 0px 25px 3px rgba(0, 0, 0, 0.6);
+ }
+ 
+ .example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+h1 > span{
+  border-top: 1px solid #494949;
+  border-bottom: 1px solid #494949;
+  padding: 1rem;
+}
+.wrap-component-title{
+  margin: 6rem 0;
+  text-align: center;
+}
+.title{
+  color: #D0212C;
+  font-size: 3em;
+  font-family: 'Reforma-Medium', arial;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+.titleDialog{
+  color: #D0212C;
+  font-size: 1.5em;
+  font-family: 'Reforma-Medium', arial;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.mat-radio-label{
+  white-space:normal !important;
+}
+.mat-radio-label-content{
+  font-size: 1.5em;
+  padding: 10px 15px !important;
+}
+.wrap-component{
+  margin: 6rem auto;
+}
+mat-dialog-container{
+  direction: rtl;
+}
+.mat-card-avatar{
+  width: 45px !important;
+  border-radius: 0% !important;
+}
+.mat-progress-spinner circle, .mat-spinner circle{
+  stroke: darksalmon;
+}
+.ui-menuitem-link:hover{
+  cursor: pointer;
+}
+.mat-expansion-panel{
+  margin:5px 0 !important;
+}
+.mat-expansion-panel-header{
+  min-height: 49px !important;
+}
+.mat-expansion-panel-header-description{
+  font-size: 1.3em;
+}
+.mat-expansion-panel-header, .mat-expansion-panel-body{
+  direction: rtl;
+}
+.ng-star-inserted{
+  
+}
+.mat-expansion-panel-body > div.ng-star-inserted > a{
+  font-size: 1.3em;
+  line-height: 2em;
+}
+.hugContent .mat-expansion-panel-body, .achivContent .mat-expansion-panel-body{
+  text-align: right;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,1), 0 2px 2px 0 rgba(0,0,0,1), 0 1px 5px 0 rgba(0,0,0,0.5)
+}
+.wrap-img{
+  flex: 1 1 auto;
+  padding: 2rem;
+  border: 1px solid #DFDFDF;
+  border-radius: 5px;
+}
+.hugContent .mat-expansion-panel-header{
+  color:rgba(0,0,0,.54);
+}
+.hugContent .mat-expansion-panel-header-title{
+  font-size: 1.2em;
+  color:rgba(0,0,0,.54);
+}
+p-menubar>div.ui-menubar>p-menubarsub>ul>li.ui-menu-parent>p-menubarsub>ul>li.ui-menu-parent>p-menubarsub>ul{
+  right: 198px;
+}
+.birthdayHeight div.mat-card-header-text{
+  width: 100%;
+  text-align:center;
+}
+.marquee {
+  top: 6em;
+  position: relative;
+  box-sizing: border-box;
+  animation: marquee 15s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Make it move! */
+@keyframes marquee {
+  0%   { -webkit-transform: translate(0, 0); }
+  100% { -webkit-transform: translate(0, -100%); }
+}
+#birthdayHeight > .mat-card-content{
+  overflow: hidden;
+}
+
+.adminSidenav .mat-drawer-content{
+  height: -webkit-fill-available;
+}
+.wrap-edit-component{
+  height: -webkit-fill-available;
+}
+@media screen and (min-width: 1024px){
+  .wrap-edit-component{
+    width: calc(100% - 250px);
+    float: right;
+  }
+}
+.cursor{
+  cursor: pointer;
+}
+.mat-form-field{
+  text-align: right !important;
 }

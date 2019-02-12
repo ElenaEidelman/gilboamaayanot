@@ -1,3 +1,30 @@
-body{
-    background: #fff;
+
+.example-card {
+    max-width: 350px;
+    direction: rtl;
+    text-align: right;
+  }
+  
+  .example-header-image {
+    background-image: url('../../assets/img/logo-gilboa.png');
+    background-size: cover;
+  }
+  .wrap-component-title{
+    padding-top: 6rem;
+    background: #F6F6F6;
+  }
+  .wrap-component{
+    background: #F6F6F6;
+  }
+  #news{
+    position: absolute;
+    top:-45px;
+  }
+  .news{
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }  
+mat-card{
+    margin:2em auto;
 }

@@ -23,6 +23,32 @@ import { AppRoutingModule } from './app-routing.module';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { NewsComponent } from './news/news.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { PostidComponent } from './postid/postid.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { GalleryComponent } from './gallery/gallery.component';
+
+// ********************** angular-modal-gallery *****************************
+import 'hammerjs'; // Mandatory for angular-modal-gallery 3.x.x or greater (`npm i --save hammerjs`)
+import 'mousetrap'; // Mandatory for angular-modal-gallery 3.x.x or greater (`npm i --save mousetrap`)
+import { GalleryModule } from '@ks89/angular-modal-gallery';
+import { ContactusComponent } from './contactus/contactus.component';
+
+import { DialogSurvey } from './survey/survey.component';
+import { BirthdayandweeklyComponent } from './birthdayandweekly/birthdayandweekly.component';
+import { SurveyComponent } from './survey/survey.component';
+import { DiaryComponent } from './diary/diary.component';
+import { SafePipe } from './safe.pipe';
+import { IframePipe } from './iframe.pipe';
+import { BlanksComponent } from './blanks/blanks.component';
+import { HugimComponent } from './hugim/hugim.component';
+import { ClubachievementComponent } from './clubachievement/clubachievement.component';
+import { AdminModule } from './admin/admin.module';
+
+
+
+
+
 
 
 @NgModule({
@@ -37,7 +63,19 @@ import { PaginationComponent } from './pagination/pagination.component';
     AboutComponent,
     NotfoundComponent,
     NewsComponent,
-    PaginationComponent
+    PaginationComponent,
+    PostidComponent,
+    GalleryComponent,
+    ContactusComponent,
+    BirthdayandweeklyComponent,
+    SurveyComponent,
+    DialogSurvey,
+    DiaryComponent,
+    SafePipe,
+    IframePipe,
+    BlanksComponent,
+    HugimComponent,
+    ClubachievementComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +89,13 @@ import { PaginationComponent } from './pagination/pagination.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    
+    AngularEditorModule,
+    AdminModule,
+    GalleryModule.forRoot(),
+    DeviceDetectorModule.forRoot()
+  ],
+  entryComponents: [
+    DialogSurvey
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,53 @@
+ <div>
+    <mat-sidenav-container class="sidenav-container adminSidenav">
+      <!--mobile-->
+      <mat-sidenav
+          #drawer 
+          class="sidenav" 
+          [ngClass]="{hidden: !(isHandset$ | async)}"
+          fixedInViewport="false"
+          [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+          [mode]="(isHandset$ | async) ? 'over' : 'side'"
+          [opened]="!(isHandset$ | async)">
+        <mat-toolbar>Menu
+          <mat-icon (click)="drawer.toggle()">close</mat-icon>
+        </mat-toolbar>
+        <mat-nav-list>
+            <app-side-menu></app-side-menu>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <mat-toolbar color="primary" class="adminMatToolbar">
+          <div style="float:left; width:100%">
+              <button
+              type="button"
+              style="float:left"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="logout()">
+              <mat-icon aria-label="Side nav toggle icon">logout</mat-icon>
+            </button>
+          </div>
+          <div style="float:right;width:100%">
+              <button
+                type="button"
+                style="float:right"
+                aria-label="Toggle sidenav"
+                mat-icon-button
+                (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">line_weight</mat-icon>
+            </button>
+          </div>
+
+          <span class="spacer"></span>
+        </mat-toolbar>
+        <div class="wrap-side" *ngIf="!(isHandset$ | async)">
+            <app-side-menu></app-side-menu>
+        </div>
+        <ng-content></ng-content>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+  

@@ -28,15 +28,14 @@ mat-list{
 mat-toolbar{
   justify-content: space-around;
 }
-
 .mobile-logo img {
   margin-top: 95px;
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:1023px){
   .mobile-logo{
     width: 100%;
-    text-align: right;
+    text-align: left;
   }
   .mobile-logo img {
     width:75px;

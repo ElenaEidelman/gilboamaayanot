@@ -1,0 +1,18 @@
+.achivList{
+    line-height: 30px;
+    font-size: 1.2em;
+    margin:25px;
+}
+.titleMatPanel{
+    color: #D0212C;
+}
+.achivContent{
+    display:flex;
+    flex-direction: row-reverse;
+}
+
+@media screen and (max-width:1024px){
+    .achivContent{
+        display:block;
+    }
+}

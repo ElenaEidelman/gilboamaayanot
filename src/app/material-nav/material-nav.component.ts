@@ -12,10 +12,23 @@ import { Menu } from '../classes/menu';
   styleUrls: ['./material-nav.component.css'],
 })
 export class MaterialNavComponent {
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe('(max-width: 1279.99px)')
+  .pipe(
+    map(result => {
+      return result.matches;
+    })
+  );
 
-  @Input() isHandset$:boolean;
 
-  constructor(private breakpointObserver: BreakpointObserver, private serviceData: GetDataService) {}
+/**
+ *
+   Handset: (max-width: 599.99px) and (orientation: portrait): false
+            (max-width: 959.99px) and (orientation: landscape): false
+
+   Tablet: (min-width: 600px) and (max-width: 839.99px) and (orientation: portrait): false
+           (min-width: 960px) and (max-width: 1279.99px) and (orientation: landscape): false
+ */
+constructor(private breakpointObserver: BreakpointObserver, private serviceData: GetDataService) {}
   items: Menu[];
   ngOnInit() {
       this.getMenu();
@@ -23,6 +36,7 @@ export class MaterialNavComponent {
 
   getMenu(){
     this.serviceData.getMenu().subscribe(menu => {
+      //debugger
         this.items = menu;
       });
   }

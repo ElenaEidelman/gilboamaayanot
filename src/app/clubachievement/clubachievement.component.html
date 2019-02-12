@@ -1,0 +1,26 @@
+<div class="wrap-component-title">
+    <h1>
+        <span>השגים של המועדון</span>
+    </h1>
+  </div>
+  <div class="container achivContent" >
+   
+        <mat-accordion class="example-headers-align achivContent" *ngIf="clubAchivemenetes">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xlg-6" *ngFor="let achievements of clubAchivemenetes">
+            <mat-expansion-panel [expanded]="step === i" hideToggle *ngFor="let achievement of achievements; let i = index">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span class="titleMatPanel">{{achievement.title_hesegim}}</span>
+                </mat-panel-title>
+                <mat-panel-description></mat-panel-description>
+                <mat-icon>year</mat-icon>
+              </mat-expansion-panel-header>
+              <div class="achivList" [innerHTML]="achievement.text_hesegim | safe: 'html'"></div>
+            </mat-expansion-panel>
+          </div>
+        </mat-accordion>
+ 
+ 
+    
+    
+  </div>

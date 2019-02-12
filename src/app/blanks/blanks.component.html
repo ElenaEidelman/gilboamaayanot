@@ -1,0 +1,27 @@
+<div class="wrap-component-title" id="contactus">
+  <h1>
+      <span>טפסים</span>
+  </h1>
+</div>
+<div class="container">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="id === null ? step === i : blankArr[1][0].kategory === id ? true : false " hideToggle *ngFor="let blankArr of blanks; let i = index" id="{{blankArr[1][0].kategory}}">
+      <mat-expansion-panel-header>
+
+        <mat-panel-description>
+          {{blankArr[0]}}
+          <mat-icon>description</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <div *ngFor = "let blanksList of blankArr[1]">
+          <a href="{{blanksList.file}}"><mat-icon>touch_app</mat-icon> {{blanksList.name_tofes}}
+            
+          </a>
+      </div>
+  
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+  
+</div>

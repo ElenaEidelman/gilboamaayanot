@@ -1,0 +1,16 @@
+.innerTitle{
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.8em;
+    color: #D0212C;
+}
+.hugContent p{
+    font-size: 1.2em;
+}
+.hugContent p  span:first-child{
+    color: gray;
+}
+.textAlign{
+    text-align:center;
+    font-size: 1.2em;
+}

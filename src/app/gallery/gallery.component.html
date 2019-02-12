@@ -1,0 +1,27 @@
+<div class="container" style="min-height:300px;">
+    <div *ngIf="galleryTrue">
+            <h1 class="container" style="text-align:center">
+                <span>{{galleryLabel}}</span>
+            </h1>
+            <ks-modal-gallery 
+                [id]="1" 
+                [modalImages]="gallery"
+                [previewConfig]="{visible: true}"
+                [slideConfig]="{infinite: false, sidePreviews: {show: false}}"></ks-modal-gallery>
+    </div>
+
+    <div *ngIf="multyGalleryTrue"> 
+        <div *ngFor="let multygallery of multyGallery; let i = index">
+                <h1>
+                    <span>{{galleryLabel[i]}}</span>
+                </h1>
+                <ks-modal-gallery 
+                    [id]="i"
+                    [modalImages]="multygallery"
+                    [previewConfig]="{visible: true}"
+                    [slideConfig]="{infinite: false, sidePreviews: {show: false}}">
+                </ks-modal-gallery>
+        </div>
+    </div>
+
+</div>

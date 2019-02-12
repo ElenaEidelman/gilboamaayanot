@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="col-md-12 postIdContent">
+        <h2 class="section-title">{{post.title}}</h2>
+        <h3 class="postTimeDate">{{post.date}} {{post.time}}</h3>
+        <div class="wrap-img">
+          <img src="assets/img/{{post.img_src}}" title="{{post.img_title}}">
+        </div>
+        <div [innerHTML]="post.text | safe: 'html'" class="postText"></div>
+        <button type="button" mat-button (click)="goBack()">לחזור</button>
+    </div>    
+</div>

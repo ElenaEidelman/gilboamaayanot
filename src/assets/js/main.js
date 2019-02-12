@@ -4,27 +4,34 @@
 
   $(window).on('load', function() {
 
+    //debugger
+      let turHeight = document.getElementById('turHeight');
+      if(turHeight != null ){
+      document.getElementById('birthdayHeight').style.height = turHeight.offsetHeight + 'px' ;
+      }
 
+    
+  
   /*Page Loader active
   ========================================================*/
   $('#preloader').fadeOut();
 
   // Sticky Nav
-    $(window).on('scroll', function() {
+  /*  $(window).on('scroll', function() {
         if ($(window).scrollTop() > 50) {
             $('.scrolling-navbar').addClass('top-nav-collapse');
         } else {
             $('.scrolling-navbar').removeClass('top-nav-collapse');
         }
-    });
+    });*/
 
     // one page navigation 
-    $('.navbar-nav').onePageNav({
+   /* $('.navbar-nav').onePageNav({
       currentClass: 'active'
-    });
+    });*/
 
     /* slicknav mobile menu active  */
-    $('.mobile-menu').slicknav({
+    /*$('.mobile-menu').slicknav({
         prependTo: '.navbar-header',
         parentTag: 'liner',
         allowParentLinks: true,
@@ -32,14 +39,14 @@
         label: '',
         closedSymbol: '<i class="fa fa-chevron-right"></i>',
         openedSymbol: '<i class="fa fa-chevron-down"></i>',
-      });
+      });*/
 
     //MixitUp
-     $('#portfolio').mixItUp();
+     /*$('#portfolio').mixItUp();*/
 
     /* Testimonials Carousel 
     ========================================================*/
-    $('#single-testimonial-item').owlCarousel({     
+   /* $('#single-testimonial-item').owlCarousel({     
         items : 1,
         navigation : true,
         pagination: false,
@@ -47,9 +54,9 @@
         paginationSpeed : 400,
         singleItem:true
     });  
-
-    $('#single-testimonial-item').find('.owl-prev').html('<i class="fa fa-angle-left"></i>');
-    $('#single-testimonial-item').find('.owl-next').html('<i class="fa fa-angle-right"></i>');
+*/
+    /*$('#single-testimonial-item').find('.owl-prev').html('<i class="fa fa-angle-left"></i>');
+    $('#single-testimonial-item').find('.owl-next').html('<i class="fa fa-angle-right"></i>');*/
 
     /* Counter
     ========================================================*/
@@ -62,7 +69,7 @@
 
     /* Back Top Link acive
     ========================================================*/
-      var offset = 200;
+      /*var offset = 200;
       var duration = 500;
       $(window).scroll(function() {
         if ($(this).scrollTop() > offset) {
@@ -78,7 +85,7 @@
           scrollTop: 0
         }, 600);
         return false;
-      });
+      });*/
 
   });      
 

@@ -13,11 +13,13 @@
     </mat-toolbar>
     <mat-nav-list>
       <app-side-nav [menuItems]="items"></app-side-nav>
+      <!--<app-sidenavtree [menuItems]="items"></app-sidenavtree>-->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <!--not mobile-->
     <mat-toolbar color="primary">
+      <span class="mobile-logo"><img src="../../assets/img/logo-gilboa.png"></span>
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -26,7 +28,6 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">line_weight</mat-icon>
       </button>
-      <span class="mobile-logo"><img src="../../assets/img/logo-gilboa.png"></span>
       <span class="spacer"></span>
       <mat-list *ngIf="!(isHandset$ | async)">
         <app-top-nav [menu]='items'></app-top-nav>

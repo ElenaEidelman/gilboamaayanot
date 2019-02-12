@@ -1,0 +1,61 @@
+form{
+    width:90%;
+}
+.mat-form-field{
+    font-size:14px !important;
+}
+textarea.mat-input-element, input.mat-input-element{
+    text-align: right;
+}
+button{
+    width: 100%;
+    color: #fff;
+    background: mediumseagreen;
+}
+mat-spinner{
+    top: -125%;
+    left: 40%;
+    position: absolute;
+    z-index: 9999999;
+  }
+  #contactus{
+      position:absolute;
+      top:-100px;
+  }
+  .socIcons{
+    width:100%;
+    padding: 20px 0
+  }
+  .socIcons ul{
+      display: flex;
+      justify-content: space-evenly;
+  }
+  .socIcons ul li{
+    display: inline-block;
+  }
+  .fa{
+    color:gray;
+    font-size: 2em;
+  }
+  .fa-instagram:hover{
+      color:#C3206F;
+  }
+  .fa-twitter:hover{
+      color: #4169E1;
+  }
+  .fa-facebook:hover{
+      color: #4267B2;
+  }
+  .fa-youtube:hover{
+    color:#D0212C;
+  }
+@media screen and (max-width: 1024px){
+    form{
+        width:100%;
+    }
+    .socIcons{
+        padding: 0px;
+        height: 60px;
+        margin-top: 12%;
+    }
+}

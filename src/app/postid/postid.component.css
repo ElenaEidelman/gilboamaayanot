@@ -1,0 +1,24 @@
+app-postid{
+    direction:rtl;
+}
+.section-title{
+    direction: rtl;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.postTimeDate{
+    text-align: center;
+    margin-bottom: 1em;
+}
+.postText{
+
+}
+.postIdContent{
+    text-align: right;
+    direction: rtl;
+}
+.mat-button{
+    background: #D0212C;
+    color: #fff;
+    margin: 10px 0px 20px;
+}

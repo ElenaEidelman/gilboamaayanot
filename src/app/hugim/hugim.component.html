@@ -1,0 +1,78 @@
+<div class="wrap-component-title">
+  <h1>
+      <span [innerHTML]="hugByIdGet"></span>
+  </h1>
+</div>
+<div class="container hugContent">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === i" hideToggle *ngFor="let hugArr of hugim; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{hugArr.name}}</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+        <mat-icon>group</mat-icon>
+      </mat-expansion-panel-header>
+      <div>
+        <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
+              <div class="col-md-12 innerTitle">פרטי החוג</div>
+              <p>
+                <span>שם החוג: </span>
+                <span>{{hugArr.name}}</span>
+              </p>
+              <p>
+                <span>מיועד ל: </span>
+                <span>{{hugArr.target}}</span>
+              </p>
+              <p>
+                <span>אולם/מגרש: </span>
+                <span>{{hugArr.stadion}}</span>
+              </p>
+              <p>
+                <span>ימי אימון/שעות אימון: </span>
+                <span>{{hugArr.date}}</span>
+              </p>
+        </div>
+        <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
+          <div class="row">
+            <div class="col-md-12 innerTitle">פרטי המאמן</div>
+            <div class="col-lgl-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="wrap-img">
+                  <img src="assets/img/{{hugArr.imgSrcTrainer}}" alt="{{hugArr.nameTrainer}}">
+              </div>
+            </div>
+            <div class="col-lgl-6 col-md-6 col-sm-12 col-xs-12">
+              <p>
+                <span>תפקיד: </span>
+                <span>{{hugArr.positionTrainer}}</span>
+              </p>
+              <p>
+                <span>שם: </span>
+                <span>{{hugArr.nameTrainer}}</span>
+              </p>
+              <p>
+                <span>ישוב: </span>
+                <span>{{hugArr.locationTrainer}}</span>
+              </p>
+              <p>
+                <span>נייד: </span>
+                <span><a href="tel:{{hugArr.phoneTrainer}}">{{hugArr.phoneTrainer}}</a></span>
+              </p>
+              <p>
+                <span>דוא"ל: </span>
+                <span><a href="mailto:{{hugArr.mailTriner}}">{{hugArr.mailTriner}}</a></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 textAlign">
+          <div>כל ניירת ההרשמה ונוהלי ההרשמה והטפסים הרצויים נמצאים בלינק</div>
+          <mat-icon>arrow_downward</mat-icon>
+          <div>
+            <a routerLink="/blanks/tfasim">כניסה ללינק הרשמה/טפסים ישירות מדף זה</a>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+  
+</div>

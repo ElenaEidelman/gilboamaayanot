@@ -1,0 +1,21 @@
+
+.admin-top{
+    height: 60px;
+    width:100%;
+    background: #404040;
+}
+.wrap-side{
+    width:250px;
+    float: left;
+}
+.admin-button{
+    float:right;
+    margin:10px;
+}
+
+
+.mat-toolbar.mat-primary {
+    background: #404040;
+  }
+  
+  

@@ -1,0 +1,51 @@
+<div class="wrap-component">
+  <div class="container wrap-container">
+    <div class="col-md-6" style="position: relative">
+        <div id="birthdays"></div>
+        <div class="wrap-component-title birthdays">
+            <h1>
+                <span>ימי הולדת</span>
+            </h1>
+        </div>
+        <mat-card class="example-card" id="birthdayHeight"> 
+            <mat-card-header class="header birthdayHeight">
+              <mat-card-title>מזל טוב</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="marquee">
+                        <div *ngFor="let birthday of birthdays" class="birthdayDiv">
+                                <p class="title">{{birthday.date_birthday | date: 'd/M/yy'}}</p>
+                                <p class="content">{{birthday.name_birthday}}</p>
+                        </div>
+                    </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-6" style="position: relative">
+        <div id="Weeklycolumn"></div>
+        <div class="wrap-component-title">
+            <h1>
+                <span>טור חודשי</span>
+            </h1>
+        </div>
+        <mat-card class="example-card" id="turHeight"  *ngIf="tur">
+            <mat-card-header>
+              <mat-card-title>{{tur[0].f_title}}</mat-card-title>
+              <mat-card-subtitle>{{tur[0].date | date:'d/M/yy'}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{tur[0].img_src}}" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+              <p>
+                {{tur[0].s_title}}
+                <a href="{{tur[0].file_src}}" download>{{tur[0].file_name}}</a>
+              </p>
+              <hr>
+             
+                <h4>אשמח לענות לשאלות ולייעץ . במייל-</h4>
+                <a href="mailto:{{tur[0].mail}}">{{tur[0].mail}}</a>
+              
+            </mat-card-content>
+      </mat-card>
+    </div>
+  </div>   
+</div>

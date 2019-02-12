@@ -1,0 +1,23 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  button{
+    background: mediumseagreen;
+    color: #fff;
+    width: 100%;
+}
+button.close{
+    width: 74px;
+    background: gray;
+}
+mat-spinner{
+    top: -125%;
+    left: 40%;
+    position: absolute;
+    z-index: 9999999;
+  }

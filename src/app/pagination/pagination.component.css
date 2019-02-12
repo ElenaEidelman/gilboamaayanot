@@ -6,11 +6,26 @@
     border:1px solid #ddd;
     cursor: pointer;
 }
+
 .paginationUL> li.active{
-    background-color: #005575;
+    background-color: #D0212C;
     color: #fff;
+    padding: 17px 3px !important;
 }
 .paginationUL> li.disabled{
     background-color: #ddd;
     cursor: pointer;
+}
+@media screen and (max-width: 1048px){
+    .paginationUL > li{
+        padding: 11px;
+    }
+    .paginationUL> li.active{
+        background-color: #D0212C;
+        color: #fff;
+        padding: 14px;
+    }
+    li{
+        font-size: 17px;
+    }
 }

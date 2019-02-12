@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { GetDataService } from '../get-data.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,9 +11,22 @@ import { Team } from '../classes/team';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
+  /*isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => {
+      return result.matches;
+    })
+  );*/
   team: Team[];
-  @Input() ifMobile:boolean;
-  constructor(private serviceData: GetDataService) { }
+  ifMobile:boolean;
+  constructor(private serviceData: GetDataService, private breakpointObserver: BreakpointObserver) { 
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(result => {
+      this.ifMobile = result.matches;
+    });
+  }
 
   
 
