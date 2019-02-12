@@ -9,7 +9,7 @@
           <div class="row">
               <mat-tab-group mat-align-tabs="center">
                   <mat-tab label="{{c+1}}" *ngFor="let count of team; let c = index">
-                      <mat-grid-list cols="4" rowHeight="2:2">
+                      <mat-grid-list cols="{{ifMobile ? 1 : 4}} " rowHeight="2:2">
                           <mat-grid-tile *ngFor="let item of count; let i = index">
                             <!-- Team Item Starts -->
                             <figure>

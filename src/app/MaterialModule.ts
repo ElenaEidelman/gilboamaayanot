@@ -1,6 +1,7 @@
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatStepperModule} from '@angular/material/stepper';
 
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,8 @@ import { NgModule } from '@angular/core';
         MatIconModule,
         MatListModule,
         MatTabsModule,
-        MatGridListModule
+        MatGridListModule,
+        MatStepperModule
     ],
     exports:[
         MatToolbarModule,
@@ -21,7 +23,8 @@ import { NgModule } from '@angular/core';
         MatIconModule,
         MatListModule,
         MatTabsModule,
-        MatGridListModule
+        MatGridListModule,
+        MatStepperModule
     ]
 })
 

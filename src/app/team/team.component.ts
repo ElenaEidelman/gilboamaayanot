@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GetDataService } from '../get-data.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Team } from '../classes/team';
 
 @Component({
@@ -8,8 +10,8 @@ import { Team } from '../classes/team';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-
   team: Team[];
+  @Input() ifMobile:boolean;
   constructor(private serviceData: GetDataService) { }
 
   

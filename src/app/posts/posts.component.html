@@ -1,3 +1,30 @@
-<p>
-  posts work!
-</p>
+<div class="container">
+  <div class="wrap-content">
+      <div class="wrap-content-child">
+          <mat-vertical-stepper>
+              <ng-template matStepperIcon="edit">
+                  <mat-icon>check</mat-icon>
+              </ng-template>
+              <ng-template matStepperIcon="number"></ng-template>
+            <mat-step *ngFor="let post of pages">
+                <ng-template matStepLabel>
+                  <div (click)="clickStep(post)">
+                    {{post.date}} 
+                    {{post.time}} 
+                    <span class="post-title">{{post.title}}</span>
+                  </div>
+                </ng-template>
+              <div class="content">
+                  {{post.text | slice:0:200}} ...
+                </div>
+            </mat-step>
+          </mat-vertical-stepper>
+      </div>
+      <div class="wrap-content-child">
+        <img src="{{content_img}}">
+      </div>
+  </div>
+  <div class="pagination">
+    <app-pagination [pager]="pager" (setPage)="setPage($event)"></app-pagination>
+  </div>
+</div>

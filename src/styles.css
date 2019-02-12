@@ -157,7 +157,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-
+.mat-drawer-container {
+  /*background-color: #fff;*/
+}
 .mat-list, .mat-nav-list, .mat-selection-list{
   padding-top:0px !important;
 }
@@ -174,7 +176,39 @@ body .ui-menubar .ui-submenu-list li a  span.ui-menuitem-text{
 a.ng-tns-c13-2 > span.ui-menuitem-text{
   color:#444 !important;
 }
-
+.mat-vertical-content-container{
+  margin-left: 0px !important;
+  margin-right: 36px !important;
+}
+.mat-stepper-vertical-line::before{
+  right: 0px;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: rgba(255,255,255,.12);
+  border-left-width: 0px !important;
+}
+.mat-step-header{
+  height: 72px !important;
+}
+.mat-vertical-stepper-header{
+  padding: 0 24px !important;
+}
+.mat-step-header .mat-step-label.mat-step-label-active{
+  height: 72px;
+  line-height: 5;
+  width: 100%;
+  text-align: right;
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+  background-color: #D0212C !important;
+}
+.mat-vertical-stepper-header .mat-step-icon{
+  margin-right: 0 !important;
+  margin-left: 12px;
+}
+.mat-step-header{
+  direction:rtl !important;
+}
 .mat-tab-label, .mat-tab-link{
   color:#444 !important;
 }

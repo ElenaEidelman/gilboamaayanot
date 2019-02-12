@@ -1,0 +1,16 @@
+.paginationUL> li{
+    display: inline-block;
+    background-color: #fff;
+    margin-left:-1px;
+    padding: 10px 15px;
+    border:1px solid #ddd;
+    cursor: pointer;
+}
+.paginationUL> li.active{
+    background-color: #005575;
+    color: #fff;
+}
+.paginationUL> li.disabled{
+    background-color: #ddd;
+    cursor: pointer;
+}

@@ -1,0 +1,20 @@
+.wrap-content{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 20px 0
+}
+.wrap-content-child{
+    width:50%;
+}
+.post-title{
+    font-size: 18px;
+}
+.pagination{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+li:hover{
+    cursor: pointer;
+}
