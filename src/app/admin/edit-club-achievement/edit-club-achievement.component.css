@@ -2,7 +2,40 @@
     background: tomato;
     color: #fff;
 }
+.button-submit{
+    position: relative;
+}
 mat-form-field{
     width: 350px;
     font-size: 20px;
+}
+mat-panel-description{
+    justify-content: flex-end
+}
+.delete-icon{
+    z-index: 9999999;
+}
+.wysiwyg{
+    margin:15px 0;
+}
+mat-spinner{
+    top: -94%;
+    left: 45%;
+    position: absolute;
+    z-index: 9999999;
+  }
+  .wrap-accordion{
+      margin-top:4em;
+  }
+.edit-button{
+    margin: 10px;
+    width:100%;
+    text-align:center;
+}
+.edit-button > button{
+    color: #fff;
+    background: mediumseagreen;
+}
+.button-submit{
+    margin:20px;
 }

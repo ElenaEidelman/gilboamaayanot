@@ -14,8 +14,13 @@
 }
 
 
-.mat-toolbar.mat-primary {
+    .mat-toolbar.mat-primary {
+        background: #404040;
+}
+
+  .admin-footer{
+    height: 50px;
+    width:100%;
     background: #404040;
   }
-  
   

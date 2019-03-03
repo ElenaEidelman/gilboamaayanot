@@ -58,7 +58,6 @@ export class SideMenuComponent implements OnInit {
       type: type
     }
     this.openDialog(setData,'hello');
-    //alert(id + ' ' + ' level: ' + level + type);
   }
 }
 

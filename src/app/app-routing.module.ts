@@ -15,6 +15,15 @@ import { HugimComponent } from './hugim/hugim.component';
 import { ClubachievementComponent } from './clubachievement/clubachievement.component';
 import { RouteguardService } from './routeguard.service';
 import { AdminModule } from './admin/admin.module';
+import { WysiwygfrontComponent } from './wysiwyg/wysiwygfront.component';
+import { PublicComponent } from './public/public.component';
+import { AdmindasboardComponent } from './admin/admindasboard/admindasboard.component';
+
+//admin
+import { EditClubAchievementComponent } from './admin/edit-club-achievement/edit-club-achievement.component';
+import { EditgalleryComponent } from './admin/editgallery/editgallery.component';
+import { AddnewComponent } from './admin/addnew/addnew.component';
+import { WysiwysComponent } from './admin/wysiwys/wysiwys.component';
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -24,21 +33,37 @@ const routerOptions: ExtraOptions = {
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'posts', pathMatch: 'full' },
-  { path: 'posts', component: PostsComponent},
-  { path: 'about', component: AboutComponent },
-  { path: 'team', component: TeamComponent },
-  { path: 'news', component: NewsComponent},
-  { path: 'post/:id', component: PostidComponent},
-  { path: 'gallery/:id', component: GalleryComponent},
-  { path: 'contactus', component: ContactusComponent},
-  { path: 'survey', component: SurveyComponent},
-  { path: 'diary/:id', component: DiaryComponent},
-  { path: 'blanks', component: BlanksComponent},
-  { path: 'blanks/:id', component: BlanksComponent},
-  { path: 'hugim/:id', component: HugimComponent},
-  { path: 'clubachievement', component: ClubachievementComponent},
-  { path: '**', component: NotfoundComponent},
+  { path: '', redirectTo: 'public/posts', pathMatch: 'full' },
+  { path: 'public', component: PublicComponent, 
+  children:[
+    { path: '', redirectTo: 'posts', pathMatch: 'full' },
+    { path: 'posts', component: PostsComponent},
+    { path: 'about', component: AboutComponent },
+    { path: 'team', component: TeamComponent },
+    { path: 'news', component: NewsComponent},
+    { path: 'post/:id', component: PostidComponent},
+    { path: 'gallery/:id', component: GalleryComponent},
+    { path: 'contactus', component: ContactusComponent},
+    { path: 'survey', component: SurveyComponent},
+    { path: 'diary/:id', component: DiaryComponent},
+    { path: 'blanks', component: BlanksComponent},
+    { path: 'blanks/:id', component: BlanksComponent},
+    { path: 'hugim/:id', component: HugimComponent},
+    { path: 'clubachievement', component: ClubachievementComponent},
+    { path: 'wysiwyg/:id', component:WysiwygfrontComponent},
+    { path: '**', component: NotfoundComponent},
+  ]
+},
+{ path: 'admin', component: AdmindasboardComponent, 
+  canActivate:[RouteguardService],
+  children: [
+    { path: 'clubachievement', component: EditClubAchievementComponent},
+    { path: 'gallery/:id', component: EditgalleryComponent},
+    { path: 'gallery', component: EditgalleryComponent},
+    { path: 'addNewMenu', component: AddnewComponent},
+    { path: 'wysiwyg/:id', component: WysiwysComponent}
+  ]
+}
 ];
 
 @NgModule({

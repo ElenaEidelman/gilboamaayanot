@@ -240,14 +240,7 @@ export class GetDataService {
     );
   }
   userAuthentication(user: User){
-    return this.http.post(`${this.baseURL}/getUser.php`,user,{responseType: 'text'}).pipe(
-      map(result => {
-        return result;
-      }),
-      catchError(error => {
-        return throwError(error.message);
-      })
-    );
+    return this.http.post(`${this.baseURL}/getUser.php`,user,{responseType: 'text'}).toPromise();
   }
   getMenuForAdmin():Observable<MenuAdmin[]>{
     return this.http.get<MenuAdmin[]>(`${this.baseURL}/getMenuForAdmin.php`).pipe(
@@ -270,6 +263,82 @@ export class GetDataService {
       catchError(error => {
         return throwError(error.message);
       })
-    );;
+    );
+  }
+
+  checkGallery(galleryId: string){
+    return this.http.post(`${this.baseURL}/checkGalleryForAdmin.php`,galleryId,{responseType:'text'}).pipe(
+      map(result => {
+        //debugger
+        return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
+      })
+    );
+  }
+
+  addAchiv(achivemenet: ClubAchievement){
+    //debugger
+    return this.http.post(`${this.baseURL}/addNewAchivemenets.php`,achivemenet,{responseType:'text'}).pipe(
+      map(result => {
+        //debugger
+        return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
+      })
+    );
+  }
+  updateAchive(achivemenet: ClubAchievement){
+    return this.http.post(`${this.baseURL}/updateAchivemenets.php`,achivemenet,{responseType:'text'}).pipe(
+      map(result => {
+        //debugger
+        return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
+      })
+    );
+  }
+
+  deleteAchivemenet(id: string){
+    return this.http.post(`${this.baseURL}/deleteAchivement.php`,id,{responseType:"text"}).pipe(
+      map(result => {
+        //debugger
+        return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
+      })
+    );
+  }
+  saveWYSIWYG(wysiwygOBJ: any){
+    return this.http.post(`${this.baseURL}/saveWYSIWYG.php`,wysiwygOBJ, {responseType:'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+  getWYSIWYG(pageId: string):Observable<any>{
+   return this.http.post<any>(`${this.baseURL}/getWYSIWYG.php`, pageId).pipe(
+    map(result => {
+      return result;
+    }),
+    catchError(error => {
+      return throwError(error.message);
+    })
+  );
+  }
+  checkWYSIWYG(idRoute: string):Observable<any>{
+    return this.http.post<any>(`${this.baseURL}/checkWYSIWYG.php`,idRoute).pipe(
+      map(result => {
+        //debugger
+        return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
+      })
+    );
   }
 }

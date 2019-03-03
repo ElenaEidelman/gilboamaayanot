@@ -1,26 +1,5 @@
 
-<div *ngIf="admin">
-    <app-admindasboard>
-        <div id="top" style = "position:absolute; top:-10px"></div>
-      <router-outlet name="adminEdit"></router-outlet>
-    </app-admindasboard>
+<div>
+    <div id="top" style = "position:absolute; top:-10px"></div>
+    <router-outlet></router-outlet>
 </div>
-<app-material-nav *ngIf="!admin">
-  <div id="top" style = "position:absolute; top:-10px"></div>
-  <router-outlet></router-outlet> 
-  <app-news></app-news>
-  <app-contactus></app-contactus>
-  <app-birthdayandweekly></app-birthdayandweekly>
-
-    <!-- Go to Top Link -->
-    <a href="#" class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </a>
-    
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="loader" id="loader-1"></div>
-    </div>
-    <!-- End Preloader -->
-    <app-footer></app-footer>
-</app-material-nav>

@@ -14,7 +14,8 @@ mat-list{
   direction:rtl;
 }
 .mat-toolbar.mat-primary {
-  position: sticky;
+  /* position: sticky; */
+  position: fixed;
   top: 0;
   z-index: 1;
   background: #D0212C;

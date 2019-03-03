@@ -1,0 +1,35 @@
+<div class="wrap-edit-component">
+    <div class="wrap-component-title">
+            <h1>
+                <span>{{idRoute}}</span>
+            </h1>
+    </div>
+    <div class="container">
+        <div>
+            <form *ngIf="viewForm" [formGroup]="editForm">
+                <div class="form-group">
+                    <input [hidden]="true" type="file" (change)="onFileChange($event)" #fileInput>
+                    <span class="button-submit">
+                        <button mat-flat-button (click)="fileInput.click()">Select Image</button>
+                    </span>
+                    <mat-form-field matTooltip="{{fileInput.value}}">
+                        <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
+                    </mat-form-field>
+                    <div *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
+                        <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}" >
+                    </div>
+                    <!-- <div class="button-submit">
+                        <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>
+                    </div> -->
+                </div>
+                <ckeditor formControlName="editor"></ckeditor>
+                <div class="button-submit">
+                    <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
+                    <button mat-flat-button (click)="updateWYSIWYG()" *ngIf="!saveButton">Edit</button>
+                    <mat-spinner *ngIf="spinner"></mat-spinner>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -7,6 +7,7 @@
  * (c) 2015 Josh Cope
  * licensed under MIT
  */
+ /*
  .slicknav_btn {
   cursor: pointer;
   display: block;
@@ -145,7 +146,7 @@
   padding: 7px 12px;
   height: 44px; }
 
-
+*/
   /*animate*/
   
 /*!
@@ -233,6 +234,7 @@ a.ng-tns-c13-2 > span.ui-menuitem-text{
 body .ui-menu .ui-menuitem-link .ui-menuitem-text, body .ui-menubar .ui-menuitem-link .ui-menuitem-text, body .ui-tieredmenu .ui-menuitem-link .ui-menuitem-text, body .ui-contextmenu .ui-menuitem-link .ui-menuitem-text, body .ui-megamenu .ui-menuitem-link .ui-menuitem-text, body .ui-slidemenu .ui-menuitem-link .ui-menuitem-text{
   color: #fff;
 }
+/*
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -313,7 +315,7 @@ body .ui-menu .ui-menuitem-link .ui-menuitem-text, body .ui-menubar .ui-menuitem
 }
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
-
+/*
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
@@ -530,7 +532,7 @@ body .ui-menu .ui-menuitem-link .ui-menuitem-text, body .ui-menubar .ui-menuitem
 }
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
-
+/*
 @-webkit-keyframes wobble {
   0% {
     -webkit-transform: translateX(0%);
@@ -2889,7 +2891,7 @@ body .ui-menu .ui-menuitem-link .ui-menuitem-text, body .ui-menubar .ui-menuitem
 }
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
-
+/*
 @-webkit-keyframes rollIn {
   0% {
     opacity: 0;
@@ -2926,7 +2928,7 @@ body .ui-menu .ui-menuitem-link .ui-menuitem-text, body .ui-menubar .ui-menuitem
 }
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
-
+/*
 @-webkit-keyframes rollOut {
   0% {
     opacity: 1;
@@ -2964,6 +2966,7 @@ body .ui-menu .ui-menuitem-link .ui-menuitem-text, body .ui-menubar .ui-menuitem
 
 
 /*extra*/
+/*
 .section-title {
   color: #585b60;
   font-size: 38px;
@@ -3082,6 +3085,7 @@ a a:focus {
 }
 
 /* only small tablets */
+/*
 @media (min-width: 768px) and (max-width: 991px) {
   #nav-main li a.nav-link {
     padding-top: 18px;
@@ -3155,6 +3159,7 @@ a a:focus {
   }
 }
 /* ScrollToTop */
+/*
 a.back-to-top {
   display: none;
   position: fixed;
@@ -3185,6 +3190,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 /* Preloader */
+/*
 #preloader {
   position: fixed;
   top: 0;
@@ -3240,7 +3246,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 /* / Sliders */
-
+/*
 .carousel-post {
   margin-right: 15px;
 }
@@ -3278,6 +3284,7 @@ a:focus:not([href]):not([tabindex]), a:hover:not([href]):not([tabindex]) {
 
 /*responsive*/
 /* only small desktops */
+/*
 @media (min-width: 992px) and (max-width: 1199px) {
   .top-nav-collapse .navbar-brand img {
     width: 48%;
@@ -3285,6 +3292,7 @@ a:focus:not([href]):not([tabindex]), a:hover:not([href]):not([tabindex]) {
 }
 
 /* tablets */
+/*
 @media (max-width: 991px) {
   .section-title {
     font-size: 30px;
@@ -3296,6 +3304,7 @@ a:focus:not([href]):not([tabindex]), a:hover:not([href]):not([tabindex]) {
 }
 
 /* only small tablets */
+/*
 @media (min-width: 768px) and (max-width: 991px) {
   .section-title {
     font-size: 26px;
@@ -3323,6 +3332,7 @@ a:focus:not([href]):not([tabindex]), a:hover:not([href]):not([tabindex]) {
 }
 
 /* mobile or only mobile */
+/*
 @media (max-width: 767px) {
   .section-padding {
     padding: 50px 0;
@@ -3451,14 +3461,17 @@ div.plain-container img.ng-star-inserted{
   width: 100%;
 }
 
-h1 > span{
+h1 > span, h4 > span{
   border-top: 1px solid #494949;
   border-bottom: 1px solid #494949;
   padding: 1rem;
 }
 .wrap-component-title{
-  margin: 6rem 0;
+  margin: 12rem 0 6rem 0;
   text-align: center;
+}
+.wrap-all-component{
+  margin-top: 15vh;
 }
 .title{
   color: #D0212C;
@@ -3563,13 +3576,20 @@ p-menubar>div.ui-menubar>p-menubarsub>ul>li.ui-menu-parent>p-menubarsub>ul>li.ui
 .adminSidenav .mat-drawer-content{
   height: -webkit-fill-available;
 }
+
 .wrap-edit-component{
-  height: -webkit-fill-available;
+  /* height: 100vh; */
+  height: 100%;
+  background: #fff;
+  padding-bottom: 20px;
 }
 @media screen and (min-width: 1024px){
   .wrap-edit-component{
     width: calc(100% - 250px);
     float: right;
+  }
+  app-admindasboard mat-sidenav-content{
+    background: #404040
   }
 }
 .cursor{
@@ -3577,4 +3597,14 @@ p-menubar>div.ui-menubar>p-menubarsub>ul>li.ui-menu-parent>p-menubarsub>ul>li.ui
 }
 .mat-form-field{
   text-align: right !important;
+}
+.section-title {
+  color: #585b60;
+  font-size: 38px;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 48px;
+  padding: 0 10px;
+  position: relative;
 }

@@ -52,10 +52,13 @@ export class DialogaddmenuComponent implements OnInit {
     })
   }
   onSubmit(){
+    debugger
+    let hebSelectedType = this.addNewMenu.get('selectedType').value;
+    let type = this.typesOfMenu.find(element => element.heblbl == hebSelectedType);
     let forMenu: addMenu = {
       hebLabel: this.addNewMenu.get('hebLbl').value,
       engLabel: this.addNewMenu.get('engLbl').value,
-      type: this.data.data.type,
+      type: this.data.data.type != null ? this.data.data.type : type.englbl, 
       level: +this.data.data.level + 1,
       parentMenuId: +this.data.data.id
     };
@@ -65,7 +68,7 @@ export class DialogaddmenuComponent implements OnInit {
         result => {
           if(result == 'SUCCESS'){
             this.spinner = false;
-            this.openDialog('','תפריט התווסף בהצלחה');
+            this.openDialog('','Menu added successfully ');
             this.showForm = false;
             setTimeout(() => {
               this.addNewMenu.reset();
@@ -73,7 +76,7 @@ export class DialogaddmenuComponent implements OnInit {
             });
           }
           else if(result == 'ERROR'){
-            this.openDialog('שגיאה','קרתה תקלה נא לנסות מאוחר יותר');
+            this.openDialog('Error','There was a problem, please try later');
           }
         }
       );

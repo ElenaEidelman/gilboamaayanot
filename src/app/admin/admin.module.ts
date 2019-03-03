@@ -9,6 +9,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddnewComponent } from './addnew/addnew.component';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DialogaddmenuComponent } from '../dialogaddmenu/dialogaddmenu.component';
+import { EditgalleryComponent } from './editgallery/editgallery.component';
+import { SafePipe } from '../safe.pipe';
+import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+import { GetDataService } from '../get-data.service';
+import { ConfirmComponent } from './edit-club-achievement/edit-club-achievement.component';
+import { CKEditorModule } from 'ng2-ckeditor';
+import { WysiwysComponent } from './wysiwys/wysiwys.component';
+
 
 
 
@@ -21,21 +29,37 @@ import { DialogaddmenuComponent } from '../dialogaddmenu/dialogaddmenu.component
     EditClubAchievementComponent, 
     AddnewComponent,
     DialogComponent,
-    DialogaddmenuComponent
+    DialogaddmenuComponent,
+    EditgalleryComponent,
+    SafePipe,
+    DialogConfirmComponent,
+    ConfirmComponent,
+    WysiwysComponent
   ],
   exports: [
     MaterialModule,
-    AdmindasboardComponent
+    AdmindasboardComponent,
+    SafePipe,
+    DialogConfirmComponent,
+    ConfirmComponent,
+    CKEditorModule
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    CKEditorModule
+  ],
+  providers: [
+    GetDataService,
+    EditClubAchievementComponent
   ],
     entryComponents: [
       DialogComponent,
-      DialogaddmenuComponent
+      DialogaddmenuComponent,
+      DialogConfirmComponent,
+      ConfirmComponent
     ]
 })
 export class AdminModule { }

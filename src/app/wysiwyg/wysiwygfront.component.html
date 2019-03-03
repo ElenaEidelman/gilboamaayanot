@@ -1,0 +1,11 @@
+<div class="wrap-all-component">
+  <div class="container" *ngIf="wysiwygData">
+      <div class="wrap-wysiwyg">
+          <div [innerHTML]="wysiwygData.textcontent | safe: 'html'" class="postText"></div>
+          <div class="wrap-img">
+              <img src="data:{{wysiwygData.imgType}};base64,{{wysiwygData.img}}" title="{{wysiwygData.pageId}}">
+          </div>
+          <!-- <button type="button" mat-button (click)="goBack()">לחזור</button> -->
+      </div>    
+  </div>
+  </div>    

@@ -1,43 +1,46 @@
-<div class="container">
-  <div class="wrap-content">
-      <div class="wrap-content-child">
-          <mat-vertical-stepper 
-            #stepper 
-            (selectionChange)="selectionChanged($event)">
-              <ng-template matStepperIcon="edit">
-                  <mat-icon>check</mat-icon>
-              </ng-template>
-              <ng-template matStepperIcon="number"></ng-template>
-            <mat-step *ngFor="let post of pages">
-                <ng-template matStepLabel>
-                  <div (click)="clickStep(post)">
-                    <span class="post-time">
-                      {{post.date}} 
-                      {{post.time}} 
-                    </span>
-                    <span class="post-title">
-                      <span *ngIf="!ifMobile" >{{post.title | slice:0:35}}</span>
-                      <span *ngIf="ifMobile">{{post.title | slice:0:20}}</span>
-                      <span *ngIf="!ifMobile && post.title.length > 35">...</span>
-                      <span *ngIf="ifMobile && post.title.length > 20">...</span>
-                    </span>
-                  </div>
-                </ng-template>
-              <div class="content">
-                  <p class="content-title">{{post.title}}</p>
-                  <p>
-                      <span [innerHTML]="post.text | slice:0:200 | safe:'html'"></span>
-                    ...  <a routerLink="/post/{{post.id}}"> קרא המשך </a>
-                  </p>
-                </div>
-            </mat-step>
-          </mat-vertical-stepper>
+<div class="wrap-all-component">
+    <div class="container">
+        <div class="wrap-content">
+            <div class="wrap-content-child">
+                <mat-vertical-stepper 
+                  #stepper 
+                  (selectionChange)="selectionChanged($event)">
+                    <ng-template matStepperIcon="edit">
+                        <mat-icon>check</mat-icon>
+                    </ng-template>
+                    <ng-template matStepperIcon="number"></ng-template>
+                  <mat-step *ngFor="let post of pages">
+                      <ng-template matStepLabel>
+                        <div (click)="clickStep(post)">
+                          <span class="post-time">
+                            {{post.date}} 
+                            {{post.time}} 
+                          </span>
+                          <span class="post-title">
+                            <span *ngIf="!ifMobile" >{{post.title | slice:0:35}}</span>
+                            <span *ngIf="ifMobile">{{post.title | slice:0:20}}</span>
+                            <span *ngIf="!ifMobile && post.title.length > 35">...</span>
+                            <span *ngIf="ifMobile && post.title.length > 20">...</span>
+                          </span>
+                        </div>
+                      </ng-template>
+                    <div class="content">
+                        <p class="content-title">{{post.title}}</p>
+                        <p>
+                            <span [innerHTML]="post.text | slice:0:200 | safe:'html'"></span>
+                          ...  <a [routerLink]="['/public/post',post.id]"> קרא המשך </a>
+                        </p>
+                      </div>
+                  </mat-step>
+                </mat-vertical-stepper>
+            </div>
+            <div class="wrap-content-child imgChild">
+              <img src="{{content_img}}">
+            </div>
+        </div>
+        <div class="pagination">
+          <app-pagination [pager]="pager" (setPage)="setPage($event)"></app-pagination>
+        </div>
       </div>
-      <div class="wrap-content-child imgChild">
-        <img src="{{content_img}}">
-      </div>
-  </div>
-  <div class="pagination">
-    <app-pagination [pager]="pager" (setPage)="setPage($event)"></app-pagination>
-  </div>
+      
 </div>

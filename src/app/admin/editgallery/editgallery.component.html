@@ -1,0 +1,57 @@
+<p>
+  editgallery works!
+  {{id}}
+</p>
+<div class="wrap-edit-component">
+    <div class="container">
+        <div *ngIf="editPic">
+          <div *ngIf="galleryTrue">
+            <div class="wrap-component-title">
+                  <h1>
+                      <span>{{galleryLabel}}</span>
+                  </h1>
+            </div>
+            <div class="wrap-edit-img">
+              <span *ngFor="let pic of gallery" >
+                  <div (click)="deletePic(pic.id)" class="cursor"><mat-icon>delete</mat-icon></div>
+                  <img src="{{pic.img}}" alt="{{pic.hebDescription}}">
+                  <div class="img-title">{{pic.hebDescription}}</div>
+              </span>
+            </div>
+          </div>
+          <div *ngIf="multyGalleryTrue">
+            <div *ngFor="let gallery of multyGallery; let i = index">
+                <div class="wrap-component-title">
+                    <h1>
+                        <span>{{galleryLabel[i]}}</span>
+                    </h1>
+                </div>
+                <form [formGroup]="addNewPic" class="add-pic-form" (ngSubmit)="onSubmit()">
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="כותרת" formControlName="src">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="text" value="" matInput placeholder="כותרת"  formControlName="gallery_id">
+                    </mat-form-field> 
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="כותרת" formControlName="hebDescription">
+                    </mat-form-field>
+                    <div class="button-submit">
+                        <button mat-flat-button type="submit" >save</button>
+                    </div>
+
+                </form>
+ 
+              <div class="wrap-edit-img">
+                <span *ngFor="let pic of gallery" >
+                    <div (click)="deletePic(pic.id)" class="cursor"><mat-icon>delete</mat-icon></div>
+                    <img src="{{pic.img}}" alt="{{pic.hebDescription}}">
+                    <div class="img-title">{{pic.hebDescription}}</div>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!editPic"> add child</div>
+      </div>
+</div>

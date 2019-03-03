@@ -24,7 +24,6 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { NewsComponent } from './news/news.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PostidComponent } from './postid/postid.component';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { GalleryComponent } from './gallery/gallery.component';
 
@@ -38,12 +37,13 @@ import { DialogSurvey } from './survey/survey.component';
 import { BirthdayandweeklyComponent } from './birthdayandweekly/birthdayandweekly.component';
 import { SurveyComponent } from './survey/survey.component';
 import { DiaryComponent } from './diary/diary.component';
-import { SafePipe } from './safe.pipe';
 import { IframePipe } from './iframe.pipe';
 import { BlanksComponent } from './blanks/blanks.component';
 import { HugimComponent } from './hugim/hugim.component';
 import { ClubachievementComponent } from './clubachievement/clubachievement.component';
 import { AdminModule } from './admin/admin.module';
+import { WysiwygfrontComponent } from './wysiwyg/wysiwygfront.component';
+import { PublicComponent } from './public/public.component';
 
 
 
@@ -71,11 +71,12 @@ import { AdminModule } from './admin/admin.module';
     SurveyComponent,
     DialogSurvey,
     DiaryComponent,
-    SafePipe,
     IframePipe,
     BlanksComponent,
     HugimComponent,
-    ClubachievementComponent
+    ClubachievementComponent,
+    WysiwygfrontComponent,
+    PublicComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +90,6 @@ import { AdminModule } from './admin/admin.module';
     MatFormFieldModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AngularEditorModule,
     AdminModule,
     GalleryModule.forRoot(),
     DeviceDetectorModule.forRoot()

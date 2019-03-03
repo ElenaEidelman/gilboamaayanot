@@ -22,8 +22,8 @@ export class AdmindasboardComponent implements OnInit {
   ngOnInit() {
   }
   logout(){
-    localStorage.removeItem("currentUser");
-    location.reload(true);
-    this.router.navigate(['/posts']);
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+    this.router.navigate(['public']);
   }
 }

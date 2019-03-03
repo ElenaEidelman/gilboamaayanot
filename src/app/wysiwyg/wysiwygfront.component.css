@@ -1,0 +1,11 @@
+.wrap-img{
+    width:350px;
+}
+.wrap-wysiwyg{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+.postText{
+    width:100%;
+}

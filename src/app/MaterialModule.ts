@@ -12,7 +12,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -37,7 +37,8 @@ import {MatSelectModule} from '@angular/material/select';
         MatProgressBarModule,
         MatRadioModule,
         MatTreeModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTooltipModule
     ],
     exports:[
         MatToolbarModule,
@@ -56,7 +57,8 @@ import {MatSelectModule} from '@angular/material/select';
         MatProgressBarModule,
         MatRadioModule,
         MatTreeModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTooltipModule
     ]
 })
 

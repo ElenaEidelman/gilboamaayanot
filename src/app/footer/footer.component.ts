@@ -27,25 +27,11 @@ export class FooterComponent implements OnInit {
   });
 
   onSubmit(){
-    let login = this.adminForm.get('userName').value;
+    let username = this.adminForm.get('userName').value;
     let password = this.adminForm.get('password').value;
-    let user = new User(login, password);
-    this.dataService.userAuthentication(user).subscribe(result => {
-      //NO USER
-      //DATA BASE PROBLEM
-      if(result == 'USER EXIST'){
-        localStorage.setItem('currentUser','true');
-        //this.router.navigate(['/admin']);
-        //this.router.navigate([{ outlets: { 'adminSide': ['admin']}}]);
-        location.reload(true);
-      }
-      else if(result == 'NO USER'){
-        this.openDialog('שגיאה','היוסר לא קיים');
-      }
-      else if(result == 'DATA BASE PROBLEM'){
-        this.openDialog('שגיאה','בעיה עם בסיס נתונים');
-      }
-    });
+    localStorage.setItem('username',username);
+    localStorage.setItem('password',password);
+    this.router.navigate(['admin']);
   }
 
 openDialog(title: string, text: string){

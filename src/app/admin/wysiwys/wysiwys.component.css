@@ -1,0 +1,17 @@
+.button-submit > button{
+    background: tomato;
+    color: #fff;
+}
+.button-submit{
+    margin: 20px;
+}
+.form-group{
+    text-align: left;
+}
+.wrap-img-add-edit img{
+    width: 250px;
+    height: auto;
+    padding: 2rem;
+    border: 1px solid #DFDFDF;
+    border-radius: 5p
+}

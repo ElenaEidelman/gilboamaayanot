@@ -1,0 +1,10 @@
+.mat-dialog-container{
+    direction: rtl;
+}
+.mat-dialog-content{
+    font-size: 2rem;
+}
+button{
+    background: mediumseagreen;
+    color: #fff;
+}
