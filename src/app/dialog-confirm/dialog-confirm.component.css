@@ -4,7 +4,11 @@
 .mat-dialog-content{
     font-size: 2rem;
 }
-button{
+.mat-dialog-actions >.yes{
     background: mediumseagreen;
+    color: #fff;
+}
+.mat-dialog-actions >.no{
+    background: red;
     color: #fff;
 }

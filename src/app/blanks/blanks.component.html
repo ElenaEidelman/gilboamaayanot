@@ -15,8 +15,9 @@
       </mat-expansion-panel-header>
   
       <div *ngFor = "let blanksList of blankArr[1]">
-          <a href="{{blanksList.file}}"><mat-icon>touch_app</mat-icon> {{blanksList.name_tofes}}
-            
+          <a href="{{blanksList.file}}" download="{{blanksList.file}}">
+            <mat-icon>touch_app</mat-icon>
+            {{blanksList.name_tofes}}
           </a>
       </div>
   

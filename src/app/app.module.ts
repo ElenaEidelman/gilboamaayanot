@@ -16,13 +16,12 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { TeamComponent } from './team/team.component';
 
-import { HttpClientModule }    from '@angular/common/http';
+
 import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { NewsComponent } from './news/news.component';
-import { PaginationComponent } from './pagination/pagination.component';
 import { PostidComponent } from './postid/postid.component';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { GalleryComponent } from './gallery/gallery.component';
@@ -63,7 +62,6 @@ import { PublicComponent } from './public/public.component';
     AboutComponent,
     NotfoundComponent,
     NewsComponent,
-    PaginationComponent,
     PostidComponent,
     GalleryComponent,
     ContactusComponent,
@@ -85,7 +83,6 @@ import { PublicComponent } from './public/public.component';
     LayoutModule,
     PanelMenuModule,
     MenubarModule,
-    HttpClientModule,
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule,

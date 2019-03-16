@@ -24,6 +24,8 @@ import { EditClubAchievementComponent } from './admin/edit-club-achievement/edit
 import { EditgalleryComponent } from './admin/editgallery/editgallery.component';
 import { AddnewComponent } from './admin/addnew/addnew.component';
 import { WysiwysComponent } from './admin/wysiwys/wysiwys.component';
+import { EditpostsComponent } from './admin/editposts/editposts.component';
+import { EditblanksComponent } from './admin/editblanks/editblanks.component';
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -61,7 +63,9 @@ const routes: Routes = [
     { path: 'gallery/:id', component: EditgalleryComponent},
     { path: 'gallery', component: EditgalleryComponent},
     { path: 'addNewMenu', component: AddnewComponent},
-    { path: 'wysiwyg/:id', component: WysiwysComponent}
+    { path: 'wysiwyg/:id', component: WysiwysComponent},
+    { path: 'posts', component: EditpostsComponent },
+    { path: 'blanks', component:EditblanksComponent}
   ]
 }
 ];

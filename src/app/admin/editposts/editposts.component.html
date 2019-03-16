@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="wrap-component-title">
+        <h1>
+            <span> Add/Edit post</span>
+        </h1>
+    </div>
+    <div class="wrap-form">
+        <form *ngIf="viewForm" [formGroup]="editForm" class="editPostForm">
+          <div class="col-md-12 wrap-input">
+            <div class="row">
+                <div class="col-md-6 com-sm-12 col-xs-12">
+                    <div class="container">
+                        <p>
+                            <mat-form-field>
+                                <input matInput #title  placeholder="title" formControlName="title" matTooltip="{{title.value}}">
+                            </mat-form-field>
+                        </p>
+                        <p>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker"   placeholder="Choose a date" formControlName="date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </p>
+                        <p>
+                            <mat-form-field>
+                                <input type="time" matInput  placeholder="time" formControlName="time">
+                            </mat-form-field>
+                        </p>
+                      </div>
+                </div>
+                <div class="col-md-6 m-sm-12 col-xs-12">
+                    <div class="container">
+                      <p>
+                        <mat-form-field>
+                            <input type="input" #imgtitle matInput  placeholder="img title" formControlName="imgTitle" matTooltip="{{imgtitle.value}}">
+                        </mat-form-field>
+                      </p> 
+                      <p>
+                            <input [hidden]="true" type="file" (change)="onFileChange($event)" #fileInput>
+    
+                            <mat-form-field matTooltip="{{fileInput.value}}" [hidden]="fileName.value == ''">
+                                <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
+                            </mat-form-field>
+                            <span class="button-submit">
+                                <button mat-flat-button (click)="fileInput.click()">Select Image</button>
+                            </span>
+                            <span *ngIf="img64basePath" class="wrap-img-add-edit">
+                                <img [src]="img64basePath" >
+                            </span>
+                      </p>
+                    </div>
+                </div>
+                <ckeditor formControlName="editor"></ckeditor>
+            </div>
+          </div>
+          <div class="button-submit">
+              <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
+              <button mat-flat-button (click)="updatePost()" *ngIf="!saveButton">Edit</button>
+              <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
+          </div>
+        </form>
+      </div>
+      <div class="wrap-accordion">
+          <mat-accordion class="example-headers-align achivContent" *ngIf="posts">
+                  <mat-expansion-panel id="postId{{post.id}}" [expanded]="step === i" hideToggle *ngFor="let post of pages; let i = index;">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span class="titleMatPanel">{{post.date}} {{post.time}} <span class="underline-decoration">{{post.title}}</span></span>
+                      </mat-panel-title>
+                      <mat-panel-description></mat-panel-description>
+                      <mat-icon (click)="deletePost(post.id)" class="delete-icon" matTooltip="Delete">delete</mat-icon>
+                    </mat-expansion-panel-header>
+                    <div class="edit-button" (click)="editPost(post)">
+                          <button mat-flat-button matTooltip="Edit"><mat-icon>edit</mat-icon></button>
+                    </div>
+                    <hr>
+                    <span [innerHTML]="post.text | slice:0:400 | safe:'html'"></span>...
+                  </mat-expansion-panel>
+            </mat-accordion>
+      </div>
+
+      <div class="pagination">
+            <app-pagination [pager]="pager" (setPage)="setPage($event)"></app-pagination>
+      </div>
+
+</div>

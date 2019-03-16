@@ -13,6 +13,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 
 
 
@@ -38,7 +40,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         MatRadioModule,
         MatTreeModule,
         MatSelectModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     exports:[
         MatToolbarModule,
@@ -58,8 +62,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         MatRadioModule,
         MatTreeModule,
         MatSelectModule,
-        MatTooltipModule
-    ]
+        MatTooltipModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
+    providers:[MatDatepickerModule]
 })
 
 export class MaterialModule { }

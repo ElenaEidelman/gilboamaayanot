@@ -3579,6 +3579,7 @@ p-menubar>div.ui-menubar>p-menubarsub>ul>li.ui-menu-parent>p-menubarsub>ul>li.ui
 
 .wrap-edit-component{
   /* height: 100vh; */
+  min-height: 450px;
   height: 100%;
   background: #fff;
   padding-bottom: 20px;
@@ -3607,4 +3608,37 @@ p-menubar>div.ui-menubar>p-menubarsub>ul>li.ui-menu-parent>p-menubarsub>ul>li.ui
   margin-bottom: 48px;
   padding: 0 10px;
   position: relative;
+}
+.mat-dialog-actions{
+  justify-content: space-between;
+}
+.mat-toolbar.mat-primary{
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.6);
+}
+mat-tree{
+  box-shadow: 5px 0px 5px -5px rgba(0,0,0,0.9), inset 0 5px 10px -5px rgba(0,0,0,0.6);
+}
+.underline-decoration{
+  text-decoration-line: underline;
+}
+.mat-form-field-appearance-legacy .mat-form-field-label{
+  font-size: 18px;
+  top: 2px;
+}
+.mat-form-field-appearance-legacy .mat-form-field-prefix .mat-datepicker-toggle-default-icon, .mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon{
+  width:2.4em !important;
+}
+.cdk-text-field-autofill-monitored:not(:-webkit-autofill){
+  font-size: 20px;
+}
+.editPostForm .mat-form-field-infix, .editPostForm ckeditor{
+  width:100%;
+}
+
+
+/*mobile css*/
+@media screen and (max-width:1024px){
+  .mat-expansion-panel-body{
+      padding: 0 !important;
+  }
 }

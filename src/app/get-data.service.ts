@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { throwError, Observable, BehaviorSubject } from 'rxjs';
+import { throwError, Observable, BehaviorSubject, forkJoin } from 'rxjs';
 import { Menu } from './classes/menu';
 import { Team } from './classes/team';
 import { Post } from './classes/post';
@@ -301,22 +301,14 @@ export class GetDataService {
       })
     );
   }
-
-  deleteAchivemenet(id: string){
-    return this.http.post(`${this.baseURL}/deleteAchivement.php`,id,{responseType:"text"}).pipe(
+  saveWYSIWYG(wysiwygOBJ: any){
+    return this.http.post(`${this.baseURL}/saveWYSIWYG.php`,wysiwygOBJ, {responseType:'text'}).pipe(
       map(result => {
-        //debugger
+        debugger
         return result;
       }),
       catchError(error => {
         return throwError(error.message);
-      })
-    );
-  }
-  saveWYSIWYG(wysiwygOBJ: any){
-    return this.http.post(`${this.baseURL}/saveWYSIWYG.php`,wysiwygOBJ, {responseType:'text'}).pipe(
-      map(result => {
-        return result;
       })
     );
   }
@@ -344,6 +336,50 @@ export class GetDataService {
   updateWYSIWYG(wysiwygOBJ: any){
     return this.http.post(`${this.baseURL}/updateWYSIWYG.php`,wysiwygOBJ, {responseType:'text'}).pipe(
       map(result => {
+        return result;
+      })
+    );
+  }
+
+  deleteFromDb(db:string,param: string,id: string, element:boolean,fileName?:string){
+    return this.http.post(`${this.baseURL}/delete.php`,{db:db,param:param,id:id, element:element,filename:fileName}, {responseType:'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+
+  addPost(post:Post){
+    debugger
+    return this.http.post(`${this.baseURL}/addPost.php`,post,{responseType : "text"}).pipe(
+      map(result => {
+        return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
+      })
+    );
+  }
+  updatePost(post:Post){
+    return this.http.post(`${this.baseURL}/updatePost.php`,post, {responseType:'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+
+  uploadFile(blank: FormData){
+    return this.http.post(`${this.baseURL}/uploads/uploadBlank.php`,blank, {responseType: 'text'}).pipe(
+      map(result => {
+        return result; 
+      })
+    );
+  }
+
+  addBlankToDb(blank:Blank){
+    return this.http.post(`${this.baseURL}/addBlankToDb.php`,blank,{responseType:'text'}).pipe(
+      map(result => {
+        debugger
         return result;
       })
     );

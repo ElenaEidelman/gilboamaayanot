@@ -1,10 +1,13 @@
-import { Component, OnInit , ViewChild, OnDestroy, ElementRef, AfterViewInit} from '@angular/core';
+import { Component, OnInit , ViewChild, OnDestroy, ElementRef, AfterViewInit, Inject} from '@angular/core';
 import {  CKEditorComponent }  from 'ng2-ckeditor';
 import { DialogComponent } from '../../dialog/dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { GetDataService } from 'src/app/get-data.service';
+import { EditClubAchievementComponent } from '../edit-club-achievement/edit-club-achievement.component';
+import { DialogConfirmComponent } from '../../dialog-confirm/dialog-confirm.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wysiwys',
@@ -16,6 +19,7 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
                 private fb: FormBuilder, 
                 private route: ActivatedRoute, 
+                private router: Router,
                 private dataService: GetDataService,
                 private dialog: MatDialog) { }
 
@@ -138,6 +142,7 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
           if(result == 'SUCCESS'){
             this.resetForm();
             this.openDialog('','Saved successfully');
+            this.router.navigate(['admin']);
           }
           else if(result == 'ERROR'){
             this.openDialog('Error','Something went wrong please try again later');
@@ -172,13 +177,20 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
   deleteWYSIWYG(){
-    this.spinnerDelete = true;
+    //this.spinnerDelete = true;
+    this.openConfirmDelete("Are you sure you want delete this page?",'wysiwyg','pageId',this.idRoute,this.idRoute,false,'');
   }
   openDialog(title: string, message: string){
     this.dialog.open(DialogComponent,{
       width: '350px',
       data: {title:title, message: message}
     });
+  }
+  openConfirmDelete(title, db,param,id,idDom,element,fileName){
+    this.dialog.open(DialogConfirmComponent,{
+      width:"350px",
+      data:{message:title,db:db,param:param, id:id, idDom:idDom,element:element,fileName:fileName}
+    })
   }
 
   resetForm(){

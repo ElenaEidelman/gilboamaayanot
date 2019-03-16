@@ -7,7 +7,6 @@ import { EditgalleryComponent }  from './editgallery/editgallery.component';
 import { WysiwysComponent } from './wysiwys/wysiwys.component';
 
 const routes: Routes = [
-  // { path: '', component: AdmindasboardComponent },
   // { path: 'clubachievement', component: EditClubAchievementComponent, outlet:'adminEdit'},
   // { path: 'gallery/:id', component: EditgalleryComponent, outlet:'adminEdit'},
   // { path: 'gallery', component: EditgalleryComponent, outlet:'adminEdit'},

@@ -13,14 +13,14 @@ import { EditgalleryComponent } from './editgallery/editgallery.component';
 import { SafePipe } from '../safe.pipe';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 import { GetDataService } from '../get-data.service';
-import { ConfirmComponent } from './edit-club-achievement/edit-club-achievement.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { WysiwysComponent } from './wysiwys/wysiwys.component';
-
-
-
-
-
+import { EditpostsComponent } from './editposts/editposts.component';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
+import { EditblanksComponent } from './editblanks/editblanks.component';
+import { FileSelectDirective } from 'ng2-file-upload';
+import { HttpClientModule }    from '@angular/common/http';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -33,33 +33,39 @@ import { WysiwysComponent } from './wysiwys/wysiwys.component';
     EditgalleryComponent,
     SafePipe,
     DialogConfirmComponent,
-    ConfirmComponent,
-    WysiwysComponent
+    WysiwysComponent,
+    EditpostsComponent,
+    EditblanksComponent,
+    FileSelectDirective,
+    PaginationComponent
   ],
   exports: [
     MaterialModule,
     AdmindasboardComponent,
     SafePipe,
     DialogConfirmComponent,
-    ConfirmComponent,
-    CKEditorModule
+    CKEditorModule,
+    Ng2ImgMaxModule,
+    HttpClientModule,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    CKEditorModule
+    CKEditorModule,
+    Ng2ImgMaxModule,
+    HttpClientModule
   ],
   providers: [
     GetDataService,
-    EditClubAchievementComponent
+    EditClubAchievementComponent,
   ],
     entryComponents: [
       DialogComponent,
       DialogaddmenuComponent,
       DialogConfirmComponent,
-      ConfirmComponent
     ]
 })
 export class AdminModule { }

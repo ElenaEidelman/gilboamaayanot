@@ -34,8 +34,9 @@
                   </mat-step>
                 </mat-vertical-stepper>
             </div>
-            <div class="wrap-content-child imgChild">
-              <img src="{{content_img}}">
+            <div class="wrap-content-child imgChild"  *ngIf="pages">
+              <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}" title="imgTitle">
+              <span class="imgTitle">{{imgTitle}}</span>
             </div>
         </div>
         <div class="pagination">

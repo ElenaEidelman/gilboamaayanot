@@ -11,6 +11,8 @@ import { Post } from '../classes/post';
 })
 export class PostidComponent implements OnInit {
 
+  imgSrcForView;
+  imgTypeForView;
   post: Post = {
     id : 0,
     title : "",
@@ -19,6 +21,8 @@ export class PostidComponent implements OnInit {
     date: "",
     time: "",
     img_src: "",
+    imgType:"",
+    imgName:"",
     img_title: ""
   };
   constructor( private route: ActivatedRoute,

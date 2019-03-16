@@ -46,6 +46,9 @@ export class PostsComponent implements OnInit {
   pager: any = {};
   pageSize: number = 5;
   content_img:string;
+  imgSrcForView;
+  imgTypeForView;
+  imgTitle;
   @ViewChild('stepper') stepper: MatStepper;
 
   ngOnInit() {
@@ -56,16 +59,20 @@ export class PostsComponent implements OnInit {
     console.log(event);
   }
   clickStep(obj){
-    let obj_img:string = obj['img_src'];
-    this.content_img = 'assets/img/' +  obj_img;
+    this.imgSrcForView = obj['img_src'];;
+    this.imgTypeForView = obj['imgType'];
+    this.imgTitle = obj['img_title'];
   }
 
   getPost(){
     this.dataService.getPost().subscribe(result => {
-      this.content_img = 'assets/img/' + result[0].img_src;
-      let arr = [];
-      this.posts = arr.concat(result,result,result,result);
-      this.setPage(1);
+      if(result.length > 0){
+        this.imgSrcForView = result[0].img_src;
+        this.imgTypeForView = result[0].imgType;
+        this.imgTitle = result[0].img_title;
+        this.posts = result;
+        this.setPage(1);
+      }
     });
     document.getElementById('top').scrollIntoView();
   }
@@ -81,7 +88,8 @@ export class PostsComponent implements OnInit {
     //current page posts
     
     this.pages = this.posts.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    this.content_img = 'assets/img/' +  this.pages[0].img_src; 
+    // this.content_img = 'assets/img/' +  this.pages[0].img_src;; 
+    this.imgSrcForView = this.pages[0].img_src;
 
     //set index of stepper to 0 if move on pagination
     if(this.stepper.selectedIndex > 0){

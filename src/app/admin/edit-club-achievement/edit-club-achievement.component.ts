@@ -6,6 +6,7 @@ import { DialogComponent } from '../../dialog/dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DOCUMENT } from '@angular/platform-browser';
 import {  CKEditorComponent }  from 'ng2-ckeditor';
+import { DialogConfirmComponent } from '../../dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-edit-club-achievement',
@@ -68,7 +69,7 @@ export class EditClubAchievementComponent implements OnInit {
   }
 
   deleteAchiv(id: string){
-    this.openConfirmDialog('Are you sure?',id);
+    this.openConfirmDelete('Are you sure?','hesegimshelhamoadon','id_hesegim',id, true);
   }
 
   updateAchive(){
@@ -119,11 +120,11 @@ export class EditClubAchievementComponent implements OnInit {
       this.formView = true;
     },1000);
   }
-  openConfirmDialog(message: string,id: string){
-    this.dialog.open(ConfirmComponent,{
-      width:'350px',
-      data:{message:message, id:id}
-    });
+  openConfirmDelete(title, db,param,id,element){
+    this.dialog.open(DialogConfirmComponent,{
+      width:"350px",
+      data:{message:title,db:db,param:param, id:id, element: element}
+    })
   }
 
   ngAfterViewChecked(){
@@ -145,40 +146,5 @@ export class EditClubAchievementComponent implements OnInit {
       { name: 'about', groups: [ 'about' ] }
     ];
     editor.config.removeButtons = 'NewPage,Preview,Save';
-  }
-}
-
-
-export interface DialogData {
-  message: string;
-  id:string
-}
-
-@Component({
-  selector: 'dialog-confirm',
-  templateUrl: './confirmDialog.html',
-  styleUrls: ['./edit-club-achievement.component.css']
-})
-export class ConfirmComponent implements OnInit {
-
-  constructor(
-              private editClass: EditClubAchievementComponent,
-              public dialogRef: MatDialogRef<ConfirmComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData,
-              @Inject(DOCUMENT) private document: any,
-              private dataService: GetDataService) {}
-  ngOnInit() {
-  }
-  accept(){
-    document.getElementById('achiveId'+this.data.id).style.display = 'none';
-    this.dataService.deleteAchivemenet(this.data.id).subscribe(result => {
-      if(result == "SUCCESS"){
-        this.editClass.openDialog('','Deleted Successfully ');
-      }
-      else if(result == "ERROR"){
-        this.editClass.openDialog('Error','There was a problem, please try later');
-      }
-    });
-    this.dialogRef.close();
   }
 }

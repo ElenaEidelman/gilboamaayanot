@@ -18,16 +18,6 @@ export class MaterialNavComponent {
       return result.matches;
     })
   );
-
-
-/**
- *
-   Handset: (max-width: 599.99px) and (orientation: portrait): false
-            (max-width: 959.99px) and (orientation: landscape): false
-
-   Tablet: (min-width: 600px) and (max-width: 839.99px) and (orientation: portrait): false
-           (min-width: 960px) and (max-width: 1279.99px) and (orientation: landscape): false
- */
 constructor(private breakpointObserver: BreakpointObserver, private serviceData: GetDataService) {}
   items: Menu[];
   ngOnInit() {

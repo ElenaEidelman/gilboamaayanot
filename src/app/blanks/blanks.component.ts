@@ -19,7 +19,6 @@ export class BlanksComponent implements OnInit {
   ngOnInit() {
     this.getBlanks();
     this.id = this.route.snapshot.paramMap.get('id');
-    //debugger
     if(this.id != null){
     setTimeout(() => {
       document.getElementById(this.id).scrollIntoView(true);
@@ -31,7 +30,7 @@ export class BlanksComponent implements OnInit {
 
   getBlanks(){
     this.dataService.getBlanks().subscribe(result => {
-     // debugger
+      //debugger
       this.blanks = result;
     });
   }

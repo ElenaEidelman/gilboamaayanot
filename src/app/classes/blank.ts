@@ -1,7 +1,6 @@
 export class Blank{
-    id: number;
     file:string;
-    name_tofes: string;
-    kategory: string;
-    kategoryHeb: string;
+    title: string;
+    category: string;
+    categoryHeb: string;
 }
