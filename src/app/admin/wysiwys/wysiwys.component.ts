@@ -38,6 +38,8 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   imgTypeForView: string = '';
   imgNameForView: string = '';
   viewForm: boolean = true;
+  spinner: boolean = false;
+  spinnerDelete: boolean = false;
 
   ngOnInit() {
     this.getOrInsertWYSIWYG();
@@ -124,13 +126,15 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   clearFile() {
     this.editForm.get('avatar').setValue(null);
-    this.fileInput.nativeElement.value = '';
+    this.fileName.nativeElement.value = '';
   }
   onSubmit(){
     if(this.editForm.valid){
+      this.spinner = true;
       this.editForm.get('pageId').setValue(this.idRoute);
       this.dataService.saveWYSIWYG(this.editForm.value).subscribe(
         result => {
+          this.spinner = false;
           if(result == 'SUCCESS'){
             this.resetForm();
             this.openDialog('','Saved successfully');
@@ -148,9 +152,27 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   updateWYSIWYG(){
     if(this.editForm.valid){
-      //this.idRoute
-      console.log(this.editForm.value);
+      this.spinner = true;
+      this.editForm.get('pageId').setValue(this.idRoute);
+      this.dataService.updateWYSIWYG(this.editForm.value).subscribe(
+        result => {
+          this.spinner = false;
+          if(result == 'SUCCESS'){
+            this.resetForm();
+            this.openDialog('','Updated successfully');
+          }
+          else if(result == 'ERROR'){
+            this.openDialog('Error','Something went wrong please try again later');
+          }
+        }
+      );
     }
+    else{
+      this.openDialog('Error','Please fill all field');
+    }
+  }
+  deleteWYSIWYG(){
+    this.spinnerDelete = true;
   }
   openDialog(title: string, message: string){
     this.dialog.open(DialogComponent,{

@@ -2,8 +2,9 @@
     background: tomato;
     color: #fff;
 }
-.button-submit{
-    margin: 20px;
+.button-submit,.button-delete{
+    margin: 30px 20px;
+    position: relative;
 }
 .form-group{
     text-align: left;
@@ -14,4 +15,20 @@
     padding: 2rem;
     border: 1px solid #DFDFDF;
     border-radius: 5p
+}
+.button-delete > button{
+    background: red;
+    color: #fff;
+}
+.flex_button{
+    display:flex;
+    height: 110px;
+}
+.edit_block{
+    margin: 30px auto;
+}
+mat-spinner{
+    position: absolute;
+    position: absolute;
+    top: -50%;
 }

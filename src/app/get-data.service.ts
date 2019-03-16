@@ -341,4 +341,11 @@ export class GetDataService {
       })
     );
   }
+  updateWYSIWYG(wysiwygOBJ: any){
+    return this.http.post(`${this.baseURL}/updateWYSIWYG.php`,wysiwygOBJ, {responseType:'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
 }

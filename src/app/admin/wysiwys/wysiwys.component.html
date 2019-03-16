@@ -23,10 +23,16 @@
                     </div> -->
                 </div>
                 <ckeditor formControlName="editor"></ckeditor>
-                <div class="button-submit">
-                    <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
-                    <button mat-flat-button (click)="updateWYSIWYG()" *ngIf="!saveButton">Edit</button>
-                    <mat-spinner *ngIf="spinner"></mat-spinner>
+                <div class="flex_button">
+                    <div class="button-delete">
+                        <button mat-flat-button (click)="deleteWYSIWYG()">Delete</button>
+                        <mat-spinner *ngIf="spinnerDelete"></mat-spinner>
+                    </div>
+                    <div class="button-submit edit_block">
+                        <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
+                        <button mat-flat-button (click)="updateWYSIWYG()" *ngIf="!saveButton">Edit</button>
+                        <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
+                    </div>
                 </div>
             </form>
         </div>
