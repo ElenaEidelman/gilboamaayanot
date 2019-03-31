@@ -19,14 +19,6 @@ export class PostsComponent implements OnInit {
               private breakpointObserver: BreakpointObserver,
               private deviceDetector: DeviceDetectorService) 
   {
-    //debugger
-   /* breakpointObserver.observe([
-      Breakpoints.Tablet,
-        ]).subscribe(result => {
-         console.log(result.breakpoints);
-        });*/
-        
-        //debugger
        breakpointObserver.observe([
         '(orientation: portrait)',
         '(orientation: landscape)',

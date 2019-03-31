@@ -13,8 +13,8 @@ export class RouteguardService implements CanActivate {
   constructor(private router: Router, private dataService: GetDataService, private dialog: MatDialog) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    let username = localStorage.getItem('username');
-    let password = localStorage.getItem('password');
+    let username = localStorage.getItem('usern');
+    let password = localStorage.getItem('pass');
     let user = new User(username, password);
     let userAuthentication: boolean = false;
     await this.userAuthentication(user).then(result => {

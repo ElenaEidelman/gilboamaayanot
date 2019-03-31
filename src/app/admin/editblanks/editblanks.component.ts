@@ -45,7 +45,6 @@ export class EditblanksComponent implements OnInit {
     let elem = event.target;
     if(elem.files.length > 0){
       let type = elem.files[0].type;
-      console.log(elem.files[0]);
       if(type.includes("image")){
         this.openDialog('Error','Please upload only text files');
       }

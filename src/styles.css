@@ -3629,12 +3629,23 @@ mat-tree{
   width:2.4em !important;
 }
 .cdk-text-field-autofill-monitored:not(:-webkit-autofill){
-  font-size: 20px;
+  /* font-size: 20px; */
 }
-.editPostForm .mat-form-field-infix, .editPostForm ckeditor{
+.editPostForm .mat-form-field-infix, .editPostForm ckeditor, .editPostForm .mat-form-field{
   width:100%;
 }
+.group-form .cdk-text-field-autofill-monitored:not(:-webkit-autofill), .group-form .ng-star-inserted, .group-form input.mat-input-element{
+  font-size: 20px;
+  line-height: 4em;
+}
+.mat-option-text {
+  font-size: 16px;
+  text-align: right;
+}
 
+mat-sidenav.mat-drawer{
+  min-width:170px;
+}
 
 /*mobile css*/
 @media screen and (max-width:1024px){

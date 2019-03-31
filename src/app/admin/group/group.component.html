@@ -1,0 +1,76 @@
+<div>
+  <div class="left" (click)="deleteHugPage()">
+    <button mat-flat-button matTooltip="Delete">Delete this page</button>
+  </div>
+  <div class="wrap-component-title">
+    <h1>
+      <span>{{label}}</span>
+    </h1>
+  </div>
+  <div class="container">
+    <div>
+      <form [formGroup]="editGroupForm" *ngIf="viewForm" class="group-form">
+        <div class="col-md-12 col-lg-12 col-xl-12">
+          <div class="flex-child col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <mat-form-field>
+              <input matInput type="text" placeholder="Group name" formControlName="groupName">
+            </mat-form-field>
+          </div>
+          <div class="flex-child col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <mat-form-field>
+              <input matInput type="text" placeholder="Target to" formControlName="targetTo">
+            </mat-form-field>
+          </div>
+          <div class="flex-child col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <mat-form-field>
+              <input matInput type="text" placeholder="Stadion" formControlName="stadion">
+            </mat-form-field>
+          </div>
+          <div class="flex-child col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <mat-form-field>
+              <input matInput type="text" placeholder="Date" formControlName="date">
+            </mat-form-field>
+          </div>
+          <div class="flex-child col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <mat-form-field>
+              <mat-label>Choose trainer</mat-label>
+              <mat-select formControlName="trainer">
+                <mat-option *ngFor="let trainer of trainers" [value]="trainer.id_zevet">
+                  {{trainer.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="button-submit">
+        <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
+        <button mat-flat-button (click)="updateGroup()" *ngIf="!saveButton">Edit</button>
+        <mat-spinner *ngIf="spinner"></mat-spinner>
+      </div>
+    </div>
+    <div class="wrap-accordion">
+      <mat-accordion class="example-headers-align achivContent">
+        <mat-expansion-panel id="hug{{hug.id}}" [expanded]="step === i" hideToggle
+          *ngFor="let hug of hugim; let i = index;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="titleMatPanel">{{hug.name}}</span>
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="wrap-buttons">
+            <div class="edit-button" (click)="editGroup(hug)">
+              <button mat-flat-button matTooltip="Edit">Edit</button>
+            </div>
+            <div class="delete-button" (click)="deleteHug(hug.id)">
+              <button mat-flat-button matTooltip="Delete">Delete</button>
+            </div>
+          </div>
+
+          <hr>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

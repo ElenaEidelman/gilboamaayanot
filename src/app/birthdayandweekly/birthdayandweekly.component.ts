@@ -27,6 +27,16 @@ export class BirthdayandweeklyComponent implements OnInit {
   ngOnInit() {
     this.getTur();
     this.getBirthdays();
+
+
+  setTimeout(()=>{
+    let turHeight = document.getElementById('turHeight');
+    if(turHeight != null ){
+    document.getElementById('birthdayHeight').style.height = turHeight.offsetHeight + 'px' ;
+    }
+  },1000);
+
+
   }
 getTur(){
   this.dataService.getTur().subscribe(result => {

@@ -10,6 +10,7 @@ export class PublicComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

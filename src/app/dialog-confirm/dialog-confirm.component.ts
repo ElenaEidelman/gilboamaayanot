@@ -31,11 +31,10 @@ export class DialogConfirmComponent implements OnInit {
   }
   accept(){
     this.dataService.deleteFromDb(this.data.db, this.data.param, this.data.id,this.data.element,this.data.fileName).subscribe(result => {
-      debugger
     if(result == "SUCCESS"){
     this.openDialog('','Deleted Successfully ');
     document.getElementById(this.data.domId).style.display = "none";
-    // this.route.navigate(['admin']);
+    //this.route.navigate(['admin']);
     }
     else if(result == "ERROR"){
     this.openDialog('Error','There was a problem, please try later');

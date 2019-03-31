@@ -1,53 +1,214 @@
 <div>
-    <div class="container">
-        <div *ngIf="editPic">
-          <div *ngIf="galleryTrue">
-            <div class="wrap-component-title">
-                  <h1>
-                      <span>{{galleryLabel}}</span>
-                  </h1>
+  <div class="container">
+    <div *ngIf="editPic">
+
+      <!--Many Galleries-->
+      <!--------------------------------------------------------------------------------->
+      <div *ngIf="pageOfManyGalleries">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-description>
+                <span>Create new gallery</span>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="wrap-form-addGallery">
+              <form [formGroup]="addNewGallery" *ngIf="viewAddNewGallery">
+                <div class="wrap-input-add-gallery">
+                  <p>
+                    <mat-form-field>
+                      <input matInput placeholder="English gallery name" formControlName="engLabel">
+                    </mat-form-field>
+                  </p>
+                  <p>
+                    <mat-form-field>
+                      <input matInput placeholder="Hebrew gallery name" formControlName="hebLabel">
+                    </mat-form-field>
+                  </p>
+                </div>
+                <p>
+                  <button mat-flat-button (click)="addGallery()">Add gallery</button>
+                </p>
+              </form>
             </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <div class="wrap-menu-button">
+            <button mat-button (click)="deleteSelectedPic()">Delete selected pictures</button>
+            <button class="deletGallery-button" mat-button (click)="deleteGallery(id)">Delete this page of gallery</button>
+        </div>
+
+        <div *ngIf="multyGalleryTrue">
+          <div *ngFor="let gallery of multyGallery; let i = index" class="wrap-multy-gallery">
+            <div class="wrap-delete-gallery-button">
+                <button mat-button (click)="deleteGallery(galleryLabelEng[i])">Delete this gallery</button>
+            </div>
+            <div class="wrap-component-title">
+              <h1>
+                <span>{{galleryLabel[i]}}</span>
+              </h1>
+            </div>
+            <div class="container">
+              <form [formGroup]="addNewPic" *ngIf="viewAddNewPic">
+                <p>
+                  <mat-form-field>
+                    <input type="input" #imgtitle matInput placeholder="img title" formControlName="imgTitle"
+                      matTooltip="{{imgtitle.value}}">
+                  </mat-form-field>
+                </p>
+                <p>
+                  <input [hidden]="true" type="file" name="Imgfile" (change)="onFileChange(galleryLabel[i],$event)"
+                    #fileInput>
+
+                  <mat-form-field matTooltip="{{fileInput.value}}" [hidden]="fileName.value == ''">
+                    <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
+                  </mat-form-field>
+                  <span class="button-submit">
+                    <button mat-flat-button (click)="fileInput.click()">Select Image</button>
+                  </span>
+                  <span *ngIf="imgSrcForView != '' && galleryName == galleryLabel[i]" class="wrap-img-add-edit">
+                    <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">
+                  </span>
+                </p>
+                <div class="button-upload-img">
+                  <button mat-flat-button (click)="uploadImg(galleryLabelEng[i])">Upload img</button>
+                </div>
+              </form>
+            </div>
+
             <div class="wrap-edit-img">
-              <span *ngFor="let pic of gallery" >
-                  <div (click)="deletePic(pic.id)" class="cursor"><mat-icon>delete</mat-icon></div>
-                  <img src="{{pic.img}}" alt="{{pic.hebDescription}}">
-                  <div class="img-title">{{pic.hebDescription}}</div>
+              <span *ngFor="let pic of gallery">
+                <!-- <div (click)="deletePic(pic.id)" class="cursor">
+                  <mat-icon>delete</mat-icon>
+                </div> -->
+                <div>
+                  <mat-checkbox labelPosition="after" color="primary" (change)="deletePic(pic.id,pic.img,$event)">
+                  </mat-checkbox>
+                </div>
+                <img src="{{pic.img}}" alt="{{pic.hebDescription}}">
+                <div class="img-title">{{pic.hebDescription}}</div>
               </span>
             </div>
           </div>
-          <div *ngIf="multyGalleryTrue">
-            <div *ngFor="let gallery of multyGallery; let i = index">
-                <div class="wrap-component-title">
-                    <h1>
-                        <span>{{galleryLabel[i]}}</span>
-                    </h1>
-                </div>
-                <form [formGroup]="addNewPic" class="add-pic-form" (ngSubmit)="onSubmit()">
-                    <mat-form-field>
-                        <input type="text" matInput placeholder="כותרת" formControlName="src">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input type="text" value="" matInput placeholder="כותרת"  formControlName="gallery_id">
-                    </mat-form-field> 
-                    <mat-form-field>
-                        <input type="text" matInput placeholder="כותרת" formControlName="hebDescription">
-                    </mat-form-field>
-                    <div class="button-submit">
-                        <button mat-flat-button type="submit" >save</button>
-                    </div>
+        </div>
+      </div>
 
-                </form>
- 
-              <div class="wrap-edit-img">
-                <span *ngFor="let pic of gallery" >
-                    <div (click)="deletePic(pic.id)" class="cursor"><mat-icon>delete</mat-icon></div>
-                    <img src="{{pic.img}}" alt="{{pic.hebDescription}}">
-                    <div class="img-title">{{pic.hebDescription}}</div>
+      <!--One Gallery-->
+      <!--------------------------------------------------------------------------------->
+      <div *ngIf="!pageOfManyGalleries">
+        <div *ngIf="galleryTrue">
+          <div class="wrap-component-title">
+            <h1>
+              <span>{{galleryLabel}}</span>
+            </h1>
+          </div>
+          <div class="wrap-menu-button">
+              <button mat-button (click)="deleteSelectedPic()">Delete selected pictures</button>
+              <button class="deletGallery-button" mat-button (click)="deleteGallery(id)">Delete this gallery</button>
+          </div>
+          <div>
+            <form [formGroup]="addNewPic" *ngIf="viewAddNewPic">
+              <p>
+                <mat-form-field>
+                  <input type="input" #imgtitle matInput placeholder="img title" formControlName="imgTitle"
+                    matTooltip="{{imgtitle.value}}">
+                </mat-form-field>
+              </p>
+              <p>
+                <input [hidden]="true" type="file" name="Imgfile" (change)="onFileChange(galleryLabel[i],$event)"
+                  #fileInput>
+
+                <mat-form-field matTooltip="{{fileInput.value}}" [hidden]="fileName.value == ''">
+                  <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
+                </mat-form-field>
+                <span class="button-submit">
+                  <button mat-flat-button (click)="fileInput.click()">Select Image</button>
                 </span>
+                <span *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
+                  <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">
+                </span>
+              </p>
+              <div class="button-upload-img">
+                <button mat-flat-button (click)="uploadImg(id)">Upload img</button>
               </div>
-            </div>
+            </form>
+          </div>
+          <div class="wrap-edit-img">
+            <span *ngFor="let pic of gallery">
+              <!-- <div (click)="deletePic(pic.id)" class="cursor">
+                <mat-icon>delete</mat-icon>
+              </div> -->
+              <div>
+                  <mat-checkbox labelPosition="after" color="primary" (change)="deletePic(pic.id,pic.img,$event)">
+                  </mat-checkbox>
+              </div>
+              <img src="{{pic.img}}" alt="{{pic.hebDescription}}">
+              <div class="img-title">{{pic.hebDescription}}</div>
+            </span>
           </div>
         </div>
-        <div *ngIf="!editPic"> add child</div>
+
       </div>
+
+    </div>
+
+    <!--No gallery yet-->
+    <!---------------------------------------------------------------------------------------------------------------->
+
+
+    <div *ngIf="!editPic">
+      <mat-horizontal-stepper linear #stepper>
+
+        <mat-step>
+          <form [formGroup]="firstStepForm">
+            <ng-template matStepLabel>Choose type of page</ng-template>
+            <section>
+              <mat-radio-group formControlName="levelOrGallery" class="wrap-radio-button">
+                <mat-radio-button value="Addlevel" color="primary" (change)="radioChange($event)">
+                  <span>{{radioName}}</span>
+                </mat-radio-button>
+                <mat-radio-button value="Addpictures" color="primary" [disabled]="disableRadio" (change)="radioChange($event)">
+                  <span>This page like gallery</span>
+                </mat-radio-button>
+              </mat-radio-group>
+            </section>
+          </form>
+        </mat-step>
+
+
+        <mat-step *ngIf="viewSecondStep">
+          <form [formGroup]="secondStepForm">
+            <ng-template matStepLabel>Fill out gallery data</ng-template>
+            <div class="wrap-input">
+              <p>
+                <mat-form-field>
+                  <input matInput placeholder="English gallery name" formControlName="engLabel">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <input matInput placeholder="Hebrew gallery name" formControlName="hebLabel">
+                </mat-form-field>
+              </p>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <div class="wrap-button">
+            <button mat-button (click)="SavePageLikeGallery()" *ngIf="!viewSecondStep">Save</button>
+            <button mat-button (click)="CreateChildOfPage()" *ngIf="viewSecondStep">Save</button>
+            <span class="spinner" *ngIf="spinner">
+              <mat-spinner></mat-spinner>
+            </span>
+          </div>
+        </mat-step>
+
+
+      </mat-horizontal-stepper>
+    </div>
+  </div>
 </div>

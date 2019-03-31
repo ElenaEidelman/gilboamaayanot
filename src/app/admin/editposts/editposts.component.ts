@@ -46,6 +46,8 @@ export class EditpostsComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   uploadedImage;
+  imgSrcForView:string = '';
+  imgTypeForView:string = '';
 
   viewForm:boolean = true;
   saveButton:boolean = true;
@@ -131,24 +133,19 @@ export class EditpostsComponent implements OnInit {
     let reader = new FileReader();
     if(event.target.files && event.target.files.length > 0) {
       let file = event.target.files[0];
-      debugger
 
-      this.ng2imgmax.resizeImage(file, 600, 400).subscribe(
+      this.ng2imgmax.resizeImage(file, 400, 300).subscribe(
         result => {
-          debugger
           this.uploadedImage = result;
           reader.readAsDataURL(result);
-          let convertedTo64;
-          convertedTo64 = reader.result.toString().split(',')[1];
           reader.onload = () => {
             this.editForm.get('img').setValue({
               filename: result.name,
               filetype: result.type,
-              value: convertedTo64
+              value: reader.result.toString().split(',')[1]
             })
-            this.img64basePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+result.type +';base64,' + convertedTo64);
-            // this.imgSrcForView = reader.result.toString().split(',')[1];
-            // this.imgTypeForView = result.type;
+            this.imgSrcForView = reader.result.toString().split(',')[1];
+            this.imgTypeForView = result.type;
           };
         },
         error => {
@@ -188,13 +185,15 @@ export class EditpostsComponent implements OnInit {
       value: post['img_src']
     })
 
-    this.img64basePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+ post['imgType'] +';base64,' + post['img_src']);
+    // this.img64basePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+ post['imgType'] +';base64,' + post['img_src']);
+    this.imgSrcForView = post['img_src'];
+    this.imgTypeForView = post['imgType'];
     this.fileName.nativeElement.value = post['imgName'];    
   }
 
   updatePost(){
     if(this.editForm.valid){
-      
+      debugger
       let postObj = Object.create(this.editForm.value); 
       let date = postObj.date;
       let tempDate = new Date();
@@ -233,10 +232,10 @@ export class EditpostsComponent implements OnInit {
       filetype: '',
       value: ''
   },0);
-  this.img64basePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+ '' +';base64,' + '');
+  // this.img64basePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+ '' +';base64,' + '');
 
-  // this.imgSrcForView = '';
-  // this.imgTypeForView = '';
+  this.imgSrcForView = '';
+  this.imgTypeForView = '';
   this.clearFile();
   setTimeout(() => {
     this.viewForm = true;

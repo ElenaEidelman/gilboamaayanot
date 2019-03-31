@@ -29,8 +29,8 @@ export class FooterComponent implements OnInit {
   onSubmit(){
     let username = this.adminForm.get('userName').value;
     let password = this.adminForm.get('password').value;
-    localStorage.setItem('username',username);
-    localStorage.setItem('password',password);
+    localStorage.setItem('usern',username);
+    localStorage.setItem('pass',password);
     this.router.navigate(['admin']);
   }
 

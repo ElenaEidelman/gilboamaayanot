@@ -21,6 +21,11 @@ import { EditblanksComponent } from './editblanks/editblanks.component';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { HttpClientModule }    from '@angular/common/http';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { EditSurveyComponent } from './edit-survey/edit-survey.component';
+import { GroupComponent } from './group/group.component';
+import { EditTeamComponent } from './edit-team/edit-team.component';
+import { EditNewsComponent } from './edit-news/edit-news.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +42,11 @@ import { PaginationComponent } from '../pagination/pagination.component';
     EditpostsComponent,
     EditblanksComponent,
     FileSelectDirective,
-    PaginationComponent
+    PaginationComponent,
+    EditSurveyComponent,
+    GroupComponent,
+    EditTeamComponent,
+    EditNewsComponent
   ],
   exports: [
     MaterialModule,

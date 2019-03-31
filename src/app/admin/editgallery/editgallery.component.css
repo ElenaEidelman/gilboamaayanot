@@ -23,3 +23,98 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+
+
+.wrap-radio-button, .wrap-input{
+    float: left;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+}
+.wrap-button button{
+    background: tomato;
+    color: #fff;
+}
+.wrap-button{
+    position: relative;
+    min-height: 75px;
+}
+.spinner{
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+.spinner > mat-spinner{
+    margin:auto;
+}
+.wrap-input-add-gallery{
+    display: flex;
+    justify-content: space-around;
+}
+.wrap-form-addGallery{
+    padding: 20px;
+    box-shadow: 0 0 9px 0px rgba(0,0,0,0.2);
+}
+.wrap-form-addGallery > form > p > button{
+    background: tomato;
+    color: #fff;
+}
+.wrap-component-title{
+    margin: 5rem auto;
+}
+mat-panel-description > span{
+    width:100%;
+}
+.button-submit > button{
+    background: tomato;
+    color: #fff;
+}
+.button-submit{
+    margin: 30px 20px;
+    display: block;
+}
+.wrap-img-add-edit img{
+    width: 250px;
+    height: auto;
+    padding: 2rem;
+    border: 1px solid #DFDFDF;
+    border-radius: 5p
+}
+.button-upload-img{
+    margin: 20px auto;
+}
+.button-upload-img button{
+    background: mediumseagreen;
+    color:#fff;
+    width:100%;
+}
+.wrap-menu-button{
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+}
+.wrap-menu-button button{
+    background: tomato;
+    color:#fff;
+    margin-right: 10px;
+}
+.wrap-delete-gallery-button{
+    margin: 20px;
+    display: flex;
+}
+.wrap-delete-gallery-button button, .deletGallery-button{
+    background: lightslategrey !important;
+    color: #fff;
+}
+.wrap-multy-gallery{
+    margin: 20px 0;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.6);
+    border: 1px solid lightgray;
+}
+@media screen and (max-width:1024px){
+    .wrap-input-add-gallery{
+        display: flex;
+        flex-direction: column;
+    }
+  }

@@ -1,95 +1,105 @@
 <div>
-  <div class="wrap-component-title" id="contactus">
-      <h1>
-          <span>טפסים</span>
-      </h1>
+    <div class="wrap-component-title" id="contactus">
+        <h1>
+            <span>Blanks</span>
+        </h1>
     </div>
     <div class="formAddNewCategory">
-      <form [formGroup]="addCategoryGroup" *ngIf="viewForm">
-        <div class="form-flex">
-            <div>
-                <mat-form-field>
-                     <input matInput type="text" placeholder="Hebrew category title" #categoryHebName formControlName="categoryHebName">
-                </mat-form-field>
+        <form [formGroup]="addCategoryGroup" *ngIf="viewForm">
+            <div class="form-flex">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Hebrew category title" #categoryHebName
+                            formControlName="categoryHebName">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Eng category title" #categoryEngName
+                            formControlName="categoryEngName">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="file title" formControlName="fileTitle">
+                    </mat-form-field>
+                </div>
+                <div class="wrap-upload-button">
+                    <input [hidden]="true" #uploadFileNewCat type="file" name="file"
+                        (change)="onFileSelectded($event)" />
+                    <button mat-button type="button" (click)="uploadFileNewCat.click()"
+                        class="add-category-file-button">Upload new file</button>
+                    <div>{{uploadFileNewCat.value}}</div>
+                </div>
+                <div class="submitButton">
+                    <button mat-button type="submit" (click)="upload(categoryEngName.value,categoryHebName.value)">Add
+                        new category</button>
+                    <span *ngIf="spinner" class="spinner">
+                        <mat-spinner></mat-spinner>
+                    </span>
+                </div>
             </div>
-            <div>
-                <mat-form-field>
-                     <input matInput type="text" placeholder="Eng category title" #categoryEngName formControlName="categoryEngName">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field>
-                     <input matInput type="text" placeholder="file title" formControlName="fileTitle">
-                </mat-form-field>
-            </div>
-            <div class="wrap-upload-button">
-                <input [hidden]="true" #uploadFileNewCat type="file" name="file" (change)="onFileSelectded($event)" />
-                <button mat-button type="button"  (click)="uploadFileNewCat.click()" class="add-category-file-button">Upload new file</button>
-                <div>{{uploadFileNewCat.value}}</div>
-            </div>
-            <div class="submitButton">
-                <button mat-button type="submit"  (click)="upload(categoryEngName.value,categoryHebName.value)">Add new category</button>
-                <span *ngIf="spinner" class="spinner">
-                    <mat-spinner></mat-spinner>
-                </span>
-            </div>
-        </div>
-      </form>
+        </form>
     </div>
 
     <div class="container filesAccordion">
-      <mat-accordion class="blanks">
-        <mat-expansion-panel [expanded]="id === null ? step === i : blankArr[1][0].kategory === id ? true : false " hideToggle *ngFor="let blankArr of blanks; let i = index" id="{{blankArr[1][0].kategory}}">
-          <mat-expansion-panel-header>
-            <mat-panel-description>
-              <span>{{blankArr[0]}} </span>
-              <span style="direction:ltr">/public/blanks/{{blankArr[1][0].kategory}}</span>
-              <mat-icon>description</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
+        <mat-accordion class="blanks">
+            <mat-expansion-panel [expanded]="id === null ? step === i : blankArr[1][0].kategory === id ? true : false "
+                hideToggle *ngFor="let blankArr of blanks; let i = index" id="{{blankArr[1][0].kategory}}">
+                <mat-expansion-panel-header>
+                    <mat-panel-description>
+                        <span>{{blankArr[0]}} </span>
+                        <span style="direction:ltr">/public/blanks/{{blankArr[1][0].kategory}}</span>
+                        <mat-icon>description</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-          <div class="wrap-per-blank-category">
-              <div class="deleteChild">
-                  <button mat-icon-button (click)="deleteBlankCategory(blankArr[1][0].kategory)" matTooltip="Delete category {{blankArr[0]}}">
-                      <mat-icon>delete</mat-icon>
-                  </button>
-              </div>
-              <div class="addBlankChild">
-                <form [formGroup]="addBlankGroup" *ngIf="viewForm">
-                      <div class="uploadFileButton">
-                          <div>
-                              <mat-form-field>
-                                   <input matInput type="text" placeholder="Hebrew title" formControlName="blankTitle">
-                              </mat-form-field>
-                          </div>
-                          <div class="wrap-upload-button">
-                              <input [hidden]="true" #uploadFile type="file" name="file" (change)="onFileSelectded($event)" />
-                              <button mat-button type="button"  (click)="uploadFile.click()">Upload new file</button>
-                              <div>{{uploadFile.value}}</div>
-                          </div>
-                      </div>
-                      <div class="submitButton">
-                          <button mat-button type="submit"  (click)="upload(blankArr[1][0].kategory,blankArr[1][0].kategoryHeb)">Submit</button>
-                          <span *ngIf="spinner" class="spinner">
-                              <mat-spinner></mat-spinner>
-                          </span>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      
-          <div *ngFor = "let blanksList of blankArr[1]" id="{{blanksList.id}}">
-              <a href="{{blanksList.file}}">
-                <mat-icon>touch_app</mat-icon>
-                {{blanksList.name_tofes}}
-              </a>
-              <button mat-icon-button (click)="deleteBlank(blanksList.id, blanksList.file)" matTooltip="Delete">
-                  <mat-icon>delete</mat-icon>
-              </button>
-          </div>
-      
-        </mat-expansion-panel>
-      </mat-accordion>
+                <div class="wrap-per-blank-category">
+                    <div class="deleteChild">
+                        <button mat-icon-button (click)="deleteBlankCategory(blankArr[1][0].kategory)"
+                            matTooltip="Delete category {{blankArr[0]}}">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                    <div class="addBlankChild">
+                        <form [formGroup]="addBlankGroup" *ngIf="viewForm">
+                            <div class="uploadFileButton">
+                                <div>
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Hebrew title"
+                                            formControlName="blankTitle">
+                                    </mat-form-field>
+                                </div>
+                                <div class="wrap-upload-button">
+                                    <input [hidden]="true" #uploadFile type="file" name="file"
+                                        (change)="onFileSelectded($event)" />
+                                    <button mat-button type="button" (click)="uploadFile.click()">Upload new
+                                        file</button>
+                                    <div>{{uploadFile.value}}</div>
+                                </div>
+                            </div>
+                            <div class="submitButton">
+                                <button mat-button type="submit"
+                                    (click)="upload(blankArr[1][0].kategory,blankArr[1][0].kategoryHeb)">Submit</button>
+                                <span *ngIf="spinner" class="spinner">
+                                    <mat-spinner></mat-spinner>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div *ngFor="let blanksList of blankArr[1]" id="{{blanksList.id}}">
+                    <a href="{{blanksList.file}}">
+                        <mat-icon>touch_app</mat-icon>
+                        {{blanksList.name_tofes}}
+                    </a>
+                    <button mat-icon-button (click)="deleteBlank(blanksList.id, blanksList.file)" matTooltip="Delete">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
 </div>
-

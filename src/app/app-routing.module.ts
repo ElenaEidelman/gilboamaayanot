@@ -26,6 +26,11 @@ import { AddnewComponent } from './admin/addnew/addnew.component';
 import { WysiwysComponent } from './admin/wysiwys/wysiwys.component';
 import { EditpostsComponent } from './admin/editposts/editposts.component';
 import { EditblanksComponent } from './admin/editblanks/editblanks.component';
+import { EditSurveyComponent } from './admin/edit-survey/edit-survey.component';
+import { GroupComponent } from './admin/group/group.component';
+import { EditTeamComponent } from './admin/edit-team/edit-team.component';
+import { EditNewsComponent } from './admin/edit-news/edit-news.component';
+
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -65,9 +70,15 @@ const routes: Routes = [
     { path: 'addNewMenu', component: AddnewComponent},
     { path: 'wysiwyg/:id', component: WysiwysComponent},
     { path: 'posts', component: EditpostsComponent },
-    { path: 'blanks', component:EditblanksComponent}
+    { path: 'blanks', component:EditblanksComponent},
+    { path: 'survey', component:EditSurveyComponent},
+    { path: 'hugim/:id', component:GroupComponent},
+    { path: 'team', component: EditTeamComponent},
+    { path: 'news', component: EditNewsComponent}
+    
   ]
-}
+},
+{ path: '**', redirectTo: 'public/posts', pathMatch: 'full'}
 ];
 
 @NgModule({

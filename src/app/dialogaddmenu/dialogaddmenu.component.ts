@@ -4,6 +4,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { GetDataService } from '../get-data.service';
 import { addMenu } from '../classes/addMenu';
 import { DialogComponent } from '../dialog/dialog.component';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   data: any;
@@ -21,7 +22,8 @@ export class DialogaddmenuComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private fb: FormBuilder,
               private dataService: GetDataService,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog,
+              private router: Router) {}
 
   typesOfMenu = [
     {heblbl:'גלריה',englbl:'gallery'},
@@ -70,6 +72,7 @@ export class DialogaddmenuComponent implements OnInit {
             this.spinner = false;
             this.openDialog('','Menu added successfully ');
             this.showForm = false;
+            this.router.navigate(['admin']);
             setTimeout(() => {
               this.addNewMenu.reset();
               this.showForm = true;

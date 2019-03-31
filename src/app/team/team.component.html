@@ -1,10 +1,15 @@
+<div class="wrap-component-title">
+  <h1>
+    <span>צוות המועדון</span>
+  </h1>
+</div>
     <!-- Team Section Start -->
-    <div id="team" class="team-members-tow section-padding">
+    <div id="team" *ngIf="team" class="team-members-tow section-padding">
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
               <h2 class="section-title wow fadeInDown animated" data-wow-delay="0.3s">צוות המועדון</h2>
-            </div>
+            </div> -->
           </div>
           <div class="row">
               <mat-tab-group mat-align-tabs="center">
@@ -13,7 +18,7 @@
                           <mat-grid-tile *ngFor="let item of count; let i = index">
                             <!-- Team Item Starts -->
                             <figure>
-                                <img src="assets/img/{{item.img_src}}" alt="">
+                                <img src="{{item.img_src}}" alt="">
                                 <div class="image-overlay">
                                   <div class="overlay-text text-center">
                                     <div class="info-text">

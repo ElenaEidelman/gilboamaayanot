@@ -1,0 +1,39 @@
+.wrap-form{
+    padding: 3em;
+    margin: 10px;
+    box-shadow: 0 0 10px  rgba(0,0,0,0.5);
+}
+.wrap-input{
+    display: flex;
+    margin: 2.5em;
+}
+.wrap-input .first-child{
+    flex-grow: 3;
+}
+.wrap-input .second-child{
+    flex-grow:1;
+}
+.second-child button{
+    background:  tomato;
+    color:#fff;
+    cursor: pointer;
+}
+button:focus {outline:0;}
+.button-submit{
+    margin:20px 0 0 0;
+}
+.button-submit > button{
+    background: tomato;
+    color: #fff;
+    width: 100%;
+}
+.button-add-one{
+    margin:20px;
+}
+ .button-add-one button{
+     color:#fff;
+     background:mediumseagreen;
+ }
+ mat-form-field input{
+     font-size: 20px;
+ }
