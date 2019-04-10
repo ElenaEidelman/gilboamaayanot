@@ -21,6 +21,9 @@ export class AdmindasboardComponent implements OnInit {
   menuDataGet: Object = {};
   ngOnInit() {
   }
+  navigateTo(page:string){
+    this.router.navigate(['admin/' + page]);
+  }
   logout(){
     localStorage.removeItem("username");
     localStorage.removeItem("password");

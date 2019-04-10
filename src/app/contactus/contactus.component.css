@@ -1,5 +1,17 @@
 form{
     width:90%;
+    height: 100%;
+}
+form > p , form ul{
+    margin-bottom: 0px;
+}
+.wrap-form{
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+}
+.wrap-form > div {
+    flex-grow: 1;
 }
 .mat-form-field{
     font-size:14px !important;
@@ -24,11 +36,12 @@ mat-spinner{
   }
   .socIcons{
     width:100%;
-    padding: 20px 0
+    padding: 20px 0 0 0;
   }
   .socIcons ul{
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      padding-left: 0px; 
   }
   .socIcons ul li{
     display: inline-block;

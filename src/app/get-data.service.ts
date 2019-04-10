@@ -484,5 +484,55 @@ export class GetDataService {
       )
     );
   }
+  addNews(newsData: any){
+    return this.http.post(`${this.baseURL}/addNews.php`,newsData,{responseType: "text"}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+  updateNews(newsData: any){
+    return this.http.post(`${this.baseURL}/updateNews.php`,newsData,{responseType: "text"}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+  saveBirthday(data:any){
+    return this.http.post(`${this.baseURL}/addBirthday.php`,data,{responseType : 'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+  updateBirthday(data:any){
+    return this.http.post(`${this.baseURL}/updateBirthday.php`,data,{responseType : 'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+  updateWeekly(data:any){
+    return this.http.post(`${this.baseURL}/updateWeekly.php`,data,{responseType : 'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+
+  SendToDb(fileName: string, data: any){
+    return this.http.post(`${this.baseURL}/${fileName}`,data,{responseType : 'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
+  GetFromDb(fileName: string){
+    return this.http.get(`${this.baseURL}/${fileName}`,{responseType : 'text'}).pipe(
+      map(result => {
+        return result;
+      })
+    );
+  }
 }
 

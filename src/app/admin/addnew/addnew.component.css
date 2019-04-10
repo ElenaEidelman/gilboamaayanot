@@ -1,0 +1,24 @@
+.wrap-input{
+    display:flex;
+}
+.flex-child{
+    width:100%;
+    margin:10px;
+    padding:10px;
+}
+.full-width{
+    width:100%;
+}
+mat-spinner{
+    top: -94%;
+    left: 45%;
+    position: absolute;
+    z-index: 9999999;
+  }
+  .button-submit{
+      position: relative;
+  }
+  .button-submit > button{
+    background: tomato;
+    color: #fff;
+}

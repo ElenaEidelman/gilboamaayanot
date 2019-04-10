@@ -1,3 +1,68 @@
-<p>
-  edit-news works!
-</p>
+<div>
+  <div class="wrap-component-title">
+    <h1>
+      <span>Edit News</span>
+    </h1>
+  </div>
+  <div>
+    <div class="container">
+      <form [formGroup]="editNewsForm" *ngIf="viewForm" class="group-form">
+        <div class="flex-form-wrap">
+          <div class="flex-child">
+            <mat-form-field>
+              <input matInput type="text" placeholder="Title" formControlName="title">
+            </mat-form-field>
+          </div>
+          <div class="flex-child">
+            <mat-form-field>
+              <textarea matInput placeholder="News description" formControlName="description" style="line-height:2em"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="flex-child">
+            <mat-form-field matTooltip="{{fileInput.value}}" [hidden]="fileName.value == ''">
+              <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
+            </mat-form-field>
+            <p>
+              <input [hidden]="true" type="file" name="Imgfile" (change)="onFileChange($event)" #fileInput>
+
+              <span class="button-select">
+                <button mat-flat-button (click)="fileInput.click()">Select Image</button>
+              </span>
+              <span *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
+                <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">
+              </span>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="button-submit">
+      <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
+      <button mat-flat-button (click)="updateNews()" *ngIf="!saveButton">Edit</button>
+      <mat-spinner *ngIf="spinner"></mat-spinner>
+    </div>
+    <div class=" container wrap-accordion">
+      <mat-accordion class="example-headers-align achivContent">
+        <mat-expansion-panel id="news{{newsElement.id}}" [expanded]="step === i" hideToggle
+          *ngFor="let newsElement of news; let i = index;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="titleMatPanel">{{newsElement.title}}</span>
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="wrap-buttons">
+            <div class="edit-button" (click)="editNews(newsElement)">
+              <button mat-flat-button matTooltip="Edit">Edit</button>
+            </div>
+            <div class="delete-button" (click)="deleteNews(newsElement.id)">
+              <button mat-flat-button matTooltip="Delete">Delete</button>
+            </div>
+          </div>
+
+          <hr>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

@@ -25,6 +25,11 @@ import { EditSurveyComponent } from './edit-survey/edit-survey.component';
 import { GroupComponent } from './group/group.component';
 import { EditTeamComponent } from './edit-team/edit-team.component';
 import { EditNewsComponent } from './edit-news/edit-news.component';
+import { EditBirthdayComponent } from './edit-birthday/edit-birthday.component';
+import { EditWeeklyComponent } from './edit-weekly/edit-weekly.component';
+import { EditDiaryComponent } from './edit-diary/edit-diary.component';
+import { StatisticComponent } from './statistic/statistic.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -46,7 +51,11 @@ import { EditNewsComponent } from './edit-news/edit-news.component';
     EditSurveyComponent,
     GroupComponent,
     EditTeamComponent,
-    EditNewsComponent
+    EditNewsComponent,
+    EditBirthdayComponent,
+    EditWeeklyComponent,
+    EditDiaryComponent,
+    StatisticComponent
   ],
   exports: [
     MaterialModule,
@@ -56,7 +65,8 @@ import { EditNewsComponent } from './edit-news/edit-news.component';
     CKEditorModule,
     Ng2ImgMaxModule,
     HttpClientModule,
-    PaginationComponent
+    PaginationComponent,
+    ChartsModule
   ],
   imports: [
     CommonModule,
@@ -65,7 +75,8 @@ import { EditNewsComponent } from './edit-news/edit-news.component';
     ReactiveFormsModule,
     CKEditorModule,
     Ng2ImgMaxModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [
     GetDataService,

@@ -4,5 +4,6 @@ export class News{
     description: string;
     data: string;
     time: string;
-    img_src: string;
+    img_type: string;
+    img_value: string;
 }

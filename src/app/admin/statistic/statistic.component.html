@@ -1,0 +1,27 @@
+<div class="wrap-component-title birthdays">
+  <h1>
+      <span>{{label}}</span>
+  </h1>
+</div>
+<div class="wrap-statistic" *ngIf="dateArrForCurrWeek">
+  <div>
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+      </div>
+      <div class="wrap-buttons">
+        <button mat-button mat-raised-button color="primary" (click)="randomize()">{{graphViewNameButton}}</button>
+        <button mat-button mat-raised-button color="primary" (click)="displayWeeklyData()">Weekly</button>
+        <button mat-button mat-raised-button color="primary" (click)="displayMonthlyData()">Monthly</button>
+        <button mat-button mat-raised-button color="primary" (click)="displayDataByYear()">By year</button>
+      </div>
+    </div>
+  </div>
+</div>

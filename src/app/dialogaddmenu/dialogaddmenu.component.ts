@@ -28,7 +28,7 @@ export class DialogaddmenuComponent implements OnInit {
   typesOfMenu = [
     {heblbl:'גלריה',englbl:'gallery'},
     {heblbl:'חוגים',englbl:'hugim'},
-    {heblbl:'מילוי חופשי', englbl:'wysiwyg'},
+    {heblbl:'הזנה חופשית', englbl:'wysiwyg'},
     {heblbl:'יומן',englbl:'diary'}
   ];
 
@@ -54,7 +54,6 @@ export class DialogaddmenuComponent implements OnInit {
     })
   }
   onSubmit(){
-    debugger
     let hebSelectedType = this.addNewMenu.get('selectedType').value;
     let type = this.typesOfMenu.find(element => element.heblbl == hebSelectedType);
     let forMenu: addMenu = {

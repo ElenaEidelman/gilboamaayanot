@@ -38,6 +38,24 @@
                 *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">line_weight</mat-icon>
             </button>
+                <button
+                  type="button"
+                  style="float:right"
+                  aria-label="Toggle sidenav"
+                  mat-icon-button
+                  (click)="navigateTo('statistic')"
+                  matTooltip = "Statistic">
+                  <mat-icon>equalizer</mat-icon>
+                </button>
+                <button
+                  type="button"
+                  style="float:right"
+                  aria-label="Toggle sidenav"
+                  mat-icon-button
+                  (click)="navigateTo('addNewMenu')"
+                  matTooltip = "Add new Menu">
+                  <mat-icon>library_add</mat-icon>
+              </button>
           </div>
 
           <span class="spacer"></span>

@@ -1,0 +1,7 @@
+.wrap-statistic{
+    margin: 20px 0;
+}
+.wrap-buttons{
+    display: flex;
+    justify-content: space-around;
+}

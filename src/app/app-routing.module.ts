@@ -30,6 +30,10 @@ import { EditSurveyComponent } from './admin/edit-survey/edit-survey.component';
 import { GroupComponent } from './admin/group/group.component';
 import { EditTeamComponent } from './admin/edit-team/edit-team.component';
 import { EditNewsComponent } from './admin/edit-news/edit-news.component';
+import { EditBirthdayComponent } from './admin/edit-birthday/edit-birthday.component';
+import { EditWeeklyComponent } from './admin/edit-weekly/edit-weekly.component';
+import { EditDiaryComponent } from './admin/edit-diary/edit-diary.component';
+import { StatisticComponent } from './admin/statistic/statistic.component';
 
 
 const routerOptions: ExtraOptions = {
@@ -74,7 +78,11 @@ const routes: Routes = [
     { path: 'survey', component:EditSurveyComponent},
     { path: 'hugim/:id', component:GroupComponent},
     { path: 'team', component: EditTeamComponent},
-    { path: 'news', component: EditNewsComponent}
+    { path: 'news', component: EditNewsComponent},
+    { path: 'birthdays', component: EditBirthdayComponent},
+    { path: 'Weeklycolumn', component: EditWeeklyComponent },
+    { path: 'diary/:id', component: EditDiaryComponent},
+    { path: 'statistic', component: StatisticComponent}
     
   ]
 },

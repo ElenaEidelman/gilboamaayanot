@@ -2,6 +2,7 @@ export class Tur{
     id_tur: number;
     f_title: string;
     img_src: string;
+    img_type: string;
     date: string;
     s_title: string;
     mail: string;

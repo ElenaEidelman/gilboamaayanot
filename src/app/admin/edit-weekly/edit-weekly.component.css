@@ -22,44 +22,30 @@ mat-spinner{
     position: absolute;
     z-index: 9999999;
   }
-
-.wrap-accordion{
-      margin-top:4em;
-  }
-.edit-button,.delete-button{
-    margin: 10px;
-    width:100%;
-    text-align:center;
-}
-.edit-button > button{
-    color: #fff;
-    background: mediumseagreen;
-}
-.button-submit{
+  .button-submit{
     position: relative;
     margin:20px;
 }
 .wrap-buttons{
     display: flex;
 }
-.delete-button > button, .left > button{
-    color: #fff;
-    background: red;
-}
-mat-form-field{
-    width:100%;
-}
 .flex-form-wrap{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .flex-child{
     width:50%;
     margin: auto;
+    padding:2em;
+}
+.mat-form-field{
+    width:100%;
 }
 
-@media screen and (max-width: 104px){
-
+@media screen and (max-width: 1024px){
+    .flex-child{
+        width:100%;
+    }
 }

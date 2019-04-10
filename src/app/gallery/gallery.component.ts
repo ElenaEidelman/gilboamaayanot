@@ -2,32 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { GetDataService } from '../get-data.service';
-import {
-  AccessibilityConfig,
-  Action,
-  ButtonEvent,
-  ButtonsConfig,
-  ButtonsStrategy,
-  ButtonType,
-  Description,
-  DescriptionStrategy,
-  DotsConfig,
-  Image,
-  ImageModalEvent,
-  KS_DEFAULT_BTN_CLOSE,
-  KS_DEFAULT_BTN_DELETE,
-  KS_DEFAULT_BTN_DOWNLOAD,
-  KS_DEFAULT_BTN_EXTURL,
-  KS_DEFAULT_BTN_FULL_SCREEN,
-  // KS_DEFAULT_BTN_ROTATE,
-  PreviewConfig,
-  LoadingConfig,
-  LoadingType,
-  CurrentImageConfig,
-  PlainGalleryConfig,
-  PlainGalleryStrategy,
-  AdvancedLayout
-} from '@ks89/angular-modal-gallery';
+import {Image} from '@ks89/angular-modal-gallery';
 import { isArray } from 'util';
 
 

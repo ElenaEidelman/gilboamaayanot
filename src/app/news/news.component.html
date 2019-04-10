@@ -12,7 +12,8 @@
             <mat-card-title>{{newsBlock.title}}</mat-card-title>
             <mat-card-subtitle>{{newsBlock.time}} {{newsBlock.date}} </mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{newsBlock.img_src}}" alt="{{newsBlock.title}}">
+          <!-- <img mat-card-image src="{{newsBlock.img_src}}" alt="{{newsBlock.title}}"> -->
+          <img mat-card-image src="data:{{newsBlock.img_type}};base64,{{newsBlock.img_value}}" alt="{{newsBlock.title}}" title="newsBlock.title">
           <mat-card-content>
             <p>{{newsBlock.description}}</p>
           </mat-card-content>

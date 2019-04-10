@@ -1,0 +1,39 @@
+.iframe{
+    height: 620px;
+    padding: 5px;
+}
+.left-button{
+    text-align: left;
+    margin: 10px;
+  }
+  .left-button > button{
+    background: red;
+    color:#fff;
+  }
+.wrap-input{
+    width:100%;
+    padding: 20px;
+}
+.wrap-input mat-form-field{
+    width:100%;
+}
+.wrap-input  mat-form-field  input{
+    text-align: left !important;
+}
+.button-submit > button{
+    color: #fff;
+    background: mediumseagreen;
+}
+.button-submit{
+    position: relative;
+    margin:20px;
+}
+.wrap-title  mat-form-field  input{
+    text-align: right;
+}
+mat-spinner{
+    top: -94%;
+    left: 45%;
+    position: absolute;
+    z-index: 9999999;
+  }

@@ -1,7 +1,44 @@
-<div class="container">
-    <div class="wrap-component-title">
-        <h1>
-            <span> הוספת תפריט חדש </span>
-        </h1>
+<div>
+    <div class="container">
+        <div class="wrap-component-title">
+            <h1>
+                <span>Add new menu</span>
+            </h1>
+        </div>
     </div>
+    <form [formGroup]="newMenuForm" *ngIf="viewForm">
+        <div class="wrap-input">
+            <div class="flex-child">
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Hebrew title for menu" formControlName="lebHeb">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Child menu hebrew title" formControlName="childLabelHeb">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="flex-child">
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Child menu english title" formControlName="childLabelEng">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="full-width">
+                        <mat-label>Select an option</mat-label>
+                        <mat-select formControlName="typeOfChildMenu" placeholder="Type of child menu">
+                          <mat-option *ngFor="let type of typesOfMenu" value="{{type.englbl}}">{{type.heblbl}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="button-submit">
+            <button mat-flat-button (click)="onSubmit()">Save</button>
+            <mat-spinner *ngIf="spinner"></mat-spinner>
+          </div>
+    </form>
 </div>

@@ -126,10 +126,14 @@ export class GroupComponent implements OnInit, OnDestroy {
         }
       })
   }
+  else{
+    this.openDialog('Error','Please fill all fields');
+  }
 }
   deleteHug(id: any) {
     let idGroup = +id;
     this.openConfirmDelete("Are you sure you want delete this Group?","hugim","id_hug",idGroup,"hug"+idGroup,true,'');
+    this.router.navigate(['admin']);
    }
   editGroup(hug:any){
     this.saveButton = false;

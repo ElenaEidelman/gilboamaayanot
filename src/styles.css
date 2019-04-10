@@ -3405,7 +3405,12 @@ a:focus:not([href]):not([tabindex]), a:hover:not([href]):not([tabindex]) {
 /*my code*/
 html, body{
   height: 100%;
+  font-size: 15px;
 }
+input{
+  height:20px;
+}
+
 
 p-menubarsub > ul{
   text-align:right;
@@ -3467,7 +3472,7 @@ h1 > span, h4 > span{
   padding: 1rem;
 }
 .wrap-component-title{
-  margin: 12rem 0 6rem 0;
+  margin: 7rem 0 6rem 0;
   text-align: center;
 }
 .wrap-all-component{
@@ -3475,7 +3480,7 @@ h1 > span, h4 > span{
 }
 .title{
   color: #D0212C;
-  font-size: 3em;
+  font-size: 2em;
   font-family: 'Reforma-Medium', arial;
   font-weight: 700;
   margin-bottom: 25px;
@@ -3635,7 +3640,7 @@ mat-tree{
   width:100%;
 }
 .group-form .cdk-text-field-autofill-monitored:not(:-webkit-autofill), .group-form .ng-star-inserted, .group-form input.mat-input-element{
-  font-size: 20px;
+  font-size: 15px;
   line-height: 4em;
 }
 .mat-option-text {
@@ -3651,5 +3656,8 @@ mat-sidenav.mat-drawer{
 @media screen and (max-width:1024px){
   .mat-expansion-panel-body{
       padding: 0 !important;
+  }
+  input{
+    height: 17px;
   }
 }

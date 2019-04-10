@@ -33,7 +33,7 @@
               <mat-card-title>{{tur[0].f_title}}</mat-card-title>
               <mat-card-subtitle>{{tur[0].date | date:'d/M/yy'}}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="{{tur[0].img_src}}" alt="Photo of a Shiba Inu">
+            <img mat-card-image src="data:{{tur[0].img_type}};base64,{{tur[0].img_src}}" alt="Photo of a Shiba Inu">
             <mat-card-content>
               <p>
                 {{tur[0].s_title}}

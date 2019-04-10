@@ -1,0 +1,93 @@
+<div class="wrap-component-title">
+  <h1>
+    <span>Edit Weekly</span>
+  </h1>
+</div>
+<div>
+  <div class="container">
+    <form [formGroup]="editWeeklyForm" *ngIf="viewForm" class="group-form">
+      <div class="flex-form-wrap">
+        <div class="flex-child">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Main title" formControlName="f_title">
+          </mat-form-field>
+        </div>
+        <div class="flex-child">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Article title" formControlName="s_title">
+          </mat-form-field>
+        </div>
+        <div class="flex-child">
+          <mat-form-field>
+            <input matInput type="email" placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </div>
+        <div class="flex-child">
+          <mat-form-field>
+            <input matInput type="text" placeholder="File description" formControlName="file_name">
+          </mat-form-field>
+        </div>
+<!--upload img-->
+        <div class="flex-child">
+          <!-- <p>
+            <mat-form-field>
+              <input 
+                type="input" 
+                matInput 
+                placeholder="img src" 
+                formControlName="img"
+                matTooltip="{{imgUpload.value}}"
+                value="{{imgUpload.value}}">
+            </mat-form-field>
+          </p> -->
+          <p>
+            <input 
+              [hidden]="true" 
+              type="file" 
+              (change)="onFileChange('img',$event)" 
+              #imgUpload>
+
+            <mat-form-field matTooltip="{{imgUpload.value}}">
+              <input matInput placeholder="Selected image" value="{{imgUpload.value}}">
+            </mat-form-field>
+            <span class="button-select">
+              <button mat-flat-button (click)="imgUpload.click()">Select Image</button>
+            </span>
+            <span *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
+              <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">
+            </span>
+          </p>
+        </div>
+<!--upload file-->
+        <div class="flex-child" style="margin:0">
+          <p>
+            <mat-form-field>
+              <input type="input" #fileUpload matInput placeholder="file upload" formControlName="file"
+                matTooltip="{{fileUpload.value}}">
+            </mat-form-field>
+          </p>
+          <p>
+            <input [hidden]="true" type="file" (change)="onFileChange('file',$event)" #fileInput2>
+
+            <!-- <mat-form-field matTooltip="{{fileInput2.value}}" [hidden]="fileName.value == ''">
+              <input matInput #fileName placeholder="Selected File" value="{{fileInput2.value}}">
+            </mat-form-field> -->
+            <span class="button-select">
+              <button mat-flat-button (click)="fileInput2.click()">Select File</button>
+            </span>
+          </p>
+        </div>
+        <div class="flex-child">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="button-submit">
+    <button mat-flat-button (click)="updateWeekly()">Edit</button>
+    <mat-spinner *ngIf="spinner"></mat-spinner>
+  </div>

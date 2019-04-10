@@ -179,6 +179,7 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   deleteWYSIWYG(){
     //this.spinnerDelete = true;
     this.openConfirmDelete("Are you sure you want delete this page?",'wysiwyg','pageId',this.idRoute,this.idRoute,false,'');
+    this.router.navigate(['admin']);
   }
   openDialog(title: string, message: string){
     this.dialog.open(DialogComponent,{

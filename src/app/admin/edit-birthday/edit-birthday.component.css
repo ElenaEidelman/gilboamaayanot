@@ -60,6 +60,11 @@ mat-form-field{
     margin: auto;
 }
 
+.wrap-birthday-list{
+    padding: 10px;
+    font-size: 17px;
+}
+
 @media screen and (max-width: 104px){
 
 }

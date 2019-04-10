@@ -1,4 +1,4 @@
-.button-submit > button{
+.button-submit > button, .left-button > button{
     background: tomato;
     color: #fff;
 }
@@ -15,7 +15,7 @@ mat-spinner{
     position: absolute;
     z-index: 9999999;
   }
-.left{
+.left-button{
     text-align: left;
     margin: 10px;
   }

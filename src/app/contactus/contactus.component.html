@@ -1,68 +1,72 @@
 <div class="wrap-component-title" style="position: relative">
-    <div id="contactus"></div>
-    <h1>
-        <span>צור קשר</span>
-    </h1>
+  <div id="contactus"></div>
+  <h1>
+    <span>צור קשר</span>
+  </h1>
 </div>
 <div class="container">
-  <mat-grid-list cols="{{ifMobile || (ifTablet && ifPortrait) ? 1 : 2}}" rowHeight="{{ifMobile || (ifTablet && ifPortrait) ? 2 : 3.5}}: {{ifMobile || (ifTablet && ifPortrait) ? 2.5 : 2.5}}">
-      <mat-grid-tile>
-          <form *ngIf="showForm" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-              <table class="example-full-width" cellspacing="0"><tr>
-                  <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>שם משפחה</mat-label>
-                      <input matInput placeholder="שם משפחה" formControlName="lastName">
-                      <mat-error *ngIf="emailForm.get('lastName').invalid">{{getErrorMessage('lastName')}}</mat-error>
-                    </mat-form-field>
-                  </td>
-                  <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>שם</mat-label>
-                      <input matInput placeholder="שם" formControlName="firstName">
-                      <mat-error *ngIf="emailForm.get('firstName').invalid">{{getErrorMessage('firstName')}}</mat-error>
-
-                    </mat-form-field>
-                  </td>
-                </tr>
-              </table>
-              <p>
-                  <mat-form-field class="example-full-width">
-                      <mat-label>מייל</mat-label>
-                      <input  matInput placeholder="מייל" formControlName="email">
-                      <mat-error *ngIf="emailForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
+  <mat-grid-list cols="{{ifMobile || (ifTablet && ifPortrait) ? 1 : 2}}"
+    rowHeight="{{ifMobile || (ifTablet && ifPortrait) ? 2 : 3.5}}: {{ifMobile || (ifTablet && ifPortrait) ? 2.5 : 2.5}}">
+    <mat-grid-tile>
+      <form *ngIf="showForm" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+        <div class="wrap-form">
+            <div style="display:flex">
+                <mat-form-field class="example-full-width">
+                    <mat-label>שם משפחה</mat-label>
+                    <input matInput placeholder="שם משפחה" formControlName="lastName">
+                    <mat-error *ngIf="emailForm.get('lastName').invalid">{{getErrorMessage('lastName')}}</mat-error>
                   </mat-form-field>
-              </p>
-              <p>
-                  <mat-form-field class="example-full-width">
-                      <mat-label>כותרת</mat-label>
-                      <input matInput placeholder="כותרת" formControlName="title">
-                      <mat-error *ngIf="emailForm.get('title').invalid">{{getErrorMessage('title')}}</mat-error>
-
-                  </mat-form-field>
-              </p>
-              <p>
-                  <mat-form-field class="example-full-width">
-                      <mat-label>טקסט</mat-label>
-                      <textarea matInput placeholder="טקסט" formControlName="message"></textarea>
-                  </mat-form-field>
-              </p>
-              <p style="position:relative">
-                <mat-spinner *ngIf="spinner"></mat-spinner>
-                <button mat-flat-button type="submit" >שלח</button>
-              </p>
-                <div class="socIcons">
-                    <ul>
-                      <li><a href="https://www.facebook.com/pages/%D7%9E%D7%95%D7%A2%D7%93%D7%95%D7%9F-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%92%D7%9C%D7%91%D7%95%D7%A2%D7%9E%D7%A2%D7%99%D7%99%D7%A0%D7%95%D7%AA/169121539812374" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="https://www.instagram.com/Gilboa_maayanot_basketball/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                      <li><a href="https://www.youtube.com/user/salhagilboachannel" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                      <li><a href="/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                    </ul>
-                </div>
-          </form>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53838.046625958945!2d35.354227271270034!3d32.50269206455976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d0d46f82bfaef%3A0x46583ebb6bc4f23d!2z15TXpNeV16LXnCDXktec15HXldeiINeS15zXmdecIC0gSGFwb2VsIEdpbGJvYSBHYWxpbCBCYw!5e0!3m2!1sru!2sil!4v1548348873477" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>    
-        </mat-grid-tile>
+              <mat-form-field class="example-full-width">
+                <mat-label>שם</mat-label>
+                <input matInput placeholder="שם" formControlName="firstName">
+                <mat-error *ngIf="emailForm.get('firstName').invalid">{{getErrorMessage('firstName')}}</mat-error>
+    
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>מייל</mat-label>
+                <input matInput placeholder="מייל" formControlName="email">
+                <mat-error *ngIf="emailForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>כותרת</mat-label>
+                <input matInput placeholder="כותרת" formControlName="title">
+                <mat-error *ngIf="emailForm.get('title').invalid">{{getErrorMessage('title')}}</mat-error>
+    
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>טקסט</mat-label>
+                <textarea matInput placeholder="טקסט" formControlName="message"></textarea>
+              </mat-form-field>
+            </div>
+            <div style="position:relative">
+              <mat-spinner *ngIf="spinner"></mat-spinner>
+              <button mat-flat-button type="submit">שלח</button>
+            </div>
+            <div class="socIcons">
+              <ul>
+                <li><a
+                    href="https://www.facebook.com/pages/%D7%9E%D7%95%D7%A2%D7%93%D7%95%D7%9F-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%92%D7%9C%D7%91%D7%95%D7%A2%D7%9E%D7%A2%D7%99%D7%99%D7%A0%D7%95%D7%AA/169121539812374"
+                    target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/Gilboa_maayanot_basketball/" target="_blank"><i
+                      class="fa fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/user/salhagilboachannel" target="_blank"><i
+                      class="fa fa-youtube"></i></a></li>
+                <li><a href="/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              </ul>
+            </div>
+        </div>
+      </form>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53838.046625958945!2d35.354227271270034!3d32.50269206455976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d0d46f82bfaef%3A0x46583ebb6bc4f23d!2z15TXpNeV16LXnCDXktec15HXldeiINeS15zXmdecIC0gSGFwb2VsIEdpbGJvYSBHYWxpbCBCYw!5e0!3m2!1sru!2sil!4v1548348873477"
+        width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>
