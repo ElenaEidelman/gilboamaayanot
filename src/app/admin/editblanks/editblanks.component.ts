@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+// import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { GetDataService} from '../../get-data.service';
 import { Blank } from '../../classes/blank';
 import { DialogConfirmComponent } from '../../dialog-confirm/dialog-confirm.component';
@@ -75,7 +75,7 @@ export class EditblanksComponent implements OnInit {
         this.openDialog('', data);
       }
       else{
-        this.dataService.addBlankToDb(blank).subscribe(result => {
+        this.dataService.SendToDb('addBlankToDb.php',blank).subscribe(result => {
           if(result == "SUCCESS"){
             this.spinner = false;
             this.resetForm();

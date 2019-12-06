@@ -57,7 +57,11 @@
                             </p>
                         </div>
                     </div>
-                    <ckeditor formControlName="editor"></ckeditor>
+                    <ckeditor 
+                        formControlName="editor" 
+                        [config]="{}" 
+                        #editor></ckeditor>
+                    <!-- <ckeditor [config]={extraPlugins: 'divarea'}></ckeditor> -->
                 </div>
             </div>
             <div class="button-submit">

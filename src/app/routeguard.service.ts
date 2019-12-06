@@ -22,16 +22,16 @@ export class RouteguardService implements CanActivate {
         userAuthentication = true;
       }
       else if(result == 'NO USER'){
-        this.openDialog('שגיאה','היוסר לא קיים');
+        this.openDialog('שגיאה','משתמש לא קיים');
+        this.router.navigate(['public/posts']);
       }
       else if(result == 'DATA BASE PROBLEM'){
-        this.openDialog('שגיאה','בעיה עם בסיס נתונים');
+        this.openDialog('שגיאה','בסיס נתונים לא זמין כרגע');
       }
     });
     if(userAuthentication){
       return true;
     }
-    //this.router.navigate(['/login'],{queryParams: {returnUrl: state.url}});
     return false;
   }
 

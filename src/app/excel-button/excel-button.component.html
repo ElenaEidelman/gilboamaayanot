@@ -1,0 +1,11 @@
+<div>
+    <button 
+    mat-flat-button (click)="exportToExcel()" 
+    matTooltip="exporting data to excel only for current week"
+    matTooltipClass="tooltipclass"
+    [disabled]="disableButton || (publicKey == undefined && calendarId == undefined)">
+      <mat-icon>description</mat-icon>
+      Export as Excel
+  </button>
+  <mat-spinner *ngIf="spinner"></mat-spinner>
+</div>

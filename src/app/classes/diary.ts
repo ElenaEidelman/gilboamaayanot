@@ -3,4 +3,6 @@ export class Diary{
     idName:string;
     src:string;
     titleHeb:string;
+    publicKey:string;
+    calendarId:string;
 }

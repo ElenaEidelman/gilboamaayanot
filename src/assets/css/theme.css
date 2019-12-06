@@ -77,7 +77,7 @@ body .ui-corner-right {
   -webkit-border-bottom-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-body a {
+/* body a {
   color: #007ad9;
   text-decoration: none;
 }
@@ -86,7 +86,7 @@ body a:hover {
 }
 body a:active {
   color: #005b9f;
-}
+} */
 body .ui-helper-reset {
   line-height: normal;
 }

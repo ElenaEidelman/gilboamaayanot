@@ -77,7 +77,6 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
         }
       },1000);
     });
-
     this.checkGallery(this.id);
 
   }
@@ -85,10 +84,11 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
   checkGallery(galleryId: string){
     // document.getElementById('top').scrollIntoView();
     this.dataService.checkGallery(galleryId).subscribe(result => {
+      debugger
+      this.galleryLevel = result.level;
       this.radioName = (result.level == 2) ? 'Add level' : 'Add gallery to this page';
       if(result.result == 'GALLERY EXIST'){
         this.editPic = true;
-        this.galleryLevel = result.level;
         this.pageOfManyGalleries = (result.level == 3) ? true : false;
       }
       else if(result.result == 'NO GALLERY'){
@@ -177,7 +177,7 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
       this.openDialog('Error','Please select at least one picture');
     }
     else{
-      this.dataService.deleteSelectedPic(this.imgListToDelete).subscribe(
+      this.dataService.SendToDb('deleteSelectedPic.php',this.imgListToDelete).subscribe(
         result => {
           if(result == 'SUCCESS'){
             this.openDialog('Succes','Selected picture/s was/were deleted');
@@ -215,7 +215,7 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
         hebLabel: hebLabel,
         idPage: idPage
       }
-      this.dataService.CreateChildOfGalleryPage(sendData).subscribe(
+      this.dataService.SendToDb('createChildPageOfGallery.php',sendData).subscribe(
         result => {
           debugger
           if(result == "SUCCESS"){
@@ -236,13 +236,14 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
   }
   SavePageLikeGallery(){
     let page = this.id;
-    this.dataService.createPageOfGallery(page).subscribe(
+    this.dataService.SendToDb('createGalleryPage.php',page).subscribe(
       result => {
+        debugger
         if(result == 'SUCCESS'){
-          this.openDialog('Success','Gallery created');
-          setTimeout(()=>{
-            this.router.navigate(['admin/gallery/' + page]);
-          },1000)
+          this.openDialog('Success','Gallery created','admin/gallery/' + page);
+          // setTimeout(()=>{
+          //   this.router.navigate(['admin/gallery/' + page]);
+          // },0)
         }
         else{
           this.openDialog('Error','Something went wrong');
@@ -261,7 +262,7 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
         hebLabel: hebLabel,
         idPage: this.id
       }
-      this.dataService.createNewGallery(dataToDb).subscribe(
+      this.dataService.SendToDb('createNewGallery.php',dataToDb).subscribe(
         result => {
           if(result == "SUCCESS"){
             this.resetAddnewGalleryForm();
@@ -275,10 +276,10 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDialog(title: string, message:string){
+  openDialog(title: string, message:string, navigateTo?:string){
     this.dialog.open(DialogComponent,{
       width: "350px",
-      data: {title: title,message:message}
+      data: {title: title,message:message, navigateTo:navigateTo}
     });
   }
   onFileChange(galleryName,event) {
@@ -324,7 +325,7 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
             galleryId: galleryName,
             imgPath: 'api/uploads/imgs/gallery'
           }
-          this.dataService.addImgSrcToDb(imgDataToDb).subscribe(
+          this.dataService.SendToDb('addImgToDb.php',imgDataToDb).subscribe(
             result => {
               if(result == 'SUCCESS'){
                 this.viewAddNewPic = false;
@@ -354,7 +355,7 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
       gallery: gallery,
       level: this.galleryLevel
     }
-    this.dataService.deleteGallery(dataToDb).subscribe(
+    this.dataService.SendToDb('deleteGallery.php',dataToDb).subscribe(
       result => {
         if(result == 'SUCCESS'){
           this.openDialog('Success','Gallery was deleted');
@@ -369,6 +370,7 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
       }
     );
   }
+
 
   ngOnDestroy(){
     this.forUnsubscribe.unsubscribe();

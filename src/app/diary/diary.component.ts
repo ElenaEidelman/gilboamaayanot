@@ -18,6 +18,8 @@ export class DiaryComponent implements OnInit, OnDestroy {
 
   routIdParams;
   diary: Diary;
+  publicKey: string;
+  calendarId: string;
   ngOnInit() {
     this.getDiary();
   }
@@ -32,6 +34,8 @@ export class DiaryComponent implements OnInit, OnDestroy {
       this.dataService.getDiary(id).subscribe(result => {
         
         this.diary = result;
+        // this.publicKey = result['publicKey'];
+        // this.calendarId = result['calendarId'];
       })
     });
   }

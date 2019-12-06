@@ -84,7 +84,7 @@ export class EditTeamComponent implements OnInit {
         mail: mail,
         imgPath: this.imgPath == '' ? this.imgSrcForEditPreview : this.imgPath
       }
-        this.dataService.updateTeam(dataToDb).subscribe(
+        this.dataService.SendToDb('updateTeam.php',dataToDb).subscribe(
           response => {
             this.spinner = false;
             if (response == 'SUCCESS') {
@@ -121,7 +121,7 @@ export class EditTeamComponent implements OnInit {
         imgPath: this.imgPath
       }
       debugger
-        this.dataService.saveTeam(dataToDb).subscribe(
+        this.dataService.SendToDb('saveTeam.php',dataToDb).subscribe(
           response => {
             console.log('get result for saved data to db');
             this.spinner = false;

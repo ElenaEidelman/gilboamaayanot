@@ -18,7 +18,7 @@ import { WysiwysComponent } from './wysiwys/wysiwys.component';
 import { EditpostsComponent } from './editposts/editposts.component';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { EditblanksComponent } from './editblanks/editblanks.component';
-import { FileSelectDirective } from 'ng2-file-upload';
+// import { FileSelectDirective } from 'ng2-file-upload';
 import { HttpClientModule }    from '@angular/common/http';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { EditSurveyComponent } from './edit-survey/edit-survey.component';
@@ -46,7 +46,7 @@ import { ChartsModule } from 'ng2-charts';
     WysiwysComponent,
     EditpostsComponent,
     EditblanksComponent,
-    FileSelectDirective,
+    // FileSelectDirective,
     PaginationComponent,
     EditSurveyComponent,
     GroupComponent,

@@ -5,7 +5,6 @@ import { throwError, Observable, BehaviorSubject, forkJoin } from 'rxjs';
 import { Menu } from './classes/menu';
 import { Team } from './classes/team';
 import { Post } from './classes/post';
-import { Image } from './classes/image';
 import { Message } from './classes/message';
 import { News } from './classes/news';
 import { Tur } from './classes/tur';
@@ -21,7 +20,7 @@ import { addMenu } from './classes/addMenu';
 
 const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
 
-
+declare var gapi: any;
 @Injectable({
   providedIn: 'root'
 })
@@ -36,10 +35,10 @@ export class GetDataService {
 
   }
 
+
   getMenu(): Observable<Menu[]> {
     return this.http.get<Menu[]>(`${this.baseURL}/getMenu.php`).pipe(
       map(request => {
-        //debugger
         request.forEach(item => {
           //first level of menu
           Object.keys(item).forEach(key => {
@@ -277,40 +276,39 @@ export class GetDataService {
     );
   }
 
-  addAchiv(achivemenet: ClubAchievement) {
-    //debugger
-    return this.http.post(`${this.baseURL}/addNewAchivemenets.php`, achivemenet, { responseType: 'text' }).pipe(
-      map(result => {
-        //debugger
-        return result;
-      }),
-      catchError(error => {
-        return throwError(error.message);
-      })
-    );
-  }
-  updateAchive(achivemenet: ClubAchievement) {
-    return this.http.post(`${this.baseURL}/updateAchivemenets.php`, achivemenet, { responseType: 'text' }).pipe(
-      map(result => {
-        //debugger
-        return result;
-      }),
-      catchError(error => {
-        return throwError(error.message);
-      })
-    );
-  }
-  saveWYSIWYG(wysiwygOBJ: any) {
-    return this.http.post(`${this.baseURL}/saveWYSIWYG.php`, wysiwygOBJ, { responseType: 'text' }).pipe(
-      map(result => {
-        debugger
-        return result;
-      }),
-      catchError(error => {
-        return throwError(error.message);
-      })
-    );
-  }
+  // addAchiv(achivemenet: ClubAchievement) {
+  //   //debugger
+  //   return this.http.post(`${this.baseURL}/addNewAchivemenets.php`, achivemenet, { responseType: 'text' }).pipe(
+  //     map(result => {
+  //       //debugger
+  //       return result;
+  //     }),
+  //     catchError(error => {
+  //       return throwError(error.message);
+  //     })
+  //   );
+  // }
+  // updateAchive(achivemenet: ClubAchievement) {
+  //   return this.http.post(`${this.baseURL}/updateAchivemenets.php`, achivemenet, { responseType: 'text' }).pipe(
+  //     map(result => {
+  //       //debugger
+  //       return result;
+  //     }),
+  //     catchError(error => {
+  //       return throwError(error.message);
+  //     })
+  //   );
+  // }
+  // saveWYSIWYG(wysiwygOBJ: any) {
+  //   return this.http.post(`${this.baseURL}/saveWYSIWYG.php`, wysiwygOBJ, { responseType: 'text' }).pipe(
+  //     map(result => {
+  //       return result;
+  //     }),
+  //     catchError(error => {
+  //       return throwError(error.message);
+  //     })
+  //   );
+  // }
   getWYSIWYG(pageId: string): Observable<any> {
     return this.http.post<any>(`${this.baseURL}/getWYSIWYG.php`, pageId).pipe(
       map(result => {
@@ -324,7 +322,6 @@ export class GetDataService {
   checkWYSIWYG(idRoute: string): Observable<any> {
     return this.http.post<any>(`${this.baseURL}/checkWYSIWYG.php`, idRoute).pipe(
       map(result => {
-        //debugger
         return result;
       }),
       catchError(error => {
@@ -332,13 +329,13 @@ export class GetDataService {
       })
     );
   }
-  updateWYSIWYG(wysiwygOBJ: any) {
-    return this.http.post(`${this.baseURL}/updateWYSIWYG.php`, wysiwygOBJ, { responseType: 'text' }).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
+  // updateWYSIWYG(wysiwygOBJ: any) {
+  //   return this.http.post(`${this.baseURL}/updateWYSIWYG.php`, wysiwygOBJ, { responseType: 'text' }).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
 
   deleteFromDb(db: string, param: string, id: string, element: boolean, fileName?: string) {
     return this.http.post(`${this.baseURL}/delete.php`, { db: db, param: param, id: id, element: element, filename: fileName }, { responseType: 'text' }).pipe(
@@ -348,24 +345,23 @@ export class GetDataService {
     );
   }
 
-  addPost(post: Post) {
-    debugger
-    return this.http.post(`${this.baseURL}/addPost.php`, post, { responseType: "text" }).pipe(
-      map(result => {
-        return result;
-      }),
-      catchError(error => {
-        return throwError(error.message);
-      })
-    );
-  }
-  updatePost(post: Post) {
-    return this.http.post(`${this.baseURL}/updatePost.php`, post, { responseType: 'text' }).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
+  // addPost(post: Post) {
+  //   return this.http.post(`${this.baseURL}/addPost.php`, post, { responseType: "text" }).pipe(
+  //     map(result => {
+  //       return result;
+  //     }),
+  //     catchError(error => {
+  //       return throwError(error.message);
+  //     })
+  //   );
+  // }
+  // updatePost(post: Post) {
+  //   return this.http.post(`${this.baseURL}/updatePost.php`, post, { responseType: 'text' }).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
 
   uploadFile(blank: FormData) {
     return this.http.post(`${this.baseURL}/uploads/uploadBlank.php`, blank, { responseType: 'text' }).pipe(
@@ -377,7 +373,6 @@ export class GetDataService {
   uploadImg(img: FormData) {
     return this.http.post(`${this.baseURL}/uploads/uploadImg.php`, img, { responseType: 'text' }).pipe(
       map(result => {
-        debugger
         return result;
       })
     );
@@ -392,138 +387,141 @@ export class GetDataService {
     );
   }
 
-  addBlankToDb(blank: Blank) {
-    return this.http.post(`${this.baseURL}/addBlankToDb.php`, blank, { responseType: 'text' }).pipe(
-      map(result => {
+  // addBlankToDb(blank: Blank) {
+  //   return this.http.post(`${this.baseURL}/addBlankToDb.php`, blank, { responseType: 'text' }).pipe(
+  //     map(result => {
 
-        return result;
-      })
-    );
-  }
-  addImgSrcToDb(blank: any) {
-    return this.http.post(`${this.baseURL}/addImgToDb.php`, blank, { responseType: 'text' }).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
+  //       return result;
+  //     })
+  //   );
+  // }
+  // addImgSrcToDb(blank: any) {
+  //   return this.http.post(`${this.baseURL}/addImgToDb.php`, blank, { responseType: 'text' }).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
 
-  CreateChildOfGalleryPage(data: any) {
-    return this.http.post(`${this.baseURL}/createChildPageOfGallery.php`, data, { responseType: "text" }).pipe(
-      map(result => {
+  // CreateChildOfGalleryPage(data: any) {
+  //   return this.http.post(`${this.baseURL}/createChildPageOfGallery.php`, data, { responseType: "text" }).pipe(
+  //     map(result => {
 
-        return result;
-      })
-    );
-  }
-  createPageOfGallery(data: any) {
-    return this.http.post(`${this.baseURL}/createGalleryPage.php`, data, { responseType: "text" }).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  createNewGallery(data: any) {
-    return this.http.post(`${this.baseURL}/createNewGallery.php`, data, { responseType: "text" }).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
+  //       return result;
+  //     })
+  //   );
+  // }
+  // createPageOfGallery(data: any) {
+  //   return this.http.post(`${this.baseURL}/createGalleryPage.php`, data, { responseType: "text" }).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // createNewGallery(data: any) {
+  //   return this.http.post(`${this.baseURL}/createNewGallery.php`, data, { responseType: "text" }).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
 
-  deleteSelectedPic(data: any) {
-    return this.http.post(`${this.baseURL}/deleteSelectedPic.php`, data, { responseType: "text" }).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
+  // deleteSelectedPic(data: any) {
+  //   return this.http.post(`${this.baseURL}/deleteSelectedPic.php`, data, { responseType: "text" }).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
 
-  deleteGallery(gallery: any) {
-    return this.http.post(`${this.baseURL}/deleteGallery.php`, gallery, { responseType: "text" }).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  saveSurvey(data: any) {
-    return this.http.post(`${this.baseURL}/saveSurvey.php`, data, { responseType: 'text' }).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
+  // deleteGallery(gallery: any) {
+  //   return this.http.post(`${this.baseURL}/deleteGallery.php`, gallery, { responseType: "text" }).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // saveSurvey(data: any) {
+  //   return this.http.post(`${this.baseURL}/saveSurvey.php`, data, { responseType: 'text' }).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
 
-  editGroup(data: any){
-    return this.http.post(`${this.baseURL}/updateGroup.php`,data,{responseType: "text"}).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  saveGroup(data: any){
-    return this.http.post(`${this.baseURL}/saveGroup.php`,data,{responseType: "text"}).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  saveTeam(data: any){
-    return this.http.post(`${this.baseURL}/saveTeam.php`,data,{responseType: "text"}).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  updateTeam(data: any){
-    return this.http.post(`${this.baseURL}/updateTeam.php`,data, {responseType: 'text'}).pipe(
-      map(
-        result => {
-          return result;
-        }
-      )
-    );
-  }
-  addNews(newsData: any){
-    return this.http.post(`${this.baseURL}/addNews.php`,newsData,{responseType: "text"}).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  updateNews(newsData: any){
-    return this.http.post(`${this.baseURL}/updateNews.php`,newsData,{responseType: "text"}).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  saveBirthday(data:any){
-    return this.http.post(`${this.baseURL}/addBirthday.php`,data,{responseType : 'text'}).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  updateBirthday(data:any){
-    return this.http.post(`${this.baseURL}/updateBirthday.php`,data,{responseType : 'text'}).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
-  updateWeekly(data:any){
-    return this.http.post(`${this.baseURL}/updateWeekly.php`,data,{responseType : 'text'}).pipe(
-      map(result => {
-        return result;
-      })
-    );
-  }
+  // editGroup(data: any){
+  //   return this.http.post(`${this.baseURL}/updateGroup.php`,data,{responseType: "text"}).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // saveGroup(data: any){
+  //   return this.http.post(`${this.baseURL}/saveGroup.php`,data,{responseType: "text"}).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // saveTeam(data: any){
+  //   return this.http.post(`${this.baseURL}/saveTeam.php`,data,{responseType: "text"}).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // updateTeam(data: any){
+  //   return this.http.post(`${this.baseURL}/updateTeam.php`,data, {responseType: 'text'}).pipe(
+  //     map(
+  //       result => {
+  //         return result;
+  //       }
+  //     )
+  //   );
+  // }
+  // addNews(newsData: any){
+  //   return this.http.post(`${this.baseURL}/addNews.php`,newsData,{responseType: "text"}).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // updateNews(newsData: any){
+  //   return this.http.post(`${this.baseURL}/updateNews.php`,newsData,{responseType: "text"}).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // saveBirthday(data:any){
+  //   return this.http.post(`${this.baseURL}/addBirthday.php`,data,{responseType : 'text'}).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // updateBirthday(data:any){
+  //   return this.http.post(`${this.baseURL}/updateBirthday.php`,data,{responseType : 'text'}).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
+  // updateWeekly(data:any){
+  //   return this.http.post(`${this.baseURL}/updateWeekly.php`,data,{responseType : 'text'}).pipe(
+  //     map(result => {
+  //       return result;
+  //     })
+  //   );
+  // }
 
   SendToDb(fileName: string, data: any){
     return this.http.post(`${this.baseURL}/${fileName}`,data,{responseType : 'text'}).pipe(
       map(result => {
         return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
       })
     );
   }
@@ -531,6 +529,9 @@ export class GetDataService {
     return this.http.get(`${this.baseURL}/${fileName}`,{responseType : 'text'}).pipe(
       map(result => {
         return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
       })
     );
   }

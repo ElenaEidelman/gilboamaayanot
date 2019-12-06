@@ -8,4 +8,6 @@
 }
 .postText{
     width:100%;
+    text-align: right;
+    direction: rtl;
 }

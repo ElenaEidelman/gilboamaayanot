@@ -22,3 +22,12 @@ mat-spinner{
     background: tomato;
     color: #fff;
 }
+
+@media screen and (max-width: 1024px){
+    .wrap-input{
+        flex-direction: column;
+    }
+    .flex-child{
+        margin: 0;
+    }
+}

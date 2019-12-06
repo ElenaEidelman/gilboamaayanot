@@ -59,7 +59,7 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   this.dataService.checkWYSIWYG(idRoute).subscribe(result => {
     //if data exist for this wysiwyg
     if(Object.keys(result).length !== 0){
-      //debugger
+      debugger
       this.saveButton = false;
       this.editForm.get('editor').setValue(result.textcontent);
       this.editForm.get('avatar').setValue({
@@ -136,7 +136,7 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.editForm.valid){
       this.spinner = true;
       this.editForm.get('pageId').setValue(this.idRoute);
-      this.dataService.saveWYSIWYG(this.editForm.value).subscribe(
+      this.dataService.SendToDb('saveWYSIWYG.php',this.editForm.value).subscribe(
         result => {
           this.spinner = false;
           if(result == 'SUCCESS'){
@@ -159,11 +159,10 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.editForm.valid){
       this.spinner = true;
       this.editForm.get('pageId').setValue(this.idRoute);
-      this.dataService.updateWYSIWYG(this.editForm.value).subscribe(
+      this.dataService.SendToDb('updateWYSIWYG.php',this.editForm.value).subscribe(
         result => {
           this.spinner = false;
           if(result == 'SUCCESS'){
-            this.resetForm();
             this.openDialog('','Updated successfully');
           }
           else if(result == 'ERROR'){
@@ -209,8 +208,18 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(){
 
   }
+
+  // destroyEditor(){
+  //   let editor = window['CKEDITOR'];
+  //   if(editor.instances){
+  //     for(var editorInstance in editor.instances){
+  //      editor.instances[editorInstance].destroy();
+  //     }
+  //    }
+  //   }
   ngOnDestroy(){
     this.forUnsubscribe.unsubscribe();
+    //this.destroyEditor();
   }
 
 }

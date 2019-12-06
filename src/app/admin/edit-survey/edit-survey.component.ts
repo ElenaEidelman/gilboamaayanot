@@ -46,7 +46,7 @@ export class EditSurveyComponent implements OnInit {
         title: this.surveyForm.get('title').value,
         options: this.surveyForm.get('options').value
       }
-      this.dataService.saveSurvey(dataToDb).subscribe(
+      this.dataService.SendToDb('saveSurvey.php',dataToDb).subscribe(
         result => {
           if(result == 'SUCCESS'){
             this.openDialog('Success','Survey changed');

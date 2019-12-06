@@ -1,0 +1,17 @@
+button{
+    color: white;
+    background: green;
+}
+
+.tooltipclass{
+    font-size: 18px;
+}
+mat-spinner{
+    margin: auto;
+    position: relative;
+    top: -60px;
+}
+
+button :hover{
+    cursor: pointer;
+}

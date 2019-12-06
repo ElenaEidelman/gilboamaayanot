@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export interface DialogData {
   data: any;
   title: string;
+  navigateTo?: string;
 }
 
 @Component({
@@ -47,10 +48,10 @@ export class DialogaddmenuComponent implements OnInit {
     
   }
 
-  openDialog(title: string, message: string){
+  openDialog(title: string, message: string, navigateTo?:string){
     this.dialog.open(DialogComponent,{
       width: '350px',
-      data: {title: title, message: message}
+      data: {title: title, message: message,navigateTo:navigateTo}
     })
   }
   onSubmit(){
@@ -69,9 +70,9 @@ export class DialogaddmenuComponent implements OnInit {
         result => {
           if(result == 'SUCCESS'){
             this.spinner = false;
-            this.openDialog('','Menu added successfully ');
+            this.openDialog('','Menu added successfully ','admin');
             this.showForm = false;
-            this.router.navigate(['admin']);
+            // this.router.navigate(['admin']);
             setTimeout(() => {
               this.addNewMenu.reset();
               this.showForm = true;

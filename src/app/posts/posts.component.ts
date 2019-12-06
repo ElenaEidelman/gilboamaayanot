@@ -48,7 +48,7 @@ export class PostsComponent implements OnInit {
     this.getDeviceInfo();
   }
   selectionChanged(event){
-    console.log(event);
+    //console.log(event);
   }
   clickStep(obj){
     this.imgSrcForView = obj['img_src'];;

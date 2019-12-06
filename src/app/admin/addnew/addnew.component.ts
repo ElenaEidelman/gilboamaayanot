@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { GetDataService } from '../../get-data.service';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-addnew',
@@ -13,7 +15,8 @@ export class AddnewComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private dialog: MatDialog,
-              private dataService: GetDataService) { }
+              private dataService: GetDataService,
+              private route: Router) { }
 
   newMenuForm = this.fb.group({
     lebHeb: ['',Validators.required],
@@ -50,6 +53,7 @@ export class AddnewComponent implements OnInit {
             this.openDialog('Succes','Menu was added successfully');
             this.spinner = false;
             this.resetForm();
+            this.route.navigate(['/admin']);
           }
           else{
             this.spinner = false;

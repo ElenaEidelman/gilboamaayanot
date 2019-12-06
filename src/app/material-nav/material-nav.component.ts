@@ -12,7 +12,7 @@ import { Menu } from '../classes/menu';
   styleUrls: ['./material-nav.component.css'],
 })
 export class MaterialNavComponent {
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe('(max-width: 1279.99px)')
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe('(max-width: 1023px)')
   .pipe(
     map(result => {
       return result.matches;

@@ -1,6 +1,6 @@
 <div>
   <div class="left-button" (click)="deleteDiary()">
-    <button mat-flat-button matTooltip="Delete">Delete this page</button>
+    <button mat-flat-button matTooltip="Delete">Delete this calendar</button>
   </div>
   <div class="wrap-component-title">
     <h1>
@@ -10,12 +10,12 @@
   <form [formGroup]="diaryForm">
     <div class="wrap-title">
       <mat-form-field>
-        <input matInput type="text" placeholder="Diary hebrew title" formControlName="diaryTitle">
+        <input matInput type="text" placeholder="Calendar hebrew title" formControlName="diaryTitle">
       </mat-form-field>
     </div>
     <div class="wrap-input">
       <mat-form-field>
-        <input matInput type="text" placeholder="Diary Link" formControlName="diaryLink">
+        <input matInput type="text" placeholder="Calendar Link" formControlName="diaryLink">
       </mat-form-field>
     </div>
   </form>

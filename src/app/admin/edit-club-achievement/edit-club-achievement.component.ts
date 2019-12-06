@@ -47,7 +47,7 @@ export class EditClubAchievementComponent implements OnInit {
         title: title,
         text: text
       }
-      this.dataService.addAchiv(achiv).subscribe(result => {
+      this.dataService.SendToDb('addNewAchivemenets.php',achiv).subscribe(result => {
         this.spinner = true;
         if(result == 'SUCCESS'){
           this.resetForm();
@@ -58,6 +58,9 @@ export class EditClubAchievementComponent implements OnInit {
           this.openDialog('Error','There was a problem, please try later');
         }
       });
+    }
+    else{
+      this.openDialog('Error', 'Please fill all fields');
     }
   }
 
@@ -82,7 +85,7 @@ export class EditClubAchievementComponent implements OnInit {
         title: title,
         text: text
       }
-      this.dataService.updateAchive(achiv).subscribe(result => {
+      this.dataService.SendToDb('updateAchivemenets.php',achiv).subscribe(result => {
         this.spinner = true;
         if(result == 'SUCCESS'){
           this.resetForm();

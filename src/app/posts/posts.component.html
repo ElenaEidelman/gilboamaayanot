@@ -28,7 +28,7 @@
                         <p class="content-title">{{post.title}}</p>
                         <p>
                             <span [innerHTML]="post.text | slice:0:200 | safe:'html'"></span>
-                          ...  <a [routerLink]="['/public/post',post.id]"> קרא המשך </a>
+                          ...  <a [routerLink]="['/public/post',post.id]"><button class="button" mat-button>קרא המשך</button></a>
                         </p>
                       </div>
                   </mat-step>

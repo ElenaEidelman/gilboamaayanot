@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Gilboamaayanot</title>
+  <meta name="google-signin-client_id" content="631569622350-00jb79juofk3hvq5grhfsardkdgvc9g9.apps.googleusercontent.com">
+
+  <title>מועדון כדורסל גלבוע מעיינות</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="logoIcon.png">
   
 
   <!--PrimeNg-->
   <link rel="stylesheet" type="text/css" href="assets/css/primeicons.css" />
   <link rel="stylesheet" type="text/css" href="assets/css/theme.css" />
   <link rel="stylesheet" type="text/css" href="assets/css/primeng.min.css" />
+  <link rel="stylesheet" href="assets/css/fonts/open-sans-v15-latin-regular.woff2">
+
 
   <!--preload-->
-  <!-- <link rel="preload" href="assets/css/fonts/open-sans-v15-latin-regular.woff2" as="style">
-  <link rel="preload" href="assets/fonts/fontawesome-webfont.woff2" as="style"> -->
+  <!-- <link rel="preload" href="assets/fonts/fontawesome-webfont.woff2" as="style"> -->
  
  
 
@@ -25,18 +28,15 @@
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
   
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-
-  <script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+  <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="preload" as="style" onload="this.rel='stylesheet'" href="assets/css/main.css">
 
 </head>
 <body>
   <app-root></app-root>
       <script src="assets/js/jquery-min.js"></script>
-      <script src="assets/js/main.js"></script>
-      <!-- <script src="vendor.js"></script> -->
-
-
+      <script src="assets/js/main.js" async></script>
+      <script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js" defer></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ export class PublicComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('inside public');
     let turHeight = document.getElementById('turHeight');
     if(turHeight != null ){
     document.getElementById('birthdayHeight').style.height = turHeight.offsetHeight + 'px' ;

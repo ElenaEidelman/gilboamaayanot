@@ -39,7 +39,7 @@ export class EditBirthdayComponent implements OnInit {
         birthdayList: this.editBirthdaysForm.value.birthdayList,
         date:new Date(this.editBirthdaysForm.value.date),
       }
-      this.dataService.updateBirthday(dataToDb).subscribe(result => {
+      this.dataService.SendToDb('updateBirthday.php',dataToDb).subscribe(result => {
         this.spinner = false;
         if(result == 'SUCCESS'){
           this.openDialog('Succes','Birthday was updated');
@@ -62,7 +62,7 @@ export class EditBirthdayComponent implements OnInit {
         birthdayList: this.editBirthdaysForm.value.birthdayList,
         date:new Date(this.editBirthdaysForm.value.date),
       }
-      this.dataService.saveBirthday(dataToDb).subscribe(result => {
+      this.dataService.SendToDb('addBirthday.php',dataToDb).subscribe(result => {
         this.spinner = false;
         if(result == 'SUCCESS'){
           this.openDialog('Succes','Birthday was added');

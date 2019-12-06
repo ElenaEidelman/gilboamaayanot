@@ -92,6 +92,10 @@ export class EditDiaryComponent implements OnInit, OnDestroy {
         }
       );
     }
+    else{
+      this.openDialog('Error','Please fill all fields');
+      this.spinner = false;
+    }
   }
   saveDiary(){
     this.spinner = true;
@@ -113,6 +117,9 @@ export class EditDiaryComponent implements OnInit, OnDestroy {
           }
         }
       );
+    }
+    else{
+      this.openDialog('Error','Please fill all fields');
     }
   }
   openDialog(title: string, message: string) {

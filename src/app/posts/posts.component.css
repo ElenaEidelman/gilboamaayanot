@@ -14,6 +14,7 @@
 .post-title{
     font-size: 18px;
     font-weight: 700;
+    text-decoration: underline;
 }
 .imgTitle{
     width: 100%;
@@ -32,8 +33,11 @@
     direction: rtl;
 }
 .post-time{
-    color: grey;
+    /* color: grey;
+    font-weight: 500; */
+    color: #000;
     font-weight: 500;
+    text-shadow: 0px 0px 8px #fff
 }
 .pagination{
     text-align: center;
@@ -45,6 +49,11 @@ li:hover,a:hover{
 }
 .mat-stepper-horizontal, .mat-stepper-vertical{
     background-color: #fff;
+}
+.button{
+    background: #D0212C;
+    color: #fff;
+    margin: 10px 0px 20px;
 }
 
 @media screen and (max-width:1023px){

@@ -34,6 +34,7 @@ export class DialogConfirmComponent implements OnInit {
     if(result == "SUCCESS"){
     this.openDialog('','Deleted Successfully ');
     document.getElementById(this.data.domId).style.display = "none";
+    location.reload();
     //this.route.navigate(['admin']);
     }
     else if(result == "ERROR"){

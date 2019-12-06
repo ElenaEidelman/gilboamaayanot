@@ -43,6 +43,8 @@ import { ClubachievementComponent } from './clubachievement/clubachievement.comp
 import { AdminModule } from './admin/admin.module';
 import { WysiwygfrontComponent } from './wysiwyg/wysiwygfront.component';
 import { PublicComponent } from './public/public.component';
+import { ExcelButtonComponent } from './excel-button/excel-button.component';
+
 
 
 
@@ -74,7 +76,8 @@ import { PublicComponent } from './public/public.component';
     HugimComponent,
     ClubachievementComponent,
     WysiwygfrontComponent,
-    PublicComponent
+    PublicComponent,
+    ExcelButtonComponent
   ],
   imports: [
     BrowserModule,

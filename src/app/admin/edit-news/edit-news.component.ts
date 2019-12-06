@@ -104,7 +104,7 @@ export class EditNewsComponent implements OnInit {
   onSubmit(){
     if(this.editNewsForm.valid){
       let dataToDb = this.createDataToDb();
-      this.dataService.addNews(dataToDb).subscribe(
+      this.dataService.SendToDb('addNews.php',dataToDb).subscribe(
         result=>{
           if(result == 'SUCCESS'){
             this.openDialog('Success','News added successfully');
@@ -125,7 +125,7 @@ export class EditNewsComponent implements OnInit {
     if(this.editNewsForm.valid){
 
       let dataToDb = this.createDataToDb();
-      this.dataService.updateNews(dataToDb).subscribe(
+      this.dataService.SendToDb('updateNews.php',dataToDb).subscribe(
         result=>{
           if(result == 'SUCCESS'){
             this.openDialog('Success','News updated successfully');

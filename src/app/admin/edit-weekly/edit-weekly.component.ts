@@ -130,7 +130,7 @@ export class EditWeeklyComponent implements OnInit {
         file_name: this.editWeeklyForm.get('file_name').value
       }
 
-      this.dataService.updateWeekly(dataToDb).subscribe(
+      this.dataService.SendToDb('updateWeekly.php',dataToDb).subscribe(
         result => {
           this.spinner = false;
           if(result == 'SUCCESS'){

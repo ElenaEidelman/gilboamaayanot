@@ -112,6 +112,15 @@ mat-panel-description > span{
     box-shadow: 0px 0px 5px rgba(0,0,0,0.6);
     border: 1px solid lightgray;
 }
+.button-remove-div{
+    margin: 10px 0;
+    padding: 10px;
+    border-top: 1px solid rgba(0,0,0,0.5);
+}
+.button-remove-div > button{
+    background: red;
+    color: #fff;
+}
 @media screen and (max-width:1024px){
     .wrap-input-add-gallery{
         display: flex;

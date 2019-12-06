@@ -81,7 +81,7 @@ export class GroupComponent implements OnInit, OnDestroy {
         date:date,
         trainer: trainer
       }
-      this.dataService.editGroup(dataToDb).subscribe(result => {
+      this.dataService.SendToDb('updateGroup.php',dataToDb).subscribe(result => {
         if(result == 'SUCCESS'){
           this.openDialog('Success','Edit successfuly');
           this.spinner = false;
@@ -115,7 +115,7 @@ export class GroupComponent implements OnInit, OnDestroy {
         date:date,
         trainer: trainer
       }
-      this.dataService.saveGroup(dataToDb).subscribe(result => {
+      this.dataService.SendToDb('saveGroup.php',dataToDb).subscribe(result => {
         if(result == 'SUCCESS'){
           this.openDialog('Success','New Group saved successfuly');
           this.spinner = false;

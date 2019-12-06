@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./admindasboard.component.css']
 })
 export class AdmindasboardComponent implements OnInit {
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe('(max-width: 1279.99px)')
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe('(max-width: 1023px)')
   .pipe(
     map(result => {
       return result.matches;
@@ -25,8 +25,8 @@ export class AdmindasboardComponent implements OnInit {
     this.router.navigate(['admin/' + page]);
   }
   logout(){
-    localStorage.removeItem("username");
-    localStorage.removeItem("password");
+    localStorage.removeItem("usern");
+    localStorage.removeItem("pass");
     this.router.navigate(['public']);
   }
 }

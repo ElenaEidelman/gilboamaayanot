@@ -6,7 +6,18 @@
   width: 200px;
   box-shadow: 3px 0 6px rgba(0,0,0,.24)
 }
-
+.run-line{
+  color: #fff;
+  text-shadow: 2px 0px 0px #D0212C, 
+               2px 0px 0px #D0212C, 
+               2px 0px 0px #D0212C, 
+               2px 0px 0px #D0212C, 
+               1px 3px 0px #D0212C, 
+               2px 3px 13px #D0212C;
+  position: absolute;
+  top: 65px;
+  width: 100%;
+}
 .sidenav .mat-toolbar {
   background: inherit;
 }
@@ -29,11 +40,14 @@ mat-list{
 mat-toolbar{
   justify-content: space-around;
 }
+.mobile-logo{
+  z-index: 99999999999;
+}
 .mobile-logo img {
   margin-top: 95px;
 }
 
-@media screen and (max-width:1023px){
+@media screen and (max-width:1024px){
   .mobile-logo{
     width: 100%;
     text-align: left;

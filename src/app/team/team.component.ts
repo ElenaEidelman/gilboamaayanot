@@ -45,7 +45,7 @@ getTeam(){
     let subArr: Team[];
     
 
-//debugger
+  debugger
     if(result.length < countOfTeamView){
       subArr = [];
       while(count < result.length){
