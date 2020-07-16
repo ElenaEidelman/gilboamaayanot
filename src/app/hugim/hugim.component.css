@@ -14,3 +14,6 @@
     text-align:center;
     font-size: 1.2em;
 }
+.hugContent .mat-expansion-panel-header{
+    background: linear-gradient(70deg, #c8c8c8, transparent,#c8c8c8);
+}

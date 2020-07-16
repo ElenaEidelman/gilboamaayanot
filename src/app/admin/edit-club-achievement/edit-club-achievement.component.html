@@ -18,15 +18,15 @@
                         <mat-icon matSuffix>edit</mat-icon>
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-label>title</mat-label>
-                        <input type="text" matInput placeholder="title" formControlName="title">
+                        <mat-label>כותרת</mat-label>
+                        <input type="text" matInput placeholder="כותרת" formControlName="title">
                         <mat-icon matSuffix>edit</mat-icon>
                     </mat-form-field>
                 </div>
                 <ckeditor formControlName="content"></ckeditor>
                 <div class="button-submit">
-                    <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
-                    <button mat-flat-button (click)="updateAchive()" *ngIf="!saveButton">Edit</button>
+                    <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">שמור</button>
+                    <button mat-flat-button (click)="updateAchive()" *ngIf="!saveButton">לערוך</button>
                     <mat-spinner *ngIf="spinner"></mat-spinner>
                 </div>
             </form>
@@ -44,16 +44,15 @@
                         <span class="titleMatPanel">{{achievement.title_hesegim}}</span>
                     </mat-panel-title>
                     <mat-panel-description></mat-panel-description>
-                    <mat-icon (click)="deleteAchiv(achievement.id)" class="delete-icon" matTooltip="Delete">delete
+                    <mat-icon (click)="deleteAchiv(achievement.id)" class="delete-icon" matTooltip="למחוק">delete
                     </mat-icon>
                 </mat-expansion-panel-header>
-                <div class="edit-button" (click)="editAchive(achievement)">
-                    <button mat-flat-button matTooltip="Edit">
-                        <mat-icon>edit</mat-icon>
-                    </button>
+                <div class="edit-block">
+                        <button mat-flat-button matTooltip="לערוך" (click)="editAchive(achievement)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    <div class="achivList" [innerHTML]="achievement.text_hesegim | safe: 'html'"></div>
                 </div>
-                <hr>
-                <div class="achivList" [innerHTML]="achievement.text_hesegim | safe: 'html'"></div>
             </mat-expansion-panel>
         </mat-accordion>
     </div>

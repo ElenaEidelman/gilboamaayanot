@@ -1,8 +1,10 @@
-<div class="wrap-all-component">
-    <div class="container">
-        <div class="wrap-content">
+<!-- <div class="wrap-all-component">
+    <div class="container posts">
+        <div class="wrap-content posts-wrap">
+         
             <div class="wrap-content-child">
                 <mat-vertical-stepper 
+                  class="mat-stepper-bckgr"
                   #stepper 
                   (selectionChange)="selectionChanged($event)">
                     <ng-template matStepperIcon="edit">
@@ -11,30 +13,36 @@
                     <ng-template matStepperIcon="number"></ng-template>
                   <mat-step *ngFor="let post of pages">
                       <ng-template matStepLabel>
-                        <div (click)="clickStep(post)">
-                          <span class="post-time">
-                            {{post.date}} 
-                            {{post.time}} 
-                          </span>
+                        <div (click)="clickStep(post)" class="flex-title">
                           <span class="post-title">
                             <span *ngIf="!ifMobile" >{{post.title | slice:0:35}}</span>
                             <span *ngIf="ifMobile">{{post.title | slice:0:20}}</span>
                             <span *ngIf="!ifMobile && post.title.length > 35">...</span>
                             <span *ngIf="ifMobile && post.title.length > 20">...</span>
                           </span>
+                          <span class="post-time">
+                            <span>{{post.date}} <br></span>
+                            <span>{{post.time}}</span>
+                          </span>
                         </div>
                       </ng-template>
                     <div class="content">
                         <p class="content-title">{{post.title}}</p>
-                        <p>
-                            <span [innerHTML]="post.text | slice:0:200 | safe:'html'"></span>
-                          ...  <a [routerLink]="['/public/post',post.id]"><button class="button" mat-button>קרא המשך</button></a>
-                        </p>
+                        <div *ngIf="ifMobile ">
+                          <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}" title="imgTitle">
+                        </div>
+                        <div style="width:100%;text-align: right;">
+                            <div [innerHTML]="post.text | slice:0:200 | safe:'html'" class="content-text"></div>
+                            <span *ngIf="post.text.length > 200">...</span>
+                            <div>
+                              <a [routerLink]="['/public/post',post.id]"><button class="button" mat-button>קרא המשך</button></a>
+                            </div>
+                        </div>
                       </div>
                   </mat-step>
                 </mat-vertical-stepper>
             </div>
-            <div class="wrap-content-child imgChild"  *ngIf="pages">
+            <div class="wrap-content-child imgChild"  *ngIf="pages && !ifMobile">
               <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}" title="imgTitle">
               <span class="imgTitle">{{imgTitle}}</span>
             </div>
@@ -44,4 +52,45 @@
         </div>
       </div>
       
+</div> -->
+
+<div class="wrap-all-component">
+  <div class="container posts">
+    <div class="wrap-content posts-wrap"></div>
+    <div class="wrap-post-element">
+      <div class="post-element" *ngFor="let post of pages">
+        <div class="post-content">
+            <div [innerHTML]="post.text | slice:0:200 | safe:'html'"></div>
+            <span *ngIf="post.text.length > 200">...</span>
+            <div>
+              <a [routerLink]="['/public/post',post.id]"><button class="button" mat-button>קרא המשך</button></a>
+            </div>
+        </div>
+        <div class="post-img">
+          <div>
+            <img src="data:{{post.imgType}};base64,{{post.img_src}}" title="post.img_title">
+            <span class="imgTitle">{{post.img_title}}</span>
+          </div>
+        </div>
+        <div class="post-title-time-wrap">
+          <span class="post-title">
+            <span *ngIf="!ifMobile && post.title.length > 35">...</span>
+            <span *ngIf="ifMobile && post.title.length > 20">...</span>
+            <span *ngIf="!ifMobile" >{{post.title | slice:0:35}}</span>
+            <span *ngIf="ifMobile">{{post.title | slice:0:20}}</span>
+          </span>
+          <span class="post-time">
+            <span>{{post.date}} <br></span>
+            <span>{{post.time}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="pagination">
+      <app-pagination [pager]="pager" (setPage)="setPage($event)"></app-pagination>
+    </div>
+    <div *ngIf="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
 </div>

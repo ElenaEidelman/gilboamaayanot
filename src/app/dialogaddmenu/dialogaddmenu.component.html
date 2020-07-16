@@ -1,29 +1,37 @@
 <div class="example-container">
-  <h2>{{data.title}}</h2>
   <form [formGroup] = "addNewMenu" (ngSubmit)="onSubmit()" *ngIf="showForm">
+    <h2>{{data.title}}</h2>
       <hr>
     <p>
         <mat-form-field>
-            <input matInput placeholder="English title" formControlName="engLbl">
+            <input matInput placeholder="כותרת באנגלית" formControlName="engLbl">
         </mat-form-field>
     </p>
     <p>
         <mat-form-field>
-            <input matInput placeholder="Hebrew title" formControlName="hebLbl">
+            <input matInput placeholder="כותרת בעברית" formControlName="hebLbl">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field *ngIf="linkTo">
+            <input matInput placeholder="קישור ל-" formControlName="linkTo">
         </mat-form-field>
     </p>
     <p>
       <mat-form-field>
-        <mat-select placeholder="Type of menu" formControlName="selectedType" [(value)]="selected">
+        <mat-select placeholder="סוג התפריט" formControlName="selectedType" [(value)]="selected" (selectionChange)='onSelectChange($event)'>
             <mat-option *ngFor="let type of typesOfMenu" value="{{type.heblbl}}">{{type.heblbl}}</mat-option>
         </mat-select>
         </mat-form-field>
     </p>
     <p style="position: relative">
         <mat-spinner *ngIf="spinner"></mat-spinner>
+        <span class="popupText" *ngIf="popupText">התווסף בהצלחה</span>
+         <span class="popupError" *ngIf="popupError">קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר</span>
         <button mat-flat-button type="submit">שמור</button>
     </p>
+    <button mat-flat-button class="close" mat-dialog-close>סגור</button>
   </form>
 </div>
-<button mat-flat-button class="close" mat-dialog-close>סגור</button>
+
   

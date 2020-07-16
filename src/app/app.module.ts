@@ -6,10 +6,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 //import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {MenubarModule} from 'primeng/menubar';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialNavComponent } from './material-nav/material-nav.component';
+import { MaterialNavComponent, BottomSheetOverviewSheet} from './material-nav/material-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PostsComponent } from './posts/posts.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
@@ -32,9 +34,8 @@ import 'mousetrap'; // Mandatory for angular-modal-gallery 3.x.x or greater (`np
 import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { ContactusComponent } from './contactus/contactus.component';
 
-import { DialogSurvey } from './survey/survey.component';
 import { BirthdayandweeklyComponent } from './birthdayandweekly/birthdayandweekly.component';
-import { SurveyComponent } from './survey/survey.component';
+import { SurveyComponent, DialogSurvey } from './survey/survey.component';
 import { DiaryComponent } from './diary/diary.component';
 import { IframePipe } from './iframe.pipe';
 import { BlanksComponent } from './blanks/blanks.component';
@@ -44,6 +45,9 @@ import { AdminModule } from './admin/admin.module';
 import { WysiwygfrontComponent } from './wysiwyg/wysiwygfront.component';
 import { PublicComponent } from './public/public.component';
 import { ExcelButtonComponent } from './excel-button/excel-button.component';
+import { SocialNetComponent } from './social-net/social-net.component';
+
+
 
 
 
@@ -77,7 +81,9 @@ import { ExcelButtonComponent } from './excel-button/excel-button.component';
     ClubachievementComponent,
     WysiwygfrontComponent,
     PublicComponent,
-    ExcelButtonComponent
+    ExcelButtonComponent,
+    BottomSheetOverviewSheet,
+    SocialNetComponent
   ],
   imports: [
     BrowserModule,
@@ -92,10 +98,13 @@ import { ExcelButtonComponent } from './excel-button/excel-button.component';
     AppRoutingModule,
     AdminModule,
     GalleryModule.forRoot(),
-    DeviceDetectorModule.forRoot()
+    DeviceDetectorModule.forRoot(),
+    MatBottomSheetModule,
+    MatDatepickerModule
   ],
   entryComponents: [
-    DialogSurvey
+    DialogSurvey,
+    BottomSheetOverviewSheet
   ],
   providers: [],
   bootstrap: [AppComponent]

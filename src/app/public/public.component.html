@@ -1,8 +1,9 @@
 <app-material-nav>
   <div id="top" style="position:absolute; top:-10px"></div>
+  <div class="scrollToTop" id="scrollToTop" *ngIf="scrollToTop" (click)="goToTop()">חזרה <br> למעלה</div>
   <router-outlet></router-outlet>
+  <app-birthdayandweekly></app-birthdayandweekly>
   <app-news></app-news>
   <app-contactus></app-contactus>
-  <app-birthdayandweekly></app-birthdayandweekly>
   <app-footer></app-footer>
 </app-material-nav>

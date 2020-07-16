@@ -49,18 +49,19 @@ export class EditClubAchievementComponent implements OnInit {
       }
       this.dataService.SendToDb('addNewAchivemenets.php',achiv).subscribe(result => {
         this.spinner = true;
-        if(result == 'SUCCESS'){
+        if(result.includes('SUCCESS')){
           this.resetForm();
-          this.openDialog('','new club achievement was added successfully');
+          this.openDialog('','התווסף בהצלחה');
+          this.getAllAchivemenets();
         }
         else if(result == 'ERROR'){
           this.spinner = false;
-          this.openDialog('Error','There was a problem, please try later');
+          this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
         }
       });
     }
     else{
-      this.openDialog('Error', 'Please fill all fields');
+      this.openDialog('שגיאה', 'נא למלא את כל השדות');
     }
   }
 
@@ -72,7 +73,7 @@ export class EditClubAchievementComponent implements OnInit {
   }
 
   deleteAchiv(id: string){
-    this.openConfirmDelete('Are you sure?','hesegimshelhamoadon','id_hesegim',id, true);
+    this.openConfirmDelete('האם למחוק?','hesegimshelhamoadon','id_hesegim',id,'achiveId' + id, true);
   }
 
   updateAchive(){
@@ -87,14 +88,17 @@ export class EditClubAchievementComponent implements OnInit {
       }
       this.dataService.SendToDb('updateAchivemenets.php',achiv).subscribe(result => {
         this.spinner = true;
-        if(result == 'SUCCESS'){
-          this.resetForm();
+        debugger
+        if(result.includes('SUCCESS')){
+
           this.saveButton = true;
-          this.openDialog('','new club achievement was updated successfully');
+          this.getAllAchivemenets();
+          this.openDialog('','עודכן בהצלחה');
+          this.resetForm();
         }
-        else if(result == 'ERROR'){
+        else if(result.includes('ERROR')){
           this.spinner = false;
-          this.openDialog('Error','There was a problem, please try later');
+          this.openDialog('שגיאה','עודכן בהצלחה');
         }
       });
     }
@@ -108,6 +112,8 @@ export class EditClubAchievementComponent implements OnInit {
   }
 
   editAchive(achive: ClubAchievement){
+    debugger
+    window.scroll(0,0);
     this.saveButton = false;
     this.editClub.get('id').setValue(achive['id']);
     this.editClub.get('title').setValue(achive['title_hesegim']);
@@ -121,12 +127,12 @@ export class EditClubAchievementComponent implements OnInit {
     setTimeout(()=>{
       this.editClub.reset();
       this.formView = true;
-    },1000);
+    });
   }
-  openConfirmDelete(title, db,param,id,element){
+  openConfirmDelete(title, db,param,id,domId,element){
     this.dialog.open(DialogConfirmComponent,{
       width:"350px",
-      data:{message:title,db:db,param:param, id:id, element: element}
+      data:{message:title,db:db,param:param, id:id, domId: domId,element: element}
     })
   }
 

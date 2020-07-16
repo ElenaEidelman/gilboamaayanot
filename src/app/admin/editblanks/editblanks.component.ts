@@ -46,7 +46,7 @@ export class EditblanksComponent implements OnInit {
     if(elem.files.length > 0){
       let type = elem.files[0].type;
       if(type.includes("image")){
-        this.openDialog('Error','Please upload only text files');
+        this.openDialog('שגיאה','נא להעלות רק קבצי טקסט');
       }
       else{ 
         this.formData.append('name', elem.files[0].name);
@@ -59,15 +59,17 @@ export class EditblanksComponent implements OnInit {
    if(this.addBlankGroup.valid || this.addCategoryGroup.valid){
      this.spinner = true;
     let title = this.addBlankGroup.get("blankTitle").value != "" ? this.addBlankGroup.get("blankTitle").value : this.addCategoryGroup.get("fileTitle").value ;
-    let fileName = this.formData.get('name');
+    let fileName = this.formData.get('name').toString();
+    debugger
     let blank: Blank = {
-      file: fileName.toString(),
+      file: fileName,
       title: title,
       category: blankCategory,
       categoryHeb: blankHebCategory
     }
-
+    debugger
     this.dataService.uploadFile(this.formData).subscribe(data => {
+      debugger
       let notUploadedFile: boolean = false;
       notUploadedFile = data.includes("Error");
       if(notUploadedFile){
@@ -75,17 +77,20 @@ export class EditblanksComponent implements OnInit {
         this.openDialog('', data);
       }
       else{
+        blank.file = data;
         this.dataService.SendToDb('addBlankToDb.php',blank).subscribe(result => {
-          if(result == "SUCCESS"){
+          debugger
+          if(result.includes("SUCCESS")){
             this.spinner = false;
             this.resetForm();
             this.formData.append('name', '');
             this.formData.append('file','');
-            this.openDialog('','Blank added successfully');
+            this.openDialog('','קובץ התווסף בהצלחה');
+            this.getBlanks();
           }
           else{
             this.spinner = false;
-            this.openDialog('Error ','blank not added');
+            this.openDialog('שגיאה ','קובץ לא התווסף');
           }
         });
       }
@@ -95,7 +100,7 @@ export class EditblanksComponent implements OnInit {
     });
    }
    else{
-    this.openDialog('Error','Please fill all fields');
+    this.openDialog('שגיאה','נא למלא את כל השדות');
    }
   }
 
@@ -106,10 +111,11 @@ export class EditblanksComponent implements OnInit {
     });
   }
   deleteBlank(id:number, nameFile:string){
-    this.openConfirmDelete('Delete this blank?','tfasim','id_tofes',id,id,true,nameFile);
+    debugger
+    this.openConfirmDelete('האם למחוק?','tfasim','id_tofes',id,id,true,nameFile);
   }
   deleteBlankCategory(category: string){
-    this.openConfirmDelete('Delete this category of blanks','tfasim','kategory',category,category,true,'');
+    this.openConfirmDelete('האם למחוק?','tfasim','kategory',category,category,true,'');
   }
 
   openConfirmDelete(title, db,param,id,domId,element, fileName){

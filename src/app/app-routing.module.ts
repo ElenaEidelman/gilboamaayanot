@@ -34,6 +34,8 @@ import { EditBirthdayComponent } from './admin/edit-birthday/edit-birthday.compo
 import { EditWeeklyComponent } from './admin/edit-weekly/edit-weekly.component';
 import { EditDiaryComponent } from './admin/edit-diary/edit-diary.component';
 import { StatisticComponent } from './admin/statistic/statistic.component';
+import { OutLinkComponent } from './admin/out-link/out-link.component';
+import {InnerLinkComponent} from './admin/inner-link/inner-link.component';
 
 
 const routerOptions: ExtraOptions = {
@@ -82,7 +84,9 @@ const routes: Routes = [
     { path: 'birthdays', component: EditBirthdayComponent},
     { path: 'Weeklycolumn', component: EditWeeklyComponent },
     { path: 'diary/:id', component: EditDiaryComponent},
-    { path: 'statistic', component: StatisticComponent}
+    { path: 'statistic', component: StatisticComponent},
+    { path: 'outLink/:id/:linkId', component: OutLinkComponent},
+    { path: 'innerLink/:id', component: InnerLinkComponent}
     
   ]
 },

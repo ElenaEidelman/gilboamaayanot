@@ -48,8 +48,8 @@ export class EditSurveyComponent implements OnInit {
       }
       this.dataService.SendToDb('saveSurvey.php',dataToDb).subscribe(
         result => {
-          if(result == 'SUCCESS'){
-            this.openDialog('Success','Survey changed');
+          if(result.includes('SUCCESS')){
+            this.openDialog('','נשמר בהצלחה');
             this.surveyOptions.reset();
             for(let i = this.surveyOptions.length-1; i >= 0; i--) {
               this.surveyOptions.removeAt(i)
@@ -61,13 +61,13 @@ export class EditSurveyComponent implements OnInit {
             });
           }
           else{
-            this.openDialog('Error','Something went wrong');
+            this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
           }
         }
       );
     }
     else{
-      this.openDialog('Error','Please fill all field');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
 }

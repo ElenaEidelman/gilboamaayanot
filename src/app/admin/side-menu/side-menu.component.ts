@@ -1,5 +1,5 @@
 import {NestedTreeControl} from '@angular/cdk/tree';
-import {Component, OnInit, Output, EventEmitter, Inject} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Inject, OnDestroy} from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {GetDataService} from '../../get-data.service';
 import {MenuAdmin} from '../../classes/MenuAdmin';
@@ -21,13 +21,14 @@ const TREE_DATA: MenuAdmin[] =[];
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.css']
 })
-export class SideMenuComponent implements OnInit {
+export class SideMenuComponent implements OnInit, OnDestroy {
   treeControl = new NestedTreeControl<MenuAdmin>(node => node.children);
   dataSource = new MatTreeNestedDataSource<MenuAdmin>();
-  constructor(private dataService: GetDataService,
-              private router: Router,
-              private dialog: MatDialog) {
-    //this.dataSource.data = TREE_DATA;
+  refreshMenu: boolean;
+  changedMenuSub;
+  constructor(private dataService?: GetDataService,
+              private router?: Router,
+              private dialog?: MatDialog) {
   }
 
   openDialog(data:any, title:string): void {
@@ -39,13 +40,20 @@ export class SideMenuComponent implements OnInit {
 
   ngOnInit(){
     this.getMenu();
+
+    //if menu was changed
+    this.getChangedMenu();
   }
 
   hasChild = (_: number, node: MenuAdmin) => !!node.children && node.children.length > 0;
 
   getMenu(){
     this.dataService.getMenuForAdmin().subscribe(result => {
-      //debugger
+      this.dataSource.data = result;
+    });
+  }
+  getChangedMenu(){
+    this.changedMenuSub = this.dataService.adminMenu.subscribe(result => {
       this.dataSource.data = result;
     });
   }
@@ -57,7 +65,11 @@ export class SideMenuComponent implements OnInit {
       level: level,
       type: type
     }
-    this.openDialog(setData,'hello');
+    this.openDialog(setData,'ליצור תפריט חדש');
+  }
+  ngOnDestroy(){
+    this.changedMenuSub.unsubscribe();
   }
 }
+
 

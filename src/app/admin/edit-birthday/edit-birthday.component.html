@@ -1,7 +1,7 @@
 <div>
   <div class="wrap-component-title">
     <h1>
-      <span>Edit Birthdays</span>
+      <span>ימי הולדת</span>
     </h1>
   </div>
   <div>
@@ -10,12 +10,12 @@
         <div class="flex-form-wrap">
           <div class="flex-child">
             <mat-form-field>
-              <input matInput type="text" placeholder="Names" formControlName="birthdayList">
+              <input matInput type="text" placeholder="שמות" formControlName="birthdayList">
             </mat-form-field>
           </div>
           <div class="flex-child">
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+                <input matInput [matDatepicker]="picker" placeholder="בחר תאריך"
                     formControlName="date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -25,8 +25,8 @@
       </form>
     </div>
     <div class="button-submit">
-      <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
-      <button mat-flat-button (click)="updateNews()" *ngIf="!saveButton">Edit</button>
+      <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">שמור</button>
+      <button mat-flat-button (click)="updateNews()" *ngIf="!saveButton">לערוך</button>
       <mat-spinner *ngIf="spinner"></mat-spinner>
     </div>
     <div class=" container wrap-accordion">
@@ -42,10 +42,10 @@
           <div class="wrap-birthday-list">{{birthday.name_birthday}}</div>
           <div class="wrap-buttons">
             <div class="edit-button" (click)="editBirthday(birthday)">
-              <button mat-flat-button matTooltip="Edit">Edit</button>
+              <button matTooltip="לערוך" mat-flat-button>לערוך</button>
             </div>
             <div class="delete-button" (click)="deleteBirthday(birthday.id)">
-              <button mat-flat-button matTooltip="Delete">Delete</button>
+              <button matTooltip="למחוק" mat-flat-button >למחוק</button>
             </div>
           </div>
 

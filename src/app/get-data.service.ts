@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { throwError, Observable, BehaviorSubject, forkJoin } from 'rxjs';
@@ -17,6 +17,9 @@ import { ClubAchievement } from './classes/clubachievement';
 import { User } from './classes/user';
 import { MenuAdmin } from './classes/MenuAdmin';
 import { addMenu } from './classes/addMenu';
+import {MatTreeNestedDataSource} from '@angular/material/tree';
+
+
 
 const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
 
@@ -26,11 +29,13 @@ declare var gapi: any;
 })
 
 export class GetDataService {
-  baseURL = 'http://localhost/api';
+  //ng build --prod --aot=true
+  baseURL = 'http://localhost:8080/api';
   //baseURL = '/api';
   menu: Menu;
   posts: Post[];
-
+  // public refreshMenu: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  adminMenu = new EventEmitter<MenuAdmin[]>();
   constructor(private http: HttpClient) {
 
   }
@@ -47,6 +52,7 @@ export class GetDataService {
               Object.keys(item[key]).forEach(index => {
                 Object.keys(item[key][+index]).forEach(index2 => {
                   //set function to link of object if have property command
+                  
                   if (index2 == 'command') {
                     let id = item[key][+index][index2];
                     item[key][+index][index2] = () => {
@@ -77,6 +83,19 @@ export class GetDataService {
       catchError(error => {
         console.log('error of getting data :' + error.message);
         return throwError(error);
+      })
+    );
+  }
+  getMenuForAdmin(): Observable<MenuAdmin[]> {
+    return this.http.get<MenuAdmin[]>(`${this.baseURL}/getMenuForAdmin.php`).pipe(
+      map(result => {
+        //debugger
+        localStorage.setItem("adminMenu",JSON.stringify(result));
+        this.adminMenu.emit(result);
+        return result;
+      }),
+      catchError(error => {
+        return throwError(error.message);
       })
     );
   }
@@ -128,6 +147,8 @@ export class GetDataService {
   }
 
   sendEmail(message: Message) {
+    console.log('inside get data');
+    console.log(message);
     return this.http.post(`${this.baseURL}/sendEmail.php`, message, { responseType: 'text' }).pipe(
       map(request => {
         return request;
@@ -241,16 +262,7 @@ export class GetDataService {
   userAuthentication(user: User) {
     return this.http.post(`${this.baseURL}/getUser.php`, user, { responseType: 'text' }).toPromise();
   }
-  getMenuForAdmin(): Observable<MenuAdmin[]> {
-    return this.http.get<MenuAdmin[]>(`${this.baseURL}/getMenuForAdmin.php`).pipe(
-      map(result => {
-        return result;
-      }),
-      catchError(error => {
-        return throwError(error.message);
-      })
-    );
-  }
+
 
   //admin
   addMenu(data: addMenu) {
@@ -364,6 +376,7 @@ export class GetDataService {
   // }
 
   uploadFile(blank: FormData) {
+    debugger
     return this.http.post(`${this.baseURL}/uploads/uploadBlank.php`, blank, { responseType: 'text' }).pipe(
       map(result => {
         return result;
@@ -536,4 +549,10 @@ export class GetDataService {
     );
   }
 }
+
+
+
+
+
+
 

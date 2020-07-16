@@ -15,3 +15,13 @@ mat-spinner{
 button :hover{
     cursor: pointer;
 }
+.dateFromToWrap{
+    display: flex;
+    justify-content: center;
+}
+.dateFromToWrap > div{
+    margin: 10px 15px
+}
+.dateFromToWrap > div:last-child button{
+    background: #aeabab;
+}

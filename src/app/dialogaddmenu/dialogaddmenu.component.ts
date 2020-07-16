@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormControl } from '@angular/forms';
 import { GetDataService } from '../get-data.service';
 import { addMenu } from '../classes/addMenu';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -26,11 +26,16 @@ export class DialogaddmenuComponent implements OnInit {
               private dialog: MatDialog,
               private router: Router) {}
 
+  linkTo:boolean = false;
+  popupText: boolean = false;
+  popupError: boolean = false;
   typesOfMenu = [
     {heblbl:'גלריה',englbl:'gallery'},
     {heblbl:'חוגים',englbl:'hugim'},
     {heblbl:'הזנה חופשית', englbl:'wysiwyg'},
-    {heblbl:'יומן',englbl:'diary'}
+    {heblbl:'יומן',englbl:'diary'},
+    {heblbl:'לינק חיצוני', englbl:'outLink'},
+    {heblbl:'לינק פנימי', englbl:'innerLink'}
   ];
 
   addNewMenu = this.fb.group({
@@ -44,10 +49,22 @@ export class DialogaddmenuComponent implements OnInit {
   ngOnInit() {
     //get selected type
     let selectedMenu = this.typesOfMenu.find(element => element.englbl == this.data.data.type);
-    this.addNewMenu.get('selectedType').setValue(selectedMenu.heblbl);
+    if(selectedMenu != undefined){
+      this.addNewMenu.get('selectedType').setValue(selectedMenu.heblbl);
+    }
+  }
+  onSelectChange(selected:any){
+    if(selected.value == "לינק חיצוני" || selected.value == "לינק פנימי"){
+      this.linkTo = true;
+      this.addNewMenu.addControl('linkTo',new FormControl('',Validators.required));
+    }
+    else{
+      this.linkTo = false;
+      this.addNewMenu.removeControl('linkTo');
+    }
     
   }
-
+ 
   openDialog(title: string, message: string, navigateTo?:string){
     this.dialog.open(DialogComponent,{
       width: '350px',
@@ -55,36 +72,49 @@ export class DialogaddmenuComponent implements OnInit {
     })
   }
   onSubmit(){
+    debugger
     let hebSelectedType = this.addNewMenu.get('selectedType').value;
     let type = this.typesOfMenu.find(element => element.heblbl == hebSelectedType);
     let forMenu: addMenu = {
       hebLabel: this.addNewMenu.get('hebLbl').value,
       engLabel: this.addNewMenu.get('engLbl').value,
-      type: this.data.data.type != null ? this.data.data.type : type.englbl, 
+      type: type.englbl != undefined ? type.englbl : "", 
       level: +this.data.data.level + 1,
-      parentMenuId: +this.data.data.id
+      parentMenuId: +this.data.data.id,
+      linkOut: this.addNewMenu.get('linkTo') != undefined ? this.addNewMenu.get('linkTo').value : ""
     };
     if(this.addNewMenu.valid){
       this.spinner = true;
       this.dataService.addMenu(forMenu).subscribe(
         result => {
-          if(result == 'SUCCESS'){
+          if(result.includes('SUCCESS')){
             this.spinner = false;
-            this.openDialog('','Menu added successfully ','admin');
-            this.showForm = false;
-            // this.router.navigate(['admin']);
+            //this.openDialog('','התווסף בהצלחה ','admin');
+            this.popupText = true;
+            this.router.navigate(['admin']);
+            this.dataService.getMenuForAdmin().subscribe();
+            setTimeout(()=>{
+              this.showForm = false;
+            },2000);
             setTimeout(() => {
               this.addNewMenu.reset();
               this.showForm = true;
-            });
+              this.popupText = false;
+            },2000);
+
           }
-          else if(result == 'ERROR'){
-            this.openDialog('Error','There was a problem, please try later');
+          else if(result.includes('ERROR')){
+            this.popupError = true;
+            setTimeout(()=>{
+              this.popupError = false;
+            },2000);
+            //this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
           }
         }
       );
     }
     //console.warn(this.addNewMenu.value);
   }
+
 
 }

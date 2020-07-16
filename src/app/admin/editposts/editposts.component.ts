@@ -6,12 +6,13 @@ import { PagerService } from '../../pager.service';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import { DialogComponent } from '../../dialog/dialog.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { DialogConfirmComponent } from '../../dialog-confirm/dialog-confirm.component';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-editposts',
@@ -45,10 +46,10 @@ export class EditpostsComponent implements OnInit, OnDestroy {
   @ViewChild('fileInput') fileInput: ElementRef;
   @ViewChild('editor') ckeditor: CKEditorComponent;
 
+
   uploadedImage;
   imgSrcForView: string = '';
   imgTypeForView: string = '';
-
 
   viewForm: boolean = true;
   saveButton: boolean = true;
@@ -90,7 +91,6 @@ export class EditpostsComponent implements OnInit, OnDestroy {
   getPosts() {
     this.dataService.getPost().subscribe(result => {
       if (result.length > 0) {
-        debugger
         this.posts = result;
         this.setPage(1);
       }
@@ -98,7 +98,6 @@ export class EditpostsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-
     if (this.editForm.valid) {
       let postObj = Object.create(this.editForm.value);
       let date = postObj.date;
@@ -115,20 +114,21 @@ export class EditpostsComponent implements OnInit, OnDestroy {
       postObj.__proto__.date = new Date(currentDate);
       let newObj = postObj.__proto__;
       this.dataService.SendToDb('addPost.php',newObj).subscribe(result => {
-        if (result == "SUCCESS") {
+        if (result.includes('SUCCESS')) {
           this.resetForm();
-          this.openDialog('', 'Post added successfully');
+          this.openDialog('', 'מודעה התווספה בהצלחה');
+          debugger
+          this.getPosts();
         }
-        else if (result == "ERROR") {
-          this.openDialog('ERROR', 'Something went wrong, please try again later');
+        else if (result.includes('ERROR')) {
+          this.openDialog('שגיאה', 'קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
         }
       });
     }
     else {
-      this.openDialog('Error', 'Please fill all fields');
+      this.openDialog('שגיאה', 'נא למלא את כל השדות');
     }
   }
-
   onFileChange(event) {
     let reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
@@ -166,14 +166,12 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     this.fileName.nativeElement.value = '';
   }
   editPost(post) {
-    // debugger
+    debugger
     this.saveButton = false;
     let thisEditForm = this.editForm;
 
     let rDate = post['date'].split("/");
     let arDate = rDate[1] + "/" + rDate[0] + "/" + rDate[2];
-
-    debugger
     this.editForm.get('idPost').setValue(post["id"]);
     thisEditForm.get('title').setValue(post['title']);
     thisEditForm.get('imgTitle').setValue(post['img_title']);
@@ -190,6 +188,7 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     this.imgSrcForView = post['img_src'];
     this.imgTypeForView = post['imgType'];
     this.fileName.nativeElement.value = post['imgName'];
+    window.scroll(0,0);
   }
 
   updatePost() {
@@ -212,13 +211,14 @@ export class EditpostsComponent implements OnInit, OnDestroy {
       this.dataService.SendToDb('updatePost.php',newObj).subscribe(
         result => {
           this.spinner = false;
-          if (result == 'SUCCESS') {
+          if (result.includes('SUCCESS')) {
             this.saveButton = true;
             this.resetForm();
-            this.openDialog('', 'Updated successfully');
+            this.openDialog('', 'עודכן בהצלחה');
+            this.getPosts();
           }
-          else if (result == 'ERROR') {
-            this.openDialog('Error', 'Something went wrong please try again later');
+          else if (result.includes('ERROR')) {
+            this.openDialog('שגיאה', 'קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
           }
         }
       );
@@ -240,10 +240,12 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.viewForm = true;
       this.editForm.reset();
+      this.editForm.get('date').setValue(new Date());
+      this.editForm.get('time').setValue(this.time);
     }, 0);
   }
   deletePost(id: number) {
-    this.openConfirmDelete("Are you sure you want delete this post?", "posts", "id", id, "postId" + id, true, '');
+    this.openConfirmDelete("האם למחוק?", "posts", "id", id, "postId" + id, true, '');
   }
 
   openConfirmDelete(title, db, param, id, domId, element, dataFile) {
@@ -284,4 +286,5 @@ export class EditpostsComponent implements OnInit, OnDestroy {
 
     //this.destroyEditor();
   }
+
 }

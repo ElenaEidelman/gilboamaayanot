@@ -8,7 +8,7 @@
 }
 
 .paginationUL> li.active{
-    background-color: #D0212C;
+    background-color: #9d898a;
     color: #fff;
     padding: 17px 3px !important;
 }
@@ -21,7 +21,7 @@
         padding: 11px;
     }
     .paginationUL> li.active{
-        background-color: #D0212C;
+        background-color: #9d898a;
         color: #fff;
         padding: 14px;
     }

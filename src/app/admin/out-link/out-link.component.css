@@ -1,0 +1,44 @@
+.button-submit > button{
+    margin: 0.5rem 2em;
+}
+.button-submit > button.delete{
+    background: red;
+    color: #fff;
+}
+
+.button-submit > button.save{
+    color: #fff;
+    background: tomato;
+}
+.wrap{
+    margin: 5em 0;
+}
+.button-submit > button:hover{
+    cursor: pointer;
+}
+.alignleft{
+    text-align:left;
+}
+.spinner{
+    margin:auto;
+}
+.form-flex{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 4em 0;
+}
+.form-flex > div{
+    flex-grow: 1;
+}
+mat-form-field{
+    width: 100%;
+    padding: 0 2rem;
+}
+
+@media screen and (max-width:1024px){
+    .form-flex{
+        flex-direction: column;
+    }
+}

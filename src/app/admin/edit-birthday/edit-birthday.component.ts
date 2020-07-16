@@ -41,17 +41,17 @@ export class EditBirthdayComponent implements OnInit {
       }
       this.dataService.SendToDb('updateBirthday.php',dataToDb).subscribe(result => {
         this.spinner = false;
-        if(result == 'SUCCESS'){
-          this.openDialog('Succes','Birthday was updated');
+        if(result.includes('SUCCESS')){
+          this.openDialog('','עודכן בהצלחה');
           this.resetForm();
         }
         else{
-          this.openDialog('Error','Somthing went wrong');
+          this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
         }
       });
     }
     else{
-      this.openDialog('Error','Please fill all field');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
   onSubmit(){
@@ -64,27 +64,28 @@ export class EditBirthdayComponent implements OnInit {
       }
       this.dataService.SendToDb('addBirthday.php',dataToDb).subscribe(result => {
         this.spinner = false;
-        if(result == 'SUCCESS'){
-          this.openDialog('Succes','Birthday was added');
+        if(result.includes('SUCCESS')){
+          this.openDialog('','התווסף בהצלחה');
           this.resetForm();
         }
         else{
-          this.openDialog('Error','Somthing went wrong');
+          this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
         }
       });
     }
     else{
-      this.openDialog('Error','Please fill all field');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
   editBirthday(birthday: Birthday){
+    window.scroll(0,0);
     this.saveButton = false;
     this.editBirthdaysForm.get('id').setValue(birthday['id']);
     this.editBirthdaysForm.get('date').setValue(birthday['date_birthday']);
     this.editBirthdaysForm.get('birthdayList').setValue(birthday['name_birthday']);
   }
   deleteBirthday(id:number){
-    this.openConfirmDelete('Are you sure you want to delete this birthdays list?','birthdays','id',id,'birthday'+id,true,'');
+    this.openConfirmDelete('האם למחוק?','birthdays','id',id,'birthday'+id,true,'');
   }
   getBirthdays(){
     this.dataService.getBirthday().subscribe(result => {

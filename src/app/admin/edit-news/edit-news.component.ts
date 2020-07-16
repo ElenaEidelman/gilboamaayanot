@@ -32,6 +32,7 @@ export class EditNewsComponent implements OnInit {
   spinner: boolean = false;
   saveButton:boolean = true;
   uploadedImage;
+  imgButtonTitle: string = 'בחר תמונה';
 
   editNewsForm = this.fb.group({
     id:[''],
@@ -49,9 +50,10 @@ export class EditNewsComponent implements OnInit {
   }
 
   deleteNews(id: any){
-    this.openConfirmDelete('Are you sure you want to delete this news?','news','id_news',id,'news'+id,true,'');
+    this.openConfirmDelete('האם למחוק?','news','id_news',id,'news'+id,true,'');
   }
   editNews(news:any){
+    this.imgButtonTitle = 'שנה תמונה';
     this.editNewsForm.get('id').setValue(news.id);
     this.editNewsForm.get('title').setValue(news.title);
     this.editNewsForm.get('description').setValue(news.description);
@@ -63,6 +65,7 @@ export class EditNewsComponent implements OnInit {
       value: news.img_value
     })
     this.saveButton = false;
+    window.scroll(0,0);
   }
   resetForm() {
     this.viewForm = false;
@@ -106,41 +109,42 @@ export class EditNewsComponent implements OnInit {
       let dataToDb = this.createDataToDb();
       this.dataService.SendToDb('addNews.php',dataToDb).subscribe(
         result=>{
-          if(result == 'SUCCESS'){
-            this.openDialog('Success','News added successfully');
+          if(result.includes('SUCCESS')){
+            this.openDialog('','התווסף בהצלחה');
             this.resetForm();
           }
           else{
-            this.openDialog('Error','Something went wrong');
+            this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
             console.log(result);
           }
         }
       );
     }
     else{
-      this.openDialog('Error','Please fill all field');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
   updateNews(){
     if(this.editNewsForm.valid){
-
       let dataToDb = this.createDataToDb();
       this.dataService.SendToDb('updateNews.php',dataToDb).subscribe(
         result=>{
-          if(result == 'SUCCESS'){
-            this.openDialog('Success','News updated successfully');
+          if(result.includes('SUCCESS')){
+            this.openDialog('','עודכן בהצלחה');
             this.resetForm();
             this.saveButton = true;
+            this.imgButtonTitle = 'בחר תמונה';
           }
           else{
-            this.openDialog('Error','Something went wrong');
+            this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
+            this.imgButtonTitle = 'בחר תמונה';
             console.log(result);
           }
         }
       );
     }
     else{
-      this.openDialog('Error','Please fill all field');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
 

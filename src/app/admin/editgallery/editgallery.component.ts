@@ -182,6 +182,7 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
           if(result == 'SUCCESS'){
             this.openDialog('Succes','Selected picture/s was/were deleted');
             this.imgListToDelete = [];
+            location.reload();
           }
           else if(result == 'NOT DELETED FROM SERVER'){
             this.imgListToDelete = [];
@@ -337,9 +338,15 @@ export class EditgalleryComponent implements OnInit, OnDestroy {
                   
                 },100);
                 this.openDialog('Success', 'Image added to gallery ');
+                setTimeout(()=>{
+                  location.reload();
+                },1000);
               }
               else{
                 this.openDialog('Error','Image, do not uploaded');
+                setTimeout(()=>{
+                  location.reload();
+                },1000);
               }
             }
           );

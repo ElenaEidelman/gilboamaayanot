@@ -4,6 +4,7 @@ import { GetDataService } from '../get-data.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Router } from '@angular/router';
 
+
 export interface DialogData {
   message: string,
   id:string,
@@ -27,18 +28,29 @@ export class DialogConfirmComponent implements OnInit {
     private dataService: GetDataService,
     private dialog: MatDialog,
     private route: Router) {}
+    
+
   ngOnInit() {
   }
   accept(){
     this.dataService.deleteFromDb(this.data.db, this.data.param, this.data.id,this.data.element,this.data.fileName).subscribe(result => {
-    if(result == "SUCCESS"){
-    this.openDialog('','Deleted Successfully ');
-    document.getElementById(this.data.domId).style.display = "none";
-    location.reload();
-    //this.route.navigate(['admin']);
+      debugger
+      if(result.includes('SUCCESS')){
+        debugger
+    this.openDialog('','נמחק בהצלחה');
+      if(this.data.domId != ""){
+        let domId = this.data.domId;
+        document.getElementById(domId).style.display = "none";
+      }else{
+        this.route.navigate(['admin']);
+        // setTimeout(()=>{
+        //   location.reload();
+        // });
+        this.dataService.getMenuForAdmin().subscribe();
+      }
     }
-    else if(result == "ERROR"){
-    this.openDialog('Error','There was a problem, please try later');
+    else if(result.includes('ERROR')){
+    this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
     }
     });
     this.dialogRef.close();

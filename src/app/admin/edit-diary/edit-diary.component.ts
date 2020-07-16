@@ -83,17 +83,17 @@ export class EditDiaryComponent implements OnInit, OnDestroy {
       this.dataService.SendToDb('updateDiary.php', dataToDb).subscribe(
         result =>{
           this.spinner = false;
-          if(result == 'SUCCESS'){
-            this.openDialog('Success', 'Diary was changed');
+          if(result.includes('SUCCESS')){
+            this.openDialog('', 'עודכן בהצלחה');
           }
           else{
-            this.openDialog('Error', 'Something went wrong');
+            this.openDialog('שגיאה', 'קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
           }
         }
       );
     }
     else{
-      this.openDialog('Error','Please fill all fields');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
       this.spinner = false;
     }
   }
@@ -108,18 +108,18 @@ export class EditDiaryComponent implements OnInit, OnDestroy {
       this.dataService.SendToDb('saveDiary.php', dataToDb).subscribe(
         result =>{
           this.spinner = false;
-          if(result == 'SUCCESS'){
-            this.openDialog('Success', 'Diary was added');
+          if(result.includes('SUCCESS')){
+            this.openDialog('', 'התווסף בהצלחה');
             this.router.navigate(['admin']);
           }
           else{
-            this.openDialog('Error', 'Something went wrong');
+            this.openDialog('שגיאה', 'קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
           }
         }
       );
     }
     else{
-      this.openDialog('Error','Please fill all fields');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
   openDialog(title: string, message: string) {
@@ -133,8 +133,7 @@ export class EditDiaryComponent implements OnInit, OnDestroy {
     this.unSubscribe.unsubscribe();
   }
   deleteDiary(){
-    this.openConfirmDelete('Are you sure you want to delete this diary?','diary','idName',this.diaryId,'',false,'');
-    this.router.navigate(['admin']);
+    this.openConfirmDelete('האם למחוק?','diary','idName',this.diaryId,'',false,'');
   }
 
   openConfirmDelete(title, db,param,id,domId,element,dataFile){

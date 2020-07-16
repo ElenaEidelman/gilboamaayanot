@@ -1,14 +1,14 @@
 <div class="container">
   <div class="wrap-component-title">
     <h1>
-      <span> Add new survey</span>
+      <span> עריכת סקר</span>
     </h1>
   </div>
   <div class="wrap-form">
       <form [formGroup]="surveyForm" *ngIf="viewForm">
           <div class="wrap-input">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Survey question" formControlName="title">
+              <input matInput placeholder="שאלה" formControlName="title">
             </mat-form-field>
             <div></div>
           </div>
@@ -20,7 +20,7 @@
                       </button>
                   </div>
                   <mat-form-field class="example-full-width" class="first-child">
-                      <input matInput placeholder="option" formControlName="option">
+                      <input matInput placeholder="אפשרויות" formControlName="option">
                     </mat-form-field>
                 </div>
           </div>
@@ -30,7 +30,7 @@
               </button>
             </div>
           <div class="button-submit">
-            <button mat-button (click)="saveSurvey()">Save</button>
+            <button mat-button (click)="saveSurvey()">שמור</button>
           </div>
         </form>
   </div>

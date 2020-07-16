@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { GetDataService } from 'src/app/get-data.service';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { Router } from '@angular/router';
+import { disableBindings } from '@angular/core/src/render3';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-edit-weekly',
@@ -29,7 +31,8 @@ export class EditWeeklyComponent implements OnInit {
     email: ['',([Validators.required, Validators.email])],
     file:['',Validators.required],
     file_name:['',Validators.required],
-    img:['']
+    img:[''],
+    selectedImg:['']
   });
   viewForm: boolean = true;
   spinner: boolean = false;
@@ -38,6 +41,8 @@ export class EditWeeklyComponent implements OnInit {
   imgSrcForView = '';
   uploadedFile = new FormData();
   ngOnInit() {
+    this.editWeeklyForm.get('file').disable();
+    this.editWeeklyForm.get('selectedImg').disable();
     this.getWeekly();
   }
 
@@ -67,7 +72,7 @@ export class EditWeeklyComponent implements OnInit {
       let type = event.target.files[0].type;
       if(fileType == 'file'){
         if(type.includes("image")){
-          this.openDialog('Error','Please upload only text files');
+          this.openDialog('שגיאה','נא להעלות רק קבצי טקסט');
         }
         else{ 
           this.uploadedFile.append('name', file.name);
@@ -90,7 +95,7 @@ export class EditWeeklyComponent implements OnInit {
       }
       else if(fileType == 'img'){
         if(!file.type.includes('image')){
-          this.openDialog('Error','Please upload only images');
+          this.openDialog('שגיאה','נא להעלות רק  תמונות');
         }
         else{
           let reader = new FileReader();
@@ -133,18 +138,18 @@ export class EditWeeklyComponent implements OnInit {
       this.dataService.SendToDb('updateWeekly.php',dataToDb).subscribe(
         result => {
           this.spinner = false;
-          if(result == 'SUCCESS'){
-            this.openDialog('Succes','Weekly was updated');
+          if(result.includes('SUCCESS')){
+            this.openDialog('','עודכן בהצלחה');
             this.router.navigate(['admin']);
           }
           else{
-            this.openDialog('Error','Something went wrong');
+            this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
           }
         }
       );
     }
     else{
-      this.openDialog('Error','Please fill all fields');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
   openDialog(title: string, message: string) {

@@ -36,11 +36,12 @@ export class PostsComponent implements OnInit {
   posts: Post[];
   pages: any[];
   pager: any = {};
-  pageSize: number = 5;
+  pageSize: number = 6;
   content_img:string;
   imgSrcForView;
   imgTypeForView;
   imgTitle;
+  spinner:boolean = false;
   @ViewChild('stepper') stepper: MatStepper;
 
   ngOnInit() {
@@ -57,7 +58,9 @@ export class PostsComponent implements OnInit {
   }
 
   getPost(){
+    this.spinner = true;
     this.dataService.getPost().subscribe(result => {
+
       if(result.length > 0){
         this.imgSrcForView = result[0].img_src;
         this.imgTypeForView = result[0].imgType;
@@ -65,6 +68,7 @@ export class PostsComponent implements OnInit {
         this.posts = result;
         this.setPage(1);
       }
+      this.spinner = false;
     });
     document.getElementById('top').scrollIntoView();
   }
@@ -84,9 +88,9 @@ export class PostsComponent implements OnInit {
     this.imgSrcForView = this.pages[0].img_src;
 
     //set index of stepper to 0 if move on pagination
-    if(this.stepper.selectedIndex > 0){
-      this.stepper.selectedIndex = 0;
-    }
+    // if(this.stepper.selectedIndex > 0){
+    //   this.stepper.selectedIndex = 0;
+    // }
   }
 
   getDeviceInfo(){

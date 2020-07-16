@@ -8,7 +8,7 @@
     <mat-expansion-panel [expanded]="id === null ? step === i : blankArr[1][0].kategory === id ? true : false " hideToggle *ngFor="let blankArr of blanks; let i = index" id="{{blankArr[1][0].kategory}}">
       <mat-expansion-panel-header>
 
-        <mat-panel-description>
+        <mat-panel-description [class.bold]='blankArr[0] == "מערך הסעות" || blankArr[0] == "טפסים להורדה" ? true : false'>
           {{blankArr[0]}}
           <mat-icon>description</mat-icon>
         </mat-panel-description>

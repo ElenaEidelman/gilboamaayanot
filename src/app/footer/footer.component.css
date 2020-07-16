@@ -56,6 +56,10 @@ ul.menu li>a:hover{
 .copyright-text a{
     color:#fff;
 }
+.copyright-text{
+    margin-bottom: 0 !important;
+    margin-top: 12px;
+}
 @media screen and (max-width: 1024px){
   form{
       width:100%;

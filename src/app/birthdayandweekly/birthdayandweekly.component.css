@@ -17,6 +17,18 @@
     justify-content: space-between;
     padding:15px 0;
   }
+  .mat-card{
+    padding: 0 !important;
+  }
+  .mat-card-content{
+    padding: 16px;
+  }
+  .mat-card-image{
+    padding: 0px 16px 16px 16px;
+  }
+  .mat-card-header.monthly{
+    padding: 16px 16px 0px 16px;
+  }
   .header{
     /* background: url('../../assets/img/YGg4.gif'); */
   }
@@ -32,8 +44,12 @@
   color: tomato;
   font-size: 1em;
 }
+.header.birthdayHeight{
+  background: linear-gradient(70deg, #a3a9ae, transparent,#d2d7db);
+}
 #birthdayHeight{
   overflow: hidden;
+  background: linear-gradient(70deg, #d2d7db, transparent,#d2d7db);;
 }
 #birthdayHeight > .mat-card-header-text{
   width: 100%;

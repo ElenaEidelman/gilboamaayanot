@@ -17,11 +17,23 @@ body .ui-menubar .ui-submenu-list li a  span.ui-menuitem-text{
 a.ng-tns-c13-2 > span.ui-menuitem-text{
   color:#444 !important;
 }
+.content-text > p{
+  margin:10px 0;
+  text-align: right;
+  direction: rtl;
+}
 .mat-vertical-content-container{
   margin-left: 0px !important;
   margin-right: 12px !important;
   text-align: right;
+  margin-bottom: 15px;
 }
+.mat-vertical-content{
+  padding: 0px 10px!important;
+}
+/* .mat-stepper-bckgr > div.mat-step{
+  background: rgba(149, 135, 140,0.3);
+} */
 .mat-stepper-vertical-line::before{
   right: 0px !important;
   left: initial !important;
@@ -35,15 +47,17 @@ a.ng-tns-c13-2 > span.ui-menuitem-text{
   height: 72px !important;
 }
 .mat-vertical-stepper-header{
-  padding: 0 0 24px 0 !important;
+  padding: 5px !important;
 }
 .mat-step-header .mat-step-label.mat-step-label-active{
   height: 72px;
   line-height: 5;
   width: 100%;
   text-align: right;
-  background: #D0212C !important;
-  color: #fff;
+  background: rgba(149, 135, 140,0.8);
+}
+.mat-step-header.cdk-keyboard-focused, .mat-step-header.cdk-program-focused, .mat-step-header:hover{
+  background-color: transparent; 
 }
 .mat-step-label{
   border-radius: 5px;
@@ -56,11 +70,17 @@ a.ng-tns-c13-2 > span.ui-menuitem-text{
   background-color: rgba(208, 33, 44, 0.5);
 }
 .mat-vertical-stepper-header .mat-step-icon{
-  margin-right: 0 !important;
-  margin-left: 12px;
+  margin-right: 0px !important;
+  margin-left:4px;
 }
 .mat-step-header{
   direction:rtl !important;
+}
+.mat-tab-labels{
+  background: #f3efef;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-ba{
+  background-color: tomato !important;
 }
 .mat-tab-label, .mat-tab-link{
   color:#444 !important;
@@ -111,9 +131,10 @@ p-menubarsub > ul > li > a > span.pi-caret-right:before {
   display: block !important;
 }
 div.plain-container img.ng-star-inserted{
-  width: 250px !important;
+  width: auto !important;
   height: 150px !important;
   margin: 10px !important;
+  border: 6px double red;
  }
  .main-image-container #current-figure figcaption{
    font-size: 2rem;
@@ -122,7 +143,7 @@ div.plain-container img.ng-star-inserted{
    width: 100%;
  }
  img.ng-star-inserted:hover{
-  box-shadow: 0px 0px 25px 3px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.6);
  }
  
  .example-form {
@@ -174,7 +195,11 @@ h1 > span, h4 > span{
 mat-dialog-container{
   direction: rtl;
 }
+.mat-expansion-panel-header, .mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover {
+  background: linear-gradient(70deg, #a3a9ae, transparent,#d2d7db);
+}
 .mat-card-avatar{
+  height: 45px !important;
   width: 45px !important;
   border-radius: 0% !important;
 }
@@ -284,6 +309,10 @@ p-menubar>div.ui-menubar>p-menubarsub>ul>li.ui-menu-parent>p-menubarsub>ul>li.ui
 .adminSidenav .mat-drawer-content{
   height: -webkit-fill-available;
 }
+.mat-drawer-content{
+  position: unset !important;
+  overflow: unset;
+}
 
 .wrap-edit-component{
   /* height: 100vh; */
@@ -292,7 +321,9 @@ p-menubar>div.ui-menubar>p-menubarsub>ul>li.ui-menu-parent>p-menubarsub>ul>li.ui
   background: #fff;
   padding-bottom: 20px;
 }
+
 @media screen and (min-width: 1024px){
+  
   .wrap-edit-component{
     width: calc(100% - 250px);
     float: right;
@@ -358,15 +389,90 @@ body .ui-menubar .ui-menuitem.ui-menuitem-active > .ui-menuitem-link{
   color:#999;
 }
 
+.socIcons{
+  width:100%;
+  padding: 20px 0 0 0;
+}
+.socIcons ul{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0px; 
+}
+.socIcons ul li{
+  display: inline-block;
+}
+.socIcons .fa{
+  color:gray;
+  font-size: 2em;
+}
+.socIcons .fa-instagram:hover{
+    color:#C3206F;
+}
+.socIcons .fa-twitter:hover{
+    color: #4169E1;
+}
+.socIcons .fa-facebook:hover{
+    color: #4267B2;
+}
+.socIcons .fa-youtube:hover{
+  color:#D0212C;
+}
+
+.button-img{
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 1024px){
+  .mobile-logo > img{
+    width:120px;
+  }
+}
+
 /*mobile css*/
-@media screen and (max-width:1024px){
+  @media screen and (max-width: 1024px){
+    .button-img{
+        flex-direction: column;
+    }
+    .button-img > span{
+        margin: 10px 0;
+    }
+  span.imgTitle{
+    font-size: 1rem !important;
+}
+  .main-image-container #current-figure figcaption {
+    font-size: 1rem;
+}
+  .wrap-all-component{
+    margin-top: 20vh;
+  }
+  .mat-stepper-vertical-line::before {
+    border-right-style: none;
+  }
+  .mat-vertical-stepper-header .mat-step-icon{
+    display: none;
+}
+.dateFromToWrap > div:last-child button{
+  margin-top:-5px;
+  margin-bottom:10px;
+}
+
+  .dateFromToWrap{
+      flex-direction: column;
+  }
   .mat-expansion-panel-body{
       padding: 0 !important;
+  }
+  button:hover, div.submitButton > button{
+    cursor: pointer;
   }
   input{
     height: 17px;
   }
-  .paginationUL> li > a {
+  .paginationUL li > a {
     padding: 10px  9px !important;
+  }
+  .paginationUL{
+    padding-left:0;
   }
 }

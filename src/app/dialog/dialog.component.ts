@@ -19,14 +19,22 @@ export class DialogComponent implements OnInit {
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private route: Router) {}
+    mySubscription: any;
 
   ngOnInit() {
   }
 
   close(){
+    debugger
     if(this.data['navigateTo'] != ''){
+      // this.route.navigateByUrl('SideMenuComponent', { skipLocationChange: true }).then(() => {
+      //   debugger
       this.route.navigate([this.data['navigateTo']]);
-      location.reload();
+      // }); 
     }
+    // if(this.data['navigateTo'] != ''){
+    //   this.route.navigate([this.data['navigateTo']]);
+    // }
+    // location.reload();
   }
 }

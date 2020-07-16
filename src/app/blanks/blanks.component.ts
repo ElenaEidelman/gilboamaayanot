@@ -30,7 +30,6 @@ export class BlanksComponent implements OnInit {
 
   getBlanks(){
     this.dataService.getBlanks().subscribe(result => {
-      //debugger
       this.blanks = result;
     });
   }

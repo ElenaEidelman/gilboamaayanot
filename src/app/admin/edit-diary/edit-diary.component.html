@@ -1,6 +1,6 @@
 <div>
   <div class="left-button" (click)="deleteDiary()">
-    <button mat-flat-button matTooltip="Delete">Delete this calendar</button>
+    <button mat-flat-button matTooltip="Delete">למחוק יומן הזה</button>
   </div>
   <div class="wrap-component-title">
     <h1>
@@ -10,18 +10,18 @@
   <form [formGroup]="diaryForm">
     <div class="wrap-title">
       <mat-form-field>
-        <input matInput type="text" placeholder="Calendar hebrew title" formControlName="diaryTitle">
+        <input matInput type="text" placeholder="כותרת בעברית" formControlName="diaryTitle">
       </mat-form-field>
     </div>
     <div class="wrap-input">
       <mat-form-field>
-        <input matInput type="text" placeholder="Calendar Link" formControlName="diaryLink">
+        <input matInput type="text" placeholder="קישור ליומן" formControlName="diaryLink">
       </mat-form-field>
     </div>
   </form>
   <div class="button-submit">
-    <button mat-flat-button (click)="saveDiary()" *ngIf="saveButton">Save</button>
-    <button mat-flat-button (click)="updateDiary()" *ngIf="!saveButton">Edit</button>
+    <button mat-flat-button (click)="saveDiary()" *ngIf="saveButton">שמור</button>
+    <button mat-flat-button (click)="updateDiary()" *ngIf="!saveButton">לערוך</button>
     <mat-spinner *ngIf="spinner"></mat-spinner>
   </div>
 

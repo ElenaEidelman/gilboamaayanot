@@ -57,6 +57,7 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   checkIfExistOnDb(idRoute: string){
   this.dataService.checkWYSIWYG(idRoute).subscribe(result => {
+
     //if data exist for this wysiwyg
     if(Object.keys(result).length !== 0){
       debugger
@@ -139,20 +140,20 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
       this.dataService.SendToDb('saveWYSIWYG.php',this.editForm.value).subscribe(
         result => {
           this.spinner = false;
-          if(result == 'SUCCESS'){
+          if(result.includes('SUCCESS')){
             this.resetForm();
-            this.openDialog('','Saved successfully');
+            this.openDialog('','נשמר בהצלחה');
             this.router.navigate(['admin']);
           }
-          else if(result == 'ERROR'){
-            this.openDialog('Error','Something went wrong please try again later');
+          else if(result.includes('ERROR')){
+            this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
           }
         }
       );
       console.log(this.editForm.value);
     }
     else{
-      this.openDialog('Error','Please fill all field');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
   updateWYSIWYG(){
@@ -177,8 +178,10 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   deleteWYSIWYG(){
     //this.spinnerDelete = true;
-    this.openConfirmDelete("Are you sure you want delete this page?",'wysiwyg','pageId',this.idRoute,this.idRoute,false,'');
-    this.router.navigate(['admin']);
+    debugger
+    this.openConfirmDelete("האם למחוק את הדף הזה?",'wysiwyg','pageId',this.idRoute,'',false,'');
+    // this.router.navigate(['admin']);
+    
   }
   openDialog(title: string, message: string){
     this.dialog.open(DialogComponent,{
@@ -186,10 +189,10 @@ export class WysiwysComponent implements OnInit, OnDestroy, AfterViewInit {
       data: {title:title, message: message}
     });
   }
-  openConfirmDelete(title, db,param,id,idDom,element,fileName){
+  openConfirmDelete(title, db,param,id,domId,element,fileName){
     this.dialog.open(DialogConfirmComponent,{
       width:"350px",
-      data:{message:title,db:db,param:param, id:id, idDom:idDom,element:element,fileName:fileName}
+      data:{message:title,db:db,param:param, id:id, domId:domId,element:element,fileName:fileName}
     })
   }
 

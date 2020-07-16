@@ -6,21 +6,23 @@
           </h1>
       </div>
       <p class="title" *ngIf="surveyData">{{surveyData.opt_text}}</p>
-      <div class="surveyDiv" *ngFor="let surv of survey">
-        <div class="surveyDivTitle">
-          <span>{{surv.opt_text}} {{surv.votes/surveyData.votesSum | percent: '2.1'}}</span>
-          <p><span> הצביעו </span>{{surv.votes}} <span> מתוך </span>{{surveyData.votesSum}}</p>
-        </div>
-        <div>
-            <mat-progress-bar
-            [color]="color"
-            [mode]="mode"
-            [value]="surv.votes/surveyData.votesSum*100"
-            [bufferValue]="bufferValue">
-        </mat-progress-bar>
+      <div class="survey-div-wrap">
+        <div class="surveyDiv" *ngFor="let surv of survey">
+          <div class="surveyDivTitle">
+            <span>{{surv.opt_text}} {{surv.votes/surveyData.votesSum | percent: '2.1'}}</span>
+            <p><span> הצביעו </span>{{surv.votes}} <span> מתוך </span>{{surveyData.votesSum}}</p>
+          </div>
+          <div>
+              <mat-progress-bar
+              [color]="color"
+              [mode]="mode"
+              [value]="surv.votes/surveyData.votesSum*100"
+              [bufferValue]="bufferValue">
+          </mat-progress-bar>
+          </div>
         </div>
       </div>
-      <div>
+      <div class="survey-button-wrap">
         <button class="button" mat-flat-button (click)="openDialogSurvey(survey,surveyData)">להצביע</button>
       </div>
   </div>

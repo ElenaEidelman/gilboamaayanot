@@ -1,7 +1,7 @@
 <div>
     <div class="wrap-component-title">
             <h1>
-                <span>{{idRoute}}</span>
+                <span>הזנה חופשית</span>
             </h1>
     </div>
     <div class="container">
@@ -10,10 +10,10 @@
                 <div class="form-group">
                     <input [hidden]="true" type="file" (change)="onFileChange($event)" #fileInput>
                     <span class="button-submit">
-                        <button mat-flat-button (click)="fileInput.click()">Select Image</button>
+                        <button mat-flat-button (click)="fileInput.click()">בחר תמונה <mat-icon>add_photo_alternate</mat-icon></button>
                     </span>
-                    <mat-form-field matTooltip="{{fileInput.value}}">
-                        <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
+                    <mat-form-field>
+                        <input matInput #fileName placeholder="קישור לתמונה הנבחרת" matTooltip="{{fileName.value}}" value="{{fileInput.value}}">
                     </mat-form-field>
                     <div *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
                         <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}" >
@@ -25,12 +25,12 @@
                 <ckeditor formControlName="editor"></ckeditor>
                 <div class="flex_button">
                     <div class="button-delete">
-                        <button mat-flat-button (click)="deleteWYSIWYG()">Delete</button>
+                        <button mat-flat-button (click)="deleteWYSIWYG()">מחק</button>
                         <mat-spinner *ngIf="spinnerDelete"></mat-spinner>
                     </div>
                     <div class="button-submit edit_block">
-                        <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
-                        <button mat-flat-button (click)="updateWYSIWYG()" *ngIf="!saveButton">Edit</button>
+                        <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">שמור</button>
+                        <button mat-flat-button (click)="updateWYSIWYG()" *ngIf="!saveButton">לערוך</button>
                         <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
                     </div>
                 </div>

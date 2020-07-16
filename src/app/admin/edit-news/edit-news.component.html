@@ -1,7 +1,7 @@
 <div>
   <div class="wrap-component-title">
     <h1>
-      <span>Edit News</span>
+      <span>עריכת מבזקים</span>
     </h1>
   </div>
   <div>
@@ -10,26 +10,31 @@
         <div class="flex-form-wrap">
           <div class="flex-child">
             <mat-form-field>
-              <input matInput type="text" placeholder="Title" formControlName="title">
+              <input matInput type="text" placeholder="כותרת" formControlName="title">
             </mat-form-field>
           </div>
           <div class="flex-child">
             <mat-form-field>
-              <textarea matInput placeholder="News description" formControlName="description" style="line-height:2em"></textarea>
+              <textarea matInput placeholder="תיאור המבזק" formControlName="description" style="line-height:2em"></textarea>
             </mat-form-field>
           </div>
           <div class="flex-child">
             <mat-form-field matTooltip="{{fileInput.value}}" [hidden]="fileName.value == ''">
-              <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
+              <input matInput #fileName placeholder="תמונה נבחרת" value="{{fileInput.value}}">
             </mat-form-field>
             <p>
               <input [hidden]="true" type="file" name="Imgfile" (change)="onFileChange($event)" #fileInput>
 
-              <span class="button-select">
-                <button mat-flat-button (click)="fileInput.click()">Select Image</button>
-              </span>
-              <span *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
-                <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">
+              <span class="button-img">
+                <span class="button-select">
+                  <button mat-flat-button (click)="fileInput.click()">
+                    {{imgButtonTitle}}
+                    <mat-icon>add_photo_alternate</mat-icon>
+                  </button>
+                </span>
+                <span *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
+                  <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">
+                </span>
               </span>
             </p>
           </div>
@@ -37,8 +42,8 @@
       </form>
     </div>
     <div class="button-submit">
-      <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
-      <button mat-flat-button (click)="updateNews()" *ngIf="!saveButton">Edit</button>
+      <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">שמור</button>
+      <button mat-flat-button (click)="updateNews()" *ngIf="!saveButton">לערוך</button>
       <mat-spinner *ngIf="spinner"></mat-spinner>
     </div>
     <div class=" container wrap-accordion">
@@ -53,10 +58,10 @@
           </mat-expansion-panel-header>
           <div class="wrap-buttons">
             <div class="edit-button" (click)="editNews(newsElement)">
-              <button mat-flat-button matTooltip="Edit">Edit</button>
+              <button matTooltip="לערוך" mat-flat-button >לערוך</button>
             </div>
             <div class="delete-button" (click)="deleteNews(newsElement.id)">
-              <button mat-flat-button matTooltip="Delete">Delete</button>
+              <button matTooltip="לערוך" mat-flat-button >למחוק</button>
             </div>
           </div>
 

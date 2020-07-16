@@ -19,7 +19,33 @@
   <mat-sidenav-content>
     <!--not mobile-->
     <mat-toolbar color="primary">
-      <div class="mobile-logo"><img src="../../assets/img/logo-gilboa.png"></div>
+      <div class="mobile-logo"><img src="../../assets/img/logo.png"></div> 
+      <div class="soc-surv-sideN">
+        <div class="go-to-soc-net" matTooltip="רשתות חברתיות" mat-raised-button (click)="openBottomSheet()">
+          <div class="social-net">
+            <span>
+              <i class="fa fa-twitter"></i>
+              <i class="fa fa-facebook"></i>
+            </span>
+            <span>
+              <i class="fa fa-instagram"></i>
+              <i class="fa fa-youtube"></i>
+            </span>
+          </div>
+        </div>
+        <a routerLink="/public/survey" matTooltip="סקר" class="a-survey">
+          <span class="material-icons survey">assessment</span>
+        </a>
+        <button
+          class="sideNavBtn"
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">line_weight</mat-icon>
+        </button>
+      </div>
       <div class="run-line">
         <div class="marqueeLeft">
           <div>
@@ -28,14 +54,7 @@
           </div>
         </div>
       </div>
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">line_weight</mat-icon>
-      </button>
+
       <span class="spacer"></span>
       <mat-list *ngIf="!(isHandset$ | async)">
         <app-top-nav [menu]='items'></app-top-nav>

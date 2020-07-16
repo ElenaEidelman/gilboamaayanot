@@ -10,7 +10,10 @@
     display:flex;
     flex-direction: row-reverse;
 }
+.mat-expansion-panel-header,.mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover{
+    background: linear-gradient(70deg, #a3a9ae, transparent,#d2d7db);
 
+}
 @media screen and (max-width:1024px){
     .achivContent{
         display:block;

@@ -32,6 +32,11 @@ export class TeamComponent implements OnInit {
 
   ngOnInit() {
     this.getTeam();
+    setTimeout(()=>{
+      let el = document.getElementsByClassName('mat-tab-header');
+      debugger
+          el[0].classList.add('mat-tab-header-pagination-controls-enabled');
+    },1000);
   }
 
 getTeam(){

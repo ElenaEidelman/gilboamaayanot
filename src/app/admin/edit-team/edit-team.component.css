@@ -15,7 +15,11 @@ mat-form-field{
 mat-form-field > input{
     font-size: 20px;
 }
-
+.accordion-element{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 mat-spinner{
     top: -94%;
     left: 45%;
@@ -48,4 +52,12 @@ mat-spinner{
 .delete-button > button, .left > button{
     color: #fff;
     background: red;
+}
+@media screen and (max-width: 1024px){
+    .accordion-element > mat-expansion-panel{
+        width: 48%;
+    }
+    .edit-button, .delete-button{
+        margin: 12px 0 0 0;
+    }
 }

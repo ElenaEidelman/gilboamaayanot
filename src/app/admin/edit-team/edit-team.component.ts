@@ -46,7 +46,12 @@ export class EditTeamComponent implements OnInit {
   getTeam() {
     this.dataService.getTeam().subscribe(
       result => {
-        this.teams = result;
+        debugger
+        this.teams = result.sort(function(a, b){
+          if(a.name < b.name) { return -1; }
+          if(a.name > b.name) { return 1; }
+          return 0;
+      });
       }
     );
   }
@@ -63,6 +68,7 @@ export class EditTeamComponent implements OnInit {
     this.editTeamForm.get('mobile_num').setValue(team.mobile_num);
     this.editTeamForm.get('mail').setValue(team.mail);
     this.imgSrcForEditPreview = team.img_src;
+    window.scroll(0,0);
   }
   updateTeam() {
     let dataToDb;
@@ -87,19 +93,19 @@ export class EditTeamComponent implements OnInit {
         this.dataService.SendToDb('updateTeam.php',dataToDb).subscribe(
           response => {
             this.spinner = false;
-            if (response == 'SUCCESS') {
-              this.openDialog('Success', 'Team added successfully');
+            if (response.includes('SUCCESS')) {
+              this.openDialog('', 'התווסף בהצלחה');
               this.resetForm();
             }
             else {
               this.spinner = false;
-              this.openDialog('Error', 'Somthing went wrong');
+              this.openDialog('שגיאה', 'קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
             }
           }
         );
     }
     else {
-      this.openDialog('Error', 'Please fill all fields');
+      this.openDialog('שגיאה', 'נא למלא את כל השדות');
     }
   }
  onSubmit() {
@@ -125,21 +131,21 @@ export class EditTeamComponent implements OnInit {
           response => {
             console.log('get result for saved data to db');
             this.spinner = false;
-            if (response == 'SUCCESS') {
-              this.openDialog('Success', 'Team added successfully');
+            if (response.includes('SUCCESS')) {
+              this.openDialog('', 'התווסף בהצלחה');
               this.resetForm();
               this.spinner = false;
             }
             else {
               this.spinner = false;
-              this.openDialog('Error', 'Somthing went wrong');
+              this.openDialog('שגיאה', 'קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
             }
           }
         );
 
     }
     else {
-      this.openDialog('Error', 'Please fill all fields');
+      this.openDialog('שגיאה', 'נא למלא את כל השדות');
     }
   }
   openDialog(title: string, message: string) {
@@ -156,7 +162,7 @@ export class EditTeamComponent implements OnInit {
       let file = event.target.files[0];
       let fileType = file.type;
       if (!fileType.includes("image")) {
-        this.openDialog('Error', 'Please upload only Images');
+        this.openDialog('שגיאה', 'נא לעלות רק תמונות');
       }
       else {
         this.ng2imgmax.resizeImage(file, 250, 230).subscribe(

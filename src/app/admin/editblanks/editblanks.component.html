@@ -1,7 +1,7 @@
 <div>
     <div class="wrap-component-title" id="contactus">
         <h1>
-            <span>Blanks</span>
+            <span>טפסים</span>
         </h1>
     </div>
     <div class="formAddNewCategory">
@@ -9,31 +9,30 @@
             <div class="form-flex">
                 <div>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Hebrew category title" #categoryHebName
+                        <input matInput type="text" placeholder="כותרת כתגוריה בעברית" #categoryHebName
                             formControlName="categoryHebName">
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Eng category title" #categoryEngName
+                        <input matInput type="text" placeholder="כותרת קטגוריה באנגלית" #categoryEngName
                             formControlName="categoryEngName">
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="file title" formControlName="fileTitle">
+                        <input matInput type="text" placeholder="שם לקובץ" formControlName="fileTitle">
                     </mat-form-field>
                 </div>
                 <div class="wrap-upload-button">
                     <input [hidden]="true" #uploadFileNewCat type="file" name="file"
                         (change)="onFileSelectded($event)" />
                     <button mat-button type="button" (click)="uploadFileNewCat.click()"
-                        class="add-category-file-button">Upload new file</button>
+                        class="add-category-file-button">קובץ חדש <mat-icon>attach_file</mat-icon></button>
                     <div>{{uploadFileNewCat.value}}</div>
                 </div>
                 <div class="submitButton">
-                    <button mat-button type="submit" (click)="upload(categoryEngName.value,categoryHebName.value)">Add
-                        new category</button>
+                    <button mat-button type="submit" (click)="upload(categoryEngName.value,categoryHebName.value)">שמור קטגוריה</button>
                     <span *ngIf="spinner" class="spinner">
                         <mat-spinner></mat-spinner>
                     </span>
@@ -56,7 +55,7 @@
                 <div class="wrap-per-blank-category">
                     <div class="deleteChild">
                         <button mat-icon-button (click)="deleteBlankCategory(blankArr[1][0].kategory)"
-                            matTooltip="Delete category {{blankArr[0]}}">
+                            matTooltip="למחוק קטגוריה  {{blankArr[0]}}">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </div>
@@ -65,21 +64,20 @@
                             <div class="uploadFileButton">
                                 <div>
                                     <mat-form-field>
-                                        <input matInput type="text" placeholder="Hebrew title"
+                                        <input matInput type="text" placeholder="כותרת בעיברית"
                                             formControlName="blankTitle">
                                     </mat-form-field>
                                 </div>
                                 <div class="wrap-upload-button">
                                     <input [hidden]="true" #uploadFile type="file" name="file"
                                         (change)="onFileSelectded($event)" />
-                                    <button mat-button type="button" (click)="uploadFile.click()">Upload new
-                                        file</button>
+                                    <button mat-button type="button" (click)="uploadFile.click()">קובץ חדש <mat-icon>attach_file</mat-icon></button>
                                     <div>{{uploadFile.value}}</div>
                                 </div>
                             </div>
                             <div class="submitButton">
                                 <button mat-button type="submit"
-                                    (click)="upload(blankArr[1][0].kategory,blankArr[1][0].kategoryHeb)">Submit</button>
+                                    (click)="upload(blankArr[1][0].kategory,blankArr[1][0].kategoryHeb)">שמור</button>
                                 <span *ngIf="spinner" class="spinner">
                                     <mat-spinner></mat-spinner>
                                 </span>
@@ -93,7 +91,7 @@
                         <mat-icon>touch_app</mat-icon>
                         {{blanksList.name_tofes}}
                     </a>
-                    <button mat-icon-button (click)="deleteBlank(blanksList.id, blanksList.file)" matTooltip="Delete">
+                    <button mat-icon-button (click)="deleteBlank(blanksList.id, blanksList.file)" matTooltip="למחוק">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>

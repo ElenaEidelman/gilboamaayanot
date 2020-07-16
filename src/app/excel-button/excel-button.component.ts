@@ -2,6 +2,8 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GetDataService } from '../get-data.service';
 import { ExcelService } from '../excel.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 
 export class ForExcel {
@@ -22,7 +24,11 @@ export class ForExcel {
 })
 export class ExcelButtonComponent implements OnInit {
 
-  constructor(private http: HttpClient, private dataService: GetDataService, private excelService: ExcelService) { }
+  constructor(
+                private http: HttpClient, 
+                private dataService: GetDataService, 
+                private excelService: ExcelService,
+                private fb: FormBuilder) { }
 
           //calendar date
         //servicecalendar@mishakeihashavua.iam.gserviceaccount.com
@@ -50,6 +56,17 @@ export class ExcelButtonComponent implements OnInit {
   @Input() calendarId: string;
   disableButton: boolean = true;
   spinner: boolean = true;
+  dateTo;
+  dateFrom;
+  yearFrom;
+  monthFrom;
+  dayFrom;
+  excelTooltip:string = "exporting data to excel only for current week";
+  dateChanged: boolean = false;
+  dateFromTo =  this.fb.group({
+    dateFrom: [],
+    dateTo: []
+  });
 
   ngOnInit() {
     this.getData();
@@ -72,11 +89,25 @@ export class ExcelButtonComponent implements OnInit {
 
 
     let dataUrl = PUBLIC_KEY != '' && CALENDAR_ID != '' ? `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${PUBLIC_KEY}&maxResults=2500` : this.spinner = false;
-    let curDate = new Date();
-    let tempCurDate = new Date();
-    let curDayOfWeek = curDate.getDay();
-    let curStartWeek = new Date(curDate.setDate(curDate.getDate()-curDayOfWeek));
-    let curEndWeek = new Date(curDate.setDate(curDate.getDate() + 6));
+    // let curDate = new Date();
+    // let curDayOfWeek = curDate.getDay();
+    // let curStartWeek = new Date(curDate.setDate(curDate.getDate()-curDayOfWeek));
+    // let curEndWeek = new Date(curDate.setDate(curDate.getDate() + 6));
+           //date from
+           let CurrDate = new Date();
+           let numOfWeek = CurrDate.getDay();
+           if(!this.dateChanged){
+              this.dayFrom = (CurrDate.getDate() - numOfWeek) < 10 ? "0" + (CurrDate.getDate() - numOfWeek) : CurrDate.getDate() - numOfWeek;
+              this.monthFrom = (CurrDate.getMonth() + 1) < 10 ? "0" + (CurrDate.getMonth() + 1) : CurrDate.getMonth() + 1;
+              this.yearFrom = CurrDate.getFullYear();
+  
+              this.dateFrom = new Date(this.monthFrom + "/" + this.dayFrom + "/" + this.yearFrom);
+              //date to
+              this.dateTo = new Date(this.dateFrom.getTime() + 6 * 24 * 60 * 60 * 1000);
+              
+              this.dateFromTo.get('dateFrom').setValue(this.dateFrom);
+              this.dateFromTo.get('dateTo').setValue(this.dateTo);
+           }
 
     return this.http.get(dataUrl.toString()).toPromise().then(async (data: any) => {
          let correctData;
@@ -106,22 +137,20 @@ export class ExcelButtonComponent implements OnInit {
             }
             while(nextPageTokenExist);
          }
-      correctData.items.forEach(element => {
+      correctData.items.forEach((element,index) => {
+        if(index == 0){
+          this.data = [];
+        }
         let start,end;
         try {
            start = element['start'].dateTime != undefined ? element['start'].dateTime : element['start'].date;
            end = element['end'].dateTime != undefined ? element['end'].dateTime : element['end'].date;
+           //check date
+           let dateCheck = new Date(start);
 
-           
-           let date = new Date(start);
-           let tempDate = new Date(start);
-           let dayOfWeek = date.getDay();
-           let startWeek = new Date(date.setDate(date.getDate()-dayOfWeek));
-           let endWeek = new Date(date.setDate(date.getDate() + 6));
-   
-           if((startWeek <= tempDate && endWeek >= tempDate) && (this.convertToReadableDate(startWeek) == this.convertToReadableDate(curStartWeek) && this.convertToReadableDate(endWeek) == this.convertToReadableDate(curEndWeek))){
-            //debugger
-             this.data.push({
+          
+           if(dateCheck >= this.dateFrom && dateCheck <= this.dateTo){
+            this.data.push({
                dateString: start,
                location: element['location'],
                endTime: this.convertToReadableTime(end),
@@ -141,9 +170,30 @@ export class ExcelButtonComponent implements OnInit {
      });
     });
   }
-
+  dateHasChanged(type: string, event: MatDatepickerInputEvent<Date>){
+   
+    this.disableButton = true;
+  }
+  newExcelSearch(){
+    this.disableButton = true;
+    this.excelTooltip = "export to excel";
+    this.spinner = true;
+    this.dateChanged = true;
+    let dFrom = this.convertToDateWithTime(this.dateFromTo.get('dateFrom').value,'from');
+    let dTo = this.convertToDateWithTime(this.dateFromTo.get('dateTo').value,'to');
+    this.dateFrom = this.convertToDateWithTime(dFrom,'from');
+    this.dateTo = this.convertToDateWithTime(dTo,'to');
+    this.getData();
+  }
+  convertToDateWithTime(date, timeFromTo){
+    let day = new Date(date).getDate() < 10 ? '0' +  new Date(date).getDate() :  new Date(date).getDate();
+    let month = (new Date().getMonth() + 1) < 10 ? '0' + (new Date().getMonth() + 1) : new Date().getMonth() + 1;
+    let year = new Date().getFullYear();
+    let timeFT = timeFromTo == 'from' ? '00:00:00' : '23:59:59';
+    return new Date(month + '/' + day + '/' + year + ' ' + timeFT);
+  }
   exportToExcel() {
-    //console.log(this.data);
+    console.log(this.data);
     this.excelService.exportAsExcelFile(this.data, 'diary');
   }
 
@@ -173,5 +223,4 @@ export class ExcelButtonComponent implements OnInit {
       }
     });
   }
-
 }

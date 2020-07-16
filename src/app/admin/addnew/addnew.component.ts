@@ -49,21 +49,21 @@ export class AddnewComponent implements OnInit {
       
       this.dataService.SendToDb('addNewMenuZLvl.php',dataToDb).subscribe(
         result => {
-          if(result == 'SUCCESS'){
-            this.openDialog('Succes','Menu was added successfully');
+          if(result.includes('SUCCESS')){
+            this.openDialog('','התווסף בהצלחה');
             this.spinner = false;
             this.resetForm();
             this.route.navigate(['/admin']);
           }
           else{
             this.spinner = false;
-            this.openDialog('Error','Something went wrong');
+            this.openDialog('שגיאה','קרתה שגיאה, נא לנסות שוב פעם מאוחר יותר');
           }
         }
       );
     }
     else{
-      this.openDialog('Error','Please fill all field');
+      this.openDialog('שגיאה','נא למלא את כל השדות');
     }
   }
 

@@ -68,7 +68,7 @@ export class ContactusComponent implements OnInit {
 
   onSubmit(){
     //console.warn(this.emailForm.value);
-    //debugger
+    debugger
       if(this.emailForm.valid){
         this.spinner = true;
         //console.warn(this.emailForm.value);
@@ -77,7 +77,9 @@ export class ContactusComponent implements OnInit {
         message[key] = this.emailForm.get(key).value
       }
       this.serviceData.sendEmail(message).subscribe(result => {
-        if(result == 'SUCCESS'){
+        console.log('inside contact us submit');
+        console.log(result);
+        if(result.includes("SUCCESS")){
           this.openDialog(' תודה ' + this.emailForm.get('firstName').value + ' ' + this.emailForm.get('lastName').value + ' ','מייל נשלח בהצלחה');
           this.showForm = false;
           setTimeout(() => {
@@ -85,8 +87,8 @@ export class ContactusComponent implements OnInit {
               this.showForm = true;
             });
         }
-        else if(result == 'ERROR'){
-          this.openDialog(this.emailForm.get('firstName') + ' ' + this.emailForm.get('lastName') + ' לציירינו ','קרתה שגיאה, נא לנסות שוב פעם או ליצור קשר בטלפון 046071217');
+        else if(result.includes('ERROR')){
+          this.openDialog(this.emailForm.get('firstName').value + ' ' + this.emailForm.get('lastName').value + ' לציירינו ','קרתה שגיאה, נא לנסות שוב פעם או ליצור קשר בטלפון 046071217');
 
         }
         this.spinner = false;

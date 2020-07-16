@@ -1,7 +1,7 @@
 <div class="container">
-    <div class="wrap-component-title">
+    <div class="wrap-component-title" id="goToTopOfPage">
         <h1>
-            <span> Add/Edit post</span>
+            <span> עריכה</span>
         </h1>
     </div>
     <div class="wrap-form">
@@ -12,13 +12,13 @@
                         <div class="container">
                             <p>
                                 <mat-form-field>
-                                    <input matInput #title placeholder="title" formControlName="title"
+                                    <input matInput #title placeholder="כותרת" formControlName="title"
                                         matTooltip="{{title.value}}">
                                 </mat-form-field>
                             </p>
                             <p>
                                 <mat-form-field>
-                                    <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+                                    <input matInput [matDatepicker]="picker" placeholder="תאריך"
                                         formControlName="date">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
@@ -26,7 +26,7 @@
                             </p>
                             <p>
                                 <mat-form-field>
-                                    <input type="time" matInput placeholder="time" formControlName="time">
+                                    <input type="time" matInput placeholder="שעה" formControlName="time">
                                 </mat-form-field>
                             </p>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="container">
                             <p>
                                 <mat-form-field>
-                                    <input type="input" #imgtitle matInput placeholder="img title"
+                                    <input type="input" #imgtitle matInput placeholder="כותרת לתמונה"
                                         formControlName="imgTitle" matTooltip="{{imgtitle.value}}">
                                 </mat-form-field>
                             </p>
@@ -43,10 +43,10 @@
                                 <input [hidden]="true" type="file" (change)="onFileChange($event)" #fileInput>
 
                                 <mat-form-field matTooltip="{{fileInput.value}}" [hidden]="fileName.value == ''">
-                                    <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
+                                    <input matInput #fileName placeholder="בחר תמונה" value="{{fileInput.value}}">
                                 </mat-form-field>
                                 <span class="button-submit">
-                                    <button mat-flat-button (click)="fileInput.click()">Select Image</button>
+                                    <button mat-flat-button (click)="fileInput.click()">בחר תמונה</button>
                                 </span>
                                 <!-- <span *ngIf="img64basePath" class="wrap-img-add-edit">
                                 <img [src]="img64basePath" >
@@ -65,14 +65,14 @@
                 </div>
             </div>
             <div class="button-submit">
-                <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">Save</button>
-                <button mat-flat-button (click)="updatePost()" *ngIf="!saveButton">Edit</button>
+                <button mat-flat-button (click)="onSubmit()" *ngIf="saveButton">שמור</button>
+                <button mat-flat-button (click)="updatePost()" *ngIf="!saveButton">לערוך</button>
                 <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
             </div>
         </form>
     </div>
     <div class="wrap-accordion">
-        <mat-accordion class="example-headers-align achivContent" *ngIf="posts">
+        <mat-accordion class="example-headers-align achivContent" id="postsAccordion" *ngIf="posts">
             <mat-expansion-panel id="postId{{post.id}}" [expanded]="step === i" hideToggle
                 *ngFor="let post of pages; let i = index;">
                 <mat-expansion-panel-header>
@@ -81,15 +81,14 @@
                                 class="underline-decoration">{{post.title}}</span></span>
                     </mat-panel-title>
                     <mat-panel-description></mat-panel-description>
-                    <mat-icon (click)="deletePost(post.id)" class="delete-icon" matTooltip="Delete">delete</mat-icon>
+                    <mat-icon (click)="deletePost(post.id)" class="delete-icon" matTooltip="למחוק">delete</mat-icon>
                 </mat-expansion-panel-header>
-                <div class="edit-button" (click)="editPost(post)">
-                    <button mat-flat-button matTooltip="Edit">
+                <div class="edit-block">
+                    <button mat-flat-button matTooltip="לערוך" (click)="editPost(post)">
                         <mat-icon>edit</mat-icon>
                     </button>
+                    <span [innerHTML]="post.text | slice:0:400 | safe:'html'"></span>...
                 </div>
-                <hr>
-                <span [innerHTML]="post.text | slice:0:400 | safe:'html'"></span>...
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -97,5 +96,4 @@
     <div class="pagination">
         <app-pagination [pager]="pager" (setPage)="setPage($event)"></app-pagination>
     </div>
-
 </div>

@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { GetDataService} from '../get-data.service';
 import { Diary } from '../classes/diary';
+
 
 
 @Component({
@@ -20,9 +21,12 @@ export class DiaryComponent implements OnInit, OnDestroy {
   diary: Diary;
   publicKey: string;
   calendarId: string;
+
+
   ngOnInit() {
     this.getDiary();
   }
+
 
   getDiary(){
     /*const id = this.route.snapshot.paramMap.get('id');
@@ -32,7 +36,6 @@ export class DiaryComponent implements OnInit, OnDestroy {
     this.routIdParams = this.route.params.subscribe(params => {
       let id = params['id'];
       this.dataService.getDiary(id).subscribe(result => {
-        
         this.diary = result;
         // this.publicKey = result['publicKey'];
         // this.calendarId = result['calendarId'];

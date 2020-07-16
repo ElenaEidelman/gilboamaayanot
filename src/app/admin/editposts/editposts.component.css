@@ -44,7 +44,9 @@
 .editPostForm{
     padding-bottom: 5px;
 }
-
+.edit-block{
+    display: flex;
+}
 @media screen and (max-width:1024px){
     .wrap-accordion mat-expansion-panel-header{
         height: 100% !important;

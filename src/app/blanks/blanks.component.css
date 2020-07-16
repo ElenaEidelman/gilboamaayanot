@@ -8,3 +8,13 @@
   align-items: center;
   
 }
+.mat-expansion-panel-header{
+  background: linear-gradient(70deg, #a3a9ae, transparent,#d2d7db);
+}
+.mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover{
+  background: linear-gradient(70deg, #a3a9ae, transparent,#d2d7db);
+}
+.bold{
+  font-weight: bold;
+  color: rgba(0,0,0,1);
+}

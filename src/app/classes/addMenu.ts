@@ -4,4 +4,5 @@ export class addMenu{
     type: string;
     level: number;
     parentMenuId: number;
+    linkOut?:string;
   }

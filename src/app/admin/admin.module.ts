@@ -30,6 +30,8 @@ import { EditWeeklyComponent } from './edit-weekly/edit-weekly.component';
 import { EditDiaryComponent } from './edit-diary/edit-diary.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { ChartsModule } from 'ng2-charts';
+import { OutLinkComponent } from './out-link/out-link.component';
+import { InnerLinkComponent } from './inner-link/inner-link.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { ChartsModule } from 'ng2-charts';
     EditBirthdayComponent,
     EditWeeklyComponent,
     EditDiaryComponent,
-    StatisticComponent
+    StatisticComponent,
+    OutLinkComponent,
+    InnerLinkComponent
   ],
   exports: [
     MaterialModule,
@@ -86,6 +90,7 @@ import { ChartsModule } from 'ng2-charts';
       DialogComponent,
       DialogaddmenuComponent,
       DialogConfirmComponent,
+      SideMenuComponent
     ]
 })
 export class AdminModule { }
