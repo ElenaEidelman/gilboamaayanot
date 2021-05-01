@@ -5,7 +5,8 @@
             <h3 class="postTimeDate">{{post.date}} {{post.time}}</h3>
             <div class="wrap-img-title">
                 <div class="wrap-img">
-                    <img src="data:{{post.imgType}};base64,{{post.img_src}}" title="{{post.img_title}}">
+                    <!-- <img src="data:{{post.imgType}};base64,{{post.img_src}}" title="{{post.img_title}}"> -->
+                    <img  [src]="modePath(post['img_src'])" title="{{post.img_title}}">
                     <span class="imgTitle">{{post.img_title}}</span>
                   </div>
             </div>

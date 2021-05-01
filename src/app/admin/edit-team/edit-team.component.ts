@@ -46,7 +46,6 @@ export class EditTeamComponent implements OnInit {
   getTeam() {
     this.dataService.getTeam().subscribe(
       result => {
-        debugger
         this.teams = result.sort(function(a, b){
           if(a.name < b.name) { return -1; }
           if(a.name > b.name) { return 1; }
@@ -57,7 +56,7 @@ export class EditTeamComponent implements OnInit {
   }
 
   deleteTeam(id: number, imgSrc:string) {
-    this.openConfirmDelete('Are you sure you want delete this Team? ','team','id_zevet',id,'team'+id,true,imgSrc);
+    this.openConfirmDelete('האם למחוק? ','team','id_zevet',id,'team'+id,true,imgSrc);
   }
   editTeam(team: any) {
     this.saveButton = false;
@@ -96,6 +95,7 @@ export class EditTeamComponent implements OnInit {
             if (response.includes('SUCCESS')) {
               this.openDialog('', 'התווסף בהצלחה');
               this.resetForm();
+              this.getTeam();
             }
             else {
               this.spinner = false;
@@ -126,7 +126,6 @@ export class EditTeamComponent implements OnInit {
         mail: mail,
         imgPath: this.imgPath
       }
-      debugger
         this.dataService.SendToDb('saveTeam.php',dataToDb).subscribe(
           response => {
             console.log('get result for saved data to db');
@@ -135,6 +134,7 @@ export class EditTeamComponent implements OnInit {
               this.openDialog('', 'התווסף בהצלחה');
               this.resetForm();
               this.spinner = false;
+              this.getTeam();
             }
             else {
               this.spinner = false;

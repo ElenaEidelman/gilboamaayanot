@@ -51,11 +51,13 @@
             <div class="container">
               <form [formGroup]="addNewPic" *ngIf="viewAddNewPic">
                 <p>
+
                   <mat-form-field>
                     <input type="input" #imgtitle matInput placeholder="img title" formControlName="imgTitle"
                       matTooltip="{{imgtitle.value}}">
                   </mat-form-field>
                 </p>
+
                 <p>
                   <input [hidden]="true" type="file" name="Imgfile" (change)="onFileChange(galleryLabel[i],$event)"
                     #fileInput>
@@ -64,7 +66,7 @@
                     <input matInput #fileName placeholder="Selected image" value="{{fileInput.value}}">
                   </mat-form-field>
                   <span class="button-submit">
-                    <button mat-flat-button (click)="fileInput.click()">Select Image</button>
+                    <button mat-flat-button (click)="fileInput.click(); onFileChange(galleryLabel[i],$event)">Select Image</button>
                   </span>
                   <span *ngIf="imgSrcForView != '' && galleryName == galleryLabel[i]" class="wrap-img-add-edit">
                     <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">

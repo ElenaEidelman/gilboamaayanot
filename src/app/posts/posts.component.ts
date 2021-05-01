@@ -5,6 +5,7 @@ import { Post } from '../classes/post';
 import { PagerService } from '../pager.service';
 import { MatStepper } from '@angular/material';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { isDevMode } from '@angular/core';
 
 @Component({
   selector: 'app-posts',
@@ -60,7 +61,6 @@ export class PostsComponent implements OnInit {
   getPost(){
     this.spinner = true;
     this.dataService.getPost().subscribe(result => {
-
       if(result.length > 0){
         this.imgSrcForView = result[0].img_src;
         this.imgTypeForView = result[0].imgType;
@@ -73,6 +73,12 @@ export class PostsComponent implements OnInit {
     document.getElementById('top').scrollIntoView();
   }
 
+   //create img path depending on mode(development or not)
+   modePath(path:string){
+    let localPath = 'http://localhost:8080/' + path;
+    let hostPath = '' + path;
+    return isDevMode() == true ? localPath : hostPath;
+  }
   //to move in pagination
   setPage(pageNumber: number){
     if(this.ifMobile){

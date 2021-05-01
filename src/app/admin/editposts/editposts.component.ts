@@ -12,6 +12,7 @@ import { DialogConfirmComponent } from '../../dialog-confirm/dialog-confirm.comp
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { DomSanitizer } from '@angular/platform-browser';
+import { isDevMode } from '@angular/core';
 
 
 @Component({
@@ -50,6 +51,7 @@ export class EditpostsComponent implements OnInit, OnDestroy {
   uploadedImage;
   imgSrcForView: string = '';
   imgTypeForView: string = '';
+  view64Base: boolean = false;
 
   viewForm: boolean = true;
   saveButton: boolean = true;
@@ -60,6 +62,7 @@ export class EditpostsComponent implements OnInit, OnDestroy {
   img64basePath;
 
   spinner: boolean = false;
+  spinnerUploadImg: boolean = false;
 
   ifMobile: boolean;
   ifTablet: boolean;
@@ -99,8 +102,21 @@ export class EditpostsComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.editForm.valid) {
-      let postObj = Object.create(this.editForm.value);
-      let date = postObj.date;
+      const formData: FormData = new FormData();
+      let imgFile = undefined;
+      if(this.uploadedImage != undefined){
+        imgFile = new File([this.uploadedImage], new Date().getTime() + this.uploadedImage.name, { type: this.uploadedImage.type, lastModified: Date.now() });
+      }
+
+      //set to formData all values of form
+      for (let key in this.editForm.value ) {
+          formData.append(key, this.editForm.value[key]);
+      }
+      formData.append('imgFile',imgFile);
+
+     // let postObj = Object.create(this.editForm.value);
+      // let date = postObj.date;
+      let date = this.editForm.get('date').value;
       let tempDate = new Date();
 
       let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
@@ -111,13 +127,17 @@ export class EditpostsComponent implements OnInit, OnDestroy {
       let seconds = tempDate.getSeconds() < 10 ? '0' + tempDate.getSeconds() : tempDate.getSeconds().toString();
       let time: string = hours + ":" + minutes + ":" + seconds;
       let currentDate = month + "/" + day + "/" + year + " " + time;
-      postObj.__proto__.date = new Date(currentDate);
-      let newObj = postObj.__proto__;
-      this.dataService.SendToDb('addPost.php',newObj).subscribe(result => {
+
+      const isoDate = new Date(currentDate);
+      const mySQLDateString = isoDate.toJSON().slice(0, 19).replace('T', ' ');
+
+      formData.append('currentDate', mySQLDateString);
+
+      this.dataService.SendToDb('addPost.php',formData).subscribe(result => {
+        this.view64Base = false;
         if (result.includes('SUCCESS')) {
           this.resetForm();
           this.openDialog('', 'מודעה התווספה בהצלחה');
-          debugger
           this.getPosts();
         }
         else if (result.includes('ERROR')) {
@@ -130,20 +150,23 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     }
   }
   onFileChange(event) {
+    this.spinnerUploadImg = true;
     let reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
       let file = event.target.files[0];
-
-      this.ng2imgmax.resizeImage(file, 400, 300).subscribe(
+      this.ng2imgmax.resizeImage(file, 900, 600).subscribe(
         result => {
           this.uploadedImage = result;
           reader.readAsDataURL(result);
           reader.onload = () => {
-            this.editForm.get('img').setValue({
-              filename: result.name,
-              filetype: result.type,
-              value: reader.result.toString().split(',')[1]
-            })
+            // this.editForm.get('img').setValue({
+            //   filename: result.name,
+            //   filetype: result.type,
+            //   value: reader.result.toString().split(',')[1]
+            // })
+            this.spinnerUploadImg = false;
+            this.view64Base = true;
+            this.editForm.get('img').setValue(result);
             this.imgSrcForView = reader.result.toString().split(',')[1];
             this.imgTypeForView = result.type;
           };
@@ -166,7 +189,6 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     this.fileName.nativeElement.value = '';
   }
   editPost(post) {
-    debugger
     this.saveButton = false;
     let thisEditForm = this.editForm;
 
@@ -185,6 +207,7 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     })
 
     // this.img64basePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+ post['imgType'] +';base64,' + post['img_src']);
+    this.view64Base = false;
     this.imgSrcForView = post['img_src'];
     this.imgTypeForView = post['imgType'];
     this.fileName.nativeElement.value = post['imgName'];
@@ -192,9 +215,44 @@ export class EditpostsComponent implements OnInit, OnDestroy {
   }
 
   updatePost() {
+    debugger
     if (this.editForm.valid) {
-      let postObj = Object.create(this.editForm.value);
-      let date = postObj.date;
+      // let postObj = Object.create(this.editForm.value);
+      // let date = postObj.date;
+      // let tempDate = new Date();
+
+      // let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+      // let month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+      // let year = date.getFullYear();
+      // let hours: string = tempDate.getHours() < 10 ? '0' + tempDate.getHours() : tempDate.getHours().toString();
+      // let minutes: string = tempDate.getMinutes() < 10 ? '0' + tempDate.getMinutes() : tempDate.getMinutes().toString();
+      // let seconds = tempDate.getSeconds() < 10 ? '0' + tempDate.getSeconds() : tempDate.getSeconds().toString();
+      // let time: string = hours + ":" + minutes + ":" + seconds;
+      // let currentDate = month + "/" + day + "/" + year + " " + time;
+      // postObj.__proto__.date = new Date(currentDate);
+      // let newObj = postObj.__proto__;
+      debugger
+      const formData: FormData = new FormData();
+      let imgFile = undefined;
+      if(this.uploadedImage != undefined){
+        imgFile = new File([this.uploadedImage], new Date().getTime() + this.uploadedImage.name, { type: this.uploadedImage.type, lastModified: Date.now() });
+        formData.append('imgFile',imgFile);
+      }
+      else{
+        formData.append('imgFile',this.editForm.get('img').value['value']);
+        formData.append('filename',this.editForm.get('img').value['filename']);
+        formData.append('filetype',this.editForm.get('img').value['filetype']);
+      }
+
+      //set to formData all values of form
+      for (let key in this.editForm.value ) {
+          formData.append(key, this.editForm.value[key]);
+      }
+      
+
+     // let postObj = Object.create(this.editForm.value);
+      // let date = postObj.date;
+      let date = this.editForm.get('date').value;
       let tempDate = new Date();
 
       let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
@@ -205,10 +263,13 @@ export class EditpostsComponent implements OnInit, OnDestroy {
       let seconds = tempDate.getSeconds() < 10 ? '0' + tempDate.getSeconds() : tempDate.getSeconds().toString();
       let time: string = hours + ":" + minutes + ":" + seconds;
       let currentDate = month + "/" + day + "/" + year + " " + time;
-      postObj.__proto__.date = new Date(currentDate);
-      let newObj = postObj.__proto__;
 
-      this.dataService.SendToDb('updatePost.php',newObj).subscribe(
+      const isoDate = new Date(currentDate);
+      const mySQLDateString = isoDate.toJSON().slice(0, 19).replace('T', ' ');
+
+      formData.append('currentDate', mySQLDateString);
+
+      this.dataService.SendToDb('updatePost.php',formData).subscribe(
         result => {
           this.spinner = false;
           if (result.includes('SUCCESS')) {
@@ -270,6 +331,12 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     this.ifTablet = this.deviceDetector.isTablet();
     this.ifDesktop = this.deviceDetector.isDesktop();
   }
+     //create img path depending on mode(development or not)
+     modePath(path:string){
+      let localPath = 'http://localhost:8080/' + path;
+      let hostPath = '' + path;
+      return isDevMode() == true ? localPath : hostPath;
+    }
 
   destroyEditor(){
     let editor = window['CKEDITOR'];

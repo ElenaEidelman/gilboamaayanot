@@ -47,6 +47,10 @@
 .edit-block{
     display: flex;
 }
+.spinnerUploadImg{
+    top: -4em;
+    margin: auto;
+}
 @media screen and (max-width:1024px){
     .wrap-accordion mat-expansion-panel-header{
         height: 100% !important;

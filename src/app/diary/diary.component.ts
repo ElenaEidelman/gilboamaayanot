@@ -36,6 +36,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
     this.routIdParams = this.route.params.subscribe(params => {
       let id = params['id'];
       this.dataService.getDiary(id).subscribe(result => {
+        //debugger
         this.diary = result;
         // this.publicKey = result['publicKey'];
         // this.calendarId = result['calendarId'];

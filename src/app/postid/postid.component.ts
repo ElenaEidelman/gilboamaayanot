@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { GetDataService } from '../get-data.service';
@@ -43,5 +43,11 @@ ngOnInit() {
   }
   goBack(){
     this.location.back();
+  }
+  modePath(path:string){
+    debugger
+    let localPath = 'http://localhost:8080/' + path;
+    let hostPath = '' + path;
+    return isDevMode() == true ? localPath : hostPath;
   }
 }

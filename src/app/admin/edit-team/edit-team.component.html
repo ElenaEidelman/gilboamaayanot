@@ -42,7 +42,10 @@
                     <input [hidden]="true" type="file" name="Imgfile" (change)="onFileChange($event)" #fileInput>
     
                     <span class="button-submit">
-                      <button mat-flat-button (click)="fileInput.click()"></button>
+                      <button mat-flat-button (click)="fileInput.click()">
+                        <span>בחר תמונה</span>
+                        <mat-icon>add_photo_alternate</mat-icon>
+                      </button>
                     </span>
                     <span *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
                       <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">

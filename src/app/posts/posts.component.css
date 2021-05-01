@@ -96,6 +96,7 @@ mat-spinner{
     font-weight: 700;
     text-decoration: underline;
     display: flex;
+    direction: rtl;
 }
 .post-title > span{
     margin-left: auto;

@@ -33,28 +33,32 @@
                     </div>
                     <div class="col-md-6 m-sm-12 col-xs-12">
                         <div class="container">
-                            <p>
+                            <div>
                                 <mat-form-field>
                                     <input type="input" #imgtitle matInput placeholder="כותרת לתמונה"
                                         formControlName="imgTitle" matTooltip="{{imgtitle.value}}">
                                 </mat-form-field>
-                            </p>
-                            <p>
-                                <input [hidden]="true" type="file" (change)="onFileChange($event)" #fileInput>
+                            </div>
+                            <div>
+                                <input [hidden]="true" name="imgfile" type="file" (change)="onFileChange($event)" #fileInput>
 
                                 <mat-form-field matTooltip="{{fileInput.value}}" [hidden]="fileName.value == ''">
                                     <input matInput #fileName placeholder="בחר תמונה" value="{{fileInput.value}}">
                                 </mat-form-field>
                                 <span class="button-submit">
                                     <button mat-flat-button (click)="fileInput.click()">בחר תמונה</button>
+                                    <mat-spinner *ngIf="spinnerUploadImg" class="spinnerUploadImg"></mat-spinner>
                                 </span>
                                 <!-- <span *ngIf="img64basePath" class="wrap-img-add-edit">
                                 <img [src]="img64basePath" >
                             </span>  -->
-                                <span *ngIf="imgSrcForView != ''" class="wrap-img-add-edit">
+                                <span *ngIf="imgSrcForView != '' && !view64Base" class="wrap-img-add-edit test1">
+                                    <img [src]="modePath(imgSrcForView)">
+                                </span>
+                                <span *ngIf="imgTypeForView != '' && view64Base" class="wrap-img-add-edit test2">
                                     <img src="data:{{imgTypeForView}};base64,{{imgSrcForView}}">
                                 </span>
-                            </p>
+                            </div>
                         </div>
                     </div>
                     <ckeditor 

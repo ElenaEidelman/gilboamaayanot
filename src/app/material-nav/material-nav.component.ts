@@ -30,7 +30,6 @@ constructor(
 
   getMenu(){
     this.serviceData.getMenu().subscribe(menu => {
-      debugger
         this.items = menu;
       });
   }

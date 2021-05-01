@@ -30,8 +30,9 @@ declare var gapi: any;
 
 export class GetDataService {
   //ng build --prod --aot=true
-  baseURL = 'http://localhost:8080/api';
-  //baseURL = '/api';
+  //baseURL = 'http://localhost:8080/api';
+  //baseURL = 'http://gilboamaayanot/api';
+  baseURL = '/api';
   menu: Menu;
   posts: Post[];
   // public refreshMenu: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
