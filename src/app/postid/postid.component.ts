@@ -48,6 +48,7 @@ ngOnInit() {
     debugger
     let localPath = 'http://localhost:8080/' + path;
     let hostPath = '' + path;
-    return isDevMode() == true ? localPath : hostPath;
+    // return isDevMode() == true ? localPath : hostPath;
+    return hostPath;
   }
 }

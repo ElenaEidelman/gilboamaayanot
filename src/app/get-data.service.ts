@@ -17,7 +17,7 @@ import { ClubAchievement } from './classes/clubachievement';
 import { User } from './classes/user';
 import { MenuAdmin } from './classes/MenuAdmin';
 import { addMenu } from './classes/addMenu';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
 
 
 
@@ -30,9 +30,8 @@ declare var gapi: any;
 
 export class GetDataService {
   //ng build --prod --aot=true
-  //baseURL = 'http://localhost:8080/api';
-  //baseURL = 'http://gilboamaayanot/api';
-  baseURL = '/api';
+  baseURL = 'http://localhost:8080/api';
+  // baseURL = '/api';
   menu: Menu;
   posts: Post[];
   // public refreshMenu: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
@@ -53,7 +52,7 @@ export class GetDataService {
               Object.keys(item[key]).forEach(index => {
                 Object.keys(item[key][+index]).forEach(index2 => {
                   //set function to link of object if have property command
-                  
+
                   if (index2 == 'command') {
                     let id = item[key][+index][index2];
                     item[key][+index][index2] = () => {
@@ -91,7 +90,7 @@ export class GetDataService {
     return this.http.get<MenuAdmin[]>(`${this.baseURL}/getMenuForAdmin.php`).pipe(
       map(result => {
         //debugger
-        localStorage.setItem("adminMenu",JSON.stringify(result));
+        localStorage.setItem("adminMenu", JSON.stringify(result));
         this.adminMenu.emit(result);
         return result;
       }),
@@ -125,6 +124,30 @@ export class GetDataService {
       })
     );
   }
+
+  getLengthOfPosts() {
+    return this.http.get(`${this.baseURL}/getLengthPosts.php`).pipe(
+      map(request => {
+        return request;
+      }),
+      catchError(error => {
+        console.log('error get posts: ' + error.message);
+        return throwError(error);
+      })
+    );
+  }
+  getPostByPage(page: number) {
+    return this.http.post(`${this.baseURL}/getPostsByPage.php`, { page: page }).pipe(
+      map(request => {
+        return request;
+      }),
+      catchError(error => {
+        console.log('error get posts: ' + error.message);
+        return throwError(error);
+      })
+    );
+  }
+
   getPostById(id: number): Observable<Post> {
     return this.http.post<Post>(`${this.baseURL}/getPostById.php`, id).pipe(
       map(request => {
@@ -529,8 +552,8 @@ export class GetDataService {
   //   );
   // }
 
-  SendToDb(fileName: string, data: any){
-    return this.http.post(`${this.baseURL}/${fileName}`,data,{responseType : 'text'}).pipe(
+  SendToDb(fileName: string, data: any) {
+    return this.http.post(`${this.baseURL}/${fileName}`, data, { responseType: 'text' }).pipe(
       map(result => {
         return result;
       }),
@@ -539,8 +562,8 @@ export class GetDataService {
       })
     );
   }
-  GetFromDb(fileName: string){
-    return this.http.get(`${this.baseURL}/${fileName}`,{responseType : 'text'}).pipe(
+  GetFromDb(fileName: string) {
+    return this.http.get(`${this.baseURL}/${fileName}`, { responseType: 'text' }).pipe(
       map(result => {
         return result;
       }),

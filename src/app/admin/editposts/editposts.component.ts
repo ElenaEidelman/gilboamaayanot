@@ -6,7 +6,7 @@ import { PagerService } from '../../pager.service';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import { DialogComponent } from '../../dialog/dialog.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { DialogConfirmComponent } from '../../dialog-confirm/dialog-confirm.component';
 import { Ng2ImgMaxService } from 'ng2-img-max';
@@ -104,17 +104,17 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     if (this.editForm.valid) {
       const formData: FormData = new FormData();
       let imgFile = undefined;
-      if(this.uploadedImage != undefined){
+      if (this.uploadedImage != undefined) {
         imgFile = new File([this.uploadedImage], new Date().getTime() + this.uploadedImage.name, { type: this.uploadedImage.type, lastModified: Date.now() });
       }
 
       //set to formData all values of form
-      for (let key in this.editForm.value ) {
-          formData.append(key, this.editForm.value[key]);
+      for (let key in this.editForm.value) {
+        formData.append(key, this.editForm.value[key]);
       }
-      formData.append('imgFile',imgFile);
+      formData.append('imgFile', imgFile);
 
-     // let postObj = Object.create(this.editForm.value);
+      // let postObj = Object.create(this.editForm.value);
       // let date = postObj.date;
       let date = this.editForm.get('date').value;
       let tempDate = new Date();
@@ -133,7 +133,7 @@ export class EditpostsComponent implements OnInit, OnDestroy {
 
       formData.append('currentDate', mySQLDateString);
 
-      this.dataService.SendToDb('addPost.php',formData).subscribe(result => {
+      this.dataService.SendToDb('addPost.php', formData).subscribe(result => {
         this.view64Base = false;
         if (result.includes('SUCCESS')) {
           this.resetForm();
@@ -211,7 +211,7 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     this.imgSrcForView = post['img_src'];
     this.imgTypeForView = post['imgType'];
     this.fileName.nativeElement.value = post['imgName'];
-    window.scroll(0,0);
+    window.scroll(0, 0);
   }
 
   updatePost() {
@@ -234,23 +234,23 @@ export class EditpostsComponent implements OnInit, OnDestroy {
       debugger
       const formData: FormData = new FormData();
       let imgFile = undefined;
-      if(this.uploadedImage != undefined){
+      if (this.uploadedImage != undefined) {
         imgFile = new File([this.uploadedImage], new Date().getTime() + this.uploadedImage.name, { type: this.uploadedImage.type, lastModified: Date.now() });
-        formData.append('imgFile',imgFile);
+        formData.append('imgFile', imgFile);
       }
-      else{
-        formData.append('imgFile',this.editForm.get('img').value['value']);
-        formData.append('filename',this.editForm.get('img').value['filename']);
-        formData.append('filetype',this.editForm.get('img').value['filetype']);
+      else {
+        formData.append('imgFile', this.editForm.get('img').value['value']);
+        formData.append('filename', this.editForm.get('img').value['filename']);
+        formData.append('filetype', this.editForm.get('img').value['filetype']);
       }
 
       //set to formData all values of form
-      for (let key in this.editForm.value ) {
-          formData.append(key, this.editForm.value[key]);
+      for (let key in this.editForm.value) {
+        formData.append(key, this.editForm.value[key]);
       }
-      
 
-     // let postObj = Object.create(this.editForm.value);
+
+      // let postObj = Object.create(this.editForm.value);
       // let date = postObj.date;
       let date = this.editForm.get('date').value;
       let tempDate = new Date();
@@ -269,7 +269,7 @@ export class EditpostsComponent implements OnInit, OnDestroy {
 
       formData.append('currentDate', mySQLDateString);
 
-      this.dataService.SendToDb('updatePost.php',formData).subscribe(
+      this.dataService.SendToDb('updatePost.php', formData).subscribe(
         result => {
           this.spinner = false;
           if (result.includes('SUCCESS')) {
@@ -331,23 +331,24 @@ export class EditpostsComponent implements OnInit, OnDestroy {
     this.ifTablet = this.deviceDetector.isTablet();
     this.ifDesktop = this.deviceDetector.isDesktop();
   }
-     //create img path depending on mode(development or not)
-     modePath(path:string){
-      let localPath = 'http://localhost:8080/' + path;
-      let hostPath = '' + path;
-      return isDevMode() == true ? localPath : hostPath;
-    }
+  //create img path depending on mode(development or not)
+  modePath(path: string) {
+    let localPath = 'http://localhost:8080/' + path;
+    let hostPath = '' + path;
+    // return isDevMode() == true ? localPath : hostPath;
+    return hostPath;
+  }
 
-  destroyEditor(){
+  destroyEditor() {
     let editor = window['CKEDITOR'];
-    if(editor.instances){
-      for(var editorInstance in editor.instances){
-       editor.instances[editorInstance].destroy();
+    if (editor.instances) {
+      for (var editorInstance in editor.instances) {
+        editor.instances[editorInstance].destroy();
       }
-     }
     }
+  }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     //debugger
     //this.ckeditor.ngOnDestroy();
 
